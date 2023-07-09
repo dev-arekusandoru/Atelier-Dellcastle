@@ -530,14 +530,6 @@ video {
   margin-bottom: 1.5rem;
 }
 
-.mb-5 {
-  margin-bottom: 1.25rem;
-}
-
-.mb-4 {
-  margin-bottom: 1rem;
-}
-
 .flex {
   display: flex;
 }
@@ -582,31 +574,18 @@ video {
   border-radius: 1rem;
 }
 
-.bg-offwhite {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 251 252 / var(--tw-bg-opacity));
-}
-
-.bg-primary {
-  --tw-bg-opacity: 1;
-  background-color: rgb(48 51 46 / var(--tw-bg-opacity));
-}
-
 .bg-offblack {
   --tw-bg-opacity: 1;
   background-color: rgb(1 4 0 / var(--tw-bg-opacity));
 }
 
-.bg-\[url\(\'\.\.\/src\/img\/homepage\.jpg\'\)\] {
-  background-image: url('../src/img/homepage.jpg');
+.bg-offwhite {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 251 252 / var(--tw-bg-opacity));
 }
 
 .bg-\[url\(\'\.\.\/src\/img\/homepage2\.jpg\'\)\] {
   background-image: url('../src/img/homepage2.jpg');
-}
-
-.bg-\[url\(\'\.\.\/src\/img\/homepage2\.png\'\)\] {
-  background-image: url('../src/img/homepage2.png');
 }
 
 .bg-cover {
@@ -628,19 +607,6 @@ video {
   padding-bottom: 35px;
 }
 
-.py-\[55px\] {
-  padding-top: 55px;
-  padding-bottom: 55px;
-}
-
-.pt-8 {
-  padding-top: 2rem;
-}
-
-.pt-6 {
-  padding-top: 1.5rem;
-}
-
 .text-center {
   text-align: center;
 }
@@ -655,8 +621,8 @@ video {
   line-height: 2.25rem;
 }
 
-.text-8xl {
-  font-size: 6rem;
+.text-5xl {
+  font-size: 3rem;
   line-height: 1;
 }
 
@@ -665,17 +631,18 @@ video {
   line-height: 1.75rem;
 }
 
-.text-9xl {
-  font-size: 8rem;
+.text-7xl {
+  font-size: 4.5rem;
+  line-height: 1;
+}
+
+.text-8xl {
+  font-size: 6rem;
   line-height: 1;
 }
 
 .font-bold {
   font-weight: 700;
-}
-
-.font-extrabold {
-  font-weight: 800;
 }
 
 .uppercase {
@@ -734,4 +701,34 @@ body {
 
 #socials a:hover {
   opacity: 100%;
+}
+
+@media (min-width: 740px) {
+  .md\:flex-row {
+    flex-direction: row;
+  }
+
+  .md\:gap-7 {
+    gap: 1.75rem;
+  }
+
+  .md\:text-8xl {
+    font-size: 6rem;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:flex-row {
+    flex-direction: row;
+  }
+
+  .lg\:gap-7 {
+    gap: 1.75rem;
+  }
+
+  .lg\:text-9xl {
+    font-size: 8rem;
+    line-height: 1;
+  }
 }
