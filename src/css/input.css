@@ -10,15 +10,15 @@ body {
   border-color: #fffbfc;
   transition: all ease 0.3s;
 }
-#menu:hover li {
+#menu:hover a {
   border-color: rgba(255, 255, 255, 0);
   transition: all ease 0.3s;
 }
-#menu li {
+#menu a {
   border: 2px solid rgba(255, 255, 255, 0);
   transition: all ease 0.3s;
 }
-#menu li:hover {
+#menu a:hover {
   background-color: rgba(255, 255, 255, 0.3);
   border-color: #fffbfc;
   cursor: pointer;
