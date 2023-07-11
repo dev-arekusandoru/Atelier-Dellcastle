@@ -530,6 +530,42 @@ video {
   margin-bottom: 1.5rem;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
+.mb-7 {
+  margin-bottom: 1.75rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-12 {
+  margin-top: 3rem;
+}
+
+.mt-28 {
+  margin-top: 7rem;
+}
+
+.mt-52 {
+  margin-top: 13rem;
+}
+
 .flex {
   display: flex;
 }
@@ -542,8 +578,24 @@ video {
   height: 100vh;
 }
 
+.h-\[25px\] {
+  height: 25px;
+}
+
+.h-1\/3 {
+  height: 33.333333%;
+}
+
 .w-\[35px\] {
   width: 35px;
+}
+
+.w-11\/12 {
+  width: 91.666667%;
+}
+
+.w-\[25px\] {
+  width: 25px;
 }
 
 .flex-col {
@@ -562,16 +614,24 @@ video {
   justify-content: space-between;
 }
 
+.gap-2 {
+  gap: 0.5rem;
+}
+
 .gap-3 {
   gap: 0.75rem;
 }
 
-.gap-7 {
-  gap: 1.75rem;
+.gap-1 {
+  gap: 0.25rem;
 }
 
 .rounded-2xl {
   border-radius: 1rem;
+}
+
+.border {
+  border-width: 1px;
 }
 
 .bg-offblack {
@@ -607,6 +667,16 @@ video {
   padding-bottom: 35px;
 }
 
+.py-\[10px\] {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.py-\[20px\] {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 .text-center {
   text-align: center;
 }
@@ -621,8 +691,8 @@ video {
   line-height: 2.25rem;
 }
 
-.text-5xl {
-  font-size: 3rem;
+.text-6xl {
+  font-size: 3.75rem;
   line-height: 1;
 }
 
@@ -631,14 +701,19 @@ video {
   line-height: 1.75rem;
 }
 
-.text-7xl {
-  font-size: 4.5rem;
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
   line-height: 1;
 }
 
-.text-8xl {
-  font-size: 6rem;
-  line-height: 1;
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .font-bold {
@@ -703,6 +778,114 @@ body {
   opacity: 100%;
 }
 
+@media (min-width: 370px) {
+  .sl\:mb-0 {
+    margin-bottom: 0px;
+  }
+
+  .sl\:mb-6 {
+    margin-bottom: 1.5rem;
+  }
+
+  .sl\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .sl\:mb-14 {
+    margin-bottom: 3.5rem;
+  }
+
+  .sl\:mb-11 {
+    margin-bottom: 2.75rem;
+  }
+
+  .sl\:h-\[35px\] {
+    height: 35px;
+  }
+
+  .sl\:w-\[35px\] {
+    width: 35px;
+  }
+
+  .sl\:py-\[35px\] {
+    padding-top: 35px;
+    padding-bottom: 35px;
+  }
+
+  .sl\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .sl\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+
+  .sl\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .sl\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+
+@media (min-width: 480px) {
+  .sd\:mb-0 {
+    margin-bottom: 0px;
+  }
+
+  .sd\:mb-6 {
+    margin-bottom: 1.5rem;
+  }
+
+  .sd\:mb-14 {
+    margin-bottom: 3.5rem;
+  }
+
+  .sd\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .sd\:gap-2 {
+    gap: 0.5rem;
+  }
+
+  .sd\:py-\[35px\] {
+    padding-top: 35px;
+    padding-bottom: 35px;
+  }
+
+  .sd\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+
+  .sd\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .sd\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .sm\:text-7xl {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+}
+
 @media (min-width: 740px) {
   .md\:flex-row {
     flex-direction: row;
@@ -719,14 +902,6 @@ body {
 }
 
 @media (min-width: 1024px) {
-  .lg\:flex-row {
-    flex-direction: row;
-  }
-
-  .lg\:gap-7 {
-    gap: 1.75rem;
-  }
-
   .lg\:text-9xl {
     font-size: 8rem;
     line-height: 1;
