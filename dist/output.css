@@ -566,6 +566,10 @@ video {
   display: grid;
 }
 
+.hidden {
+  display: none;
+}
+
 .h-\[100px\] {
   height: 100px;
 }
@@ -941,6 +945,10 @@ body {
 @media (min-width: 740px) {
   .md\:mt-14 {
     margin-top: 3.5rem;
+  }
+
+  .md\:block {
+    display: block;
   }
 
   .md\:flex-row {
