@@ -522,6 +522,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.inset-0 {
+  inset: 0px;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -532,6 +536,10 @@ video {
 
 .mb-7 {
   margin-bottom: 1.75rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
 }
 
 .flex {
@@ -546,12 +554,20 @@ video {
   height: 100vh;
 }
 
+.h-\[30px\] {
+  height: 30px;
+}
+
 .w-11\/12 {
   width: 91.666667%;
 }
 
 .w-\[25px\] {
   width: 25px;
+}
+
+.w-\[30px\] {
+  width: 30px;
 }
 
 .select-none {
@@ -699,6 +715,10 @@ body {
 @media (min-width: 370px) {
   .sl\:mb-11 {
     margin-bottom: 2.75rem;
+  }
+
+  .sl\:mt-0 {
+    margin-top: 0px;
   }
 
   .sl\:h-\[35px\] {
