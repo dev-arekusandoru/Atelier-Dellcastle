@@ -915,8 +915,11 @@ body {
   --tw-border-opacity: 1;
 }
 
-.expanded {
-  height: 300px;
+@media (max-width: 740px) {
+  .expanded {
+    height: 300px;
+    border-bottom: 1px solid rgb(35, 35, 35, 0.2);
+  }
 }
 
 #nav-expander {
