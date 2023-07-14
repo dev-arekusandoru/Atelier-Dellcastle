@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Atelier Dellcastle</title>
-    <link href="../dist/output.css" rel="stylesheet" />
+    <title>Contact</title>
+    <link href="./dist/output.css" rel="stylesheet" />
     <!--fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,8 +21,108 @@
       src="https://kit.fontawesome.com/125fe29883.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="js/functions.js"></script>
   </head>
   <body
-    class="flex flex-col justify-between items-center bg-offwhite h-screen py-[20px] sd:py-[30px] text-offwhite inset-0"
-  ></body>
+    id="contact-page-body"
+    onload="decideAnimationOnLoad('contact-page-body', 'contact.html', 'slideInFromBottom', 'page-body-animation-in')"
+    class="hidden h-screen flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite"
+  >
+    <nav class="">
+      <div
+        id="nav-bar"
+        class="flex justify-between items-center px-[20px] md:px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
+      >
+        <div id="nav-left" class="w-full md:w-[280px]">
+          <a id="homeLink" class="text-2xl hover:cursor-pointer"
+            >Atelier Dellcastle</a
+          >
+          <script>
+            let pageBody = document.getElementById("contact-page-body");
+            //when the home button is clicked, start out animation
+            document
+              .getElementById("homeLink")
+              .addEventListener("click", (e) => {
+                console.log("clicked");
+                localStorage.setItem("pageTarget", "index.html");
+                e.preventDefault();
+                if (!pageBody.classList.contains("page-body-animation-out")) {
+                  pageBody.classList.add("page-body-animation-out");
+                }
+              });
+            //when animation finished, send home
+            pageBody.addEventListener("animationstart", (e) => {
+              if (e.animationName == "slideOutFromBottom") {
+                setTimeout(() => {
+                  window.location.href = localStorage.getItem("pageTarget");
+                }, 1000);
+              }
+            });
+          </script>
+        </div>
+        <div id="nav-center" class="hidden md:flex">
+          <ul class="flex justify-center gap-14 text-md mt-1">
+            <a
+              class="border-b-2 mt py-[18px] border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200 selected"
+              href=""
+              >Explore</a
+            >
+            <a
+              class="border-b-2 mt py-[18px] border-opacity-0 dark:border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200"
+              href=""
+              >Cutting Boards</a
+            >
+            <a
+              class="border-b-2 mt py-[18px] border-opacity-0 dark:border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200"
+              href=""
+              >Kumiko</a
+            >
+            <a
+              class="border-b-2 mt py-[18px] border-opacity-0 dark:border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200"
+              href=""
+              >Boxes</a
+            >
+            <a
+              class="border-b-2 mt py-[18px] border-opacity-0 dark:border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200"
+              href=""
+              >Inlay</a
+            >
+          </ul>
+        </div>
+        <div id="nav-right" class="flex justify-end w-[60px] md:w-[280px]">
+          <a
+            id="nav-hamburger"
+            class="flex items-center justify-center w-[30px] h-[30px] hover:cursor-pointer"
+          >
+            <i
+              class="fa-solid fa-bars fa-lg text-offblack dark:text-offwhite"
+            ></i>
+          </a>
+        </div>
+      </div>
+      <div id="nav-drop-down">
+        <div id="nav-expander" class="h-0"></div>
+      </div>
+    </nav>
+    <script>
+      //handle nav opening on mobile
+      let hamburger = document.getElementById("nav-hamburger");
+      let expander = document.getElementById("nav-expander");
+
+      hamburger.addEventListener("click", () => {
+        if (expander.classList.contains("expanded"))
+          expander.classList.remove("expanded");
+        else expander.classList.add("expanded");
+      });
+    </script>
+
+    <!--main content-->
+    <div id="contact-body" class="px-[20px] md:px-[40px] lg:px-[60px]"></div>
+
+    <!--footer-->
+    <footer class="h-[100px]">
+      <!--To be implemented with legal when shopify is added-->
+    </footer>
+  </body>
 </html>

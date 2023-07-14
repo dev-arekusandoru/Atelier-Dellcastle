@@ -4,6 +4,8 @@ function decideAnimationOnLoad(
   animationName,
   animationClass
 ) {
+  if (typeof pageBody == "string") pageBody = document.getElementById(pageBody);
+
   if (pageBody.classList.contains("hidden")) {
     pageBody.classList.add("flex");
     pageBody.classList.remove("hidden");
