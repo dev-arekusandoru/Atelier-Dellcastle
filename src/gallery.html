@@ -32,9 +32,13 @@
     <nav class="">
       <div
         id="nav-bar"
-        class="flex justify-between items-center px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
+        class="flex justify-between items-center px-[20px] md:px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
       >
-        <div id="nav-left" class="w-[280px]">
+        <div
+          id="nav-left"
+          style="border: 1px solid red"
+          class="w-full md:w-[280px]"
+        >
           <a id="homeLink" class="text-2xl hover:cursor-pointer"
             >Atelier Dellcastle</a
           >
@@ -67,7 +71,11 @@
             });
           </script>
         </div>
-        <div id="nav-center" class="hidden md:flex">
+        <div
+          id="nav-center"
+          style="border: 1px solid red"
+          class="hidden md:flex"
+        >
           <ul class="flex justify-center gap-14 text-md mt-1">
             <a
               class="border-b-2 mt py-[18px] border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200 selected"
@@ -82,7 +90,7 @@
             <a
               class="border-b-2 mt py-[18px] border-opacity-0 dark:border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200"
               href=""
-              >Coasters</a
+              >Kumiko</a
             >
             <a
               class="border-b-2 mt py-[18px] border-opacity-0 dark:border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200"
@@ -96,7 +104,11 @@
             >
           </ul>
         </div>
-        <div id="nav-right" class="flex justify-end w-[280px]">
+        <div
+          id="nav-right"
+          style="border: 1px solid red"
+          class="flex justify-end w-[60px] md:w-[280px]"
+        >
           <a
             id="nav-hamburger"
             class="flex items-center justify-center w-[30px] h-[30px] hover:cursor-pointer"
@@ -108,7 +120,7 @@
         </div>
       </div>
       <div id="nav-drop-down">
-        <div id="nav-expander" class="h-0 border-b"></div>
+        <div id="nav-expander" class="h-0"></div>
       </div>
     </nav>
     <script>
