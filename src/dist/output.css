@@ -554,6 +554,10 @@ video {
   margin-top: 1.75rem;
 }
 
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
 }
@@ -691,8 +695,16 @@ video {
   background-color: rgb(255 251 252 / var(--tw-bg-opacity));
 }
 
-.bg-\[url\(\'\.\.\/src\/img\/homepage2\.jpg\'\)\] {
-  background-image: url('../src/img/homepage2.jpg');
+.bg-\[url\(\'\/src\/img\/homepage2\.jpg\'\)\] {
+  background-image: url('/src/img/homepage2.jpg');
+}
+
+.bg-\[url\(\'\.\/src\/img\/homepage2\.jpg\'\)\] {
+  background-image: url('./src/img/homepage2.jpg');
+}
+
+.bg-\[url\(\'\/img\/homepage2\.jpg\'\)\] {
+  background-image: url('/img/homepage2.jpg');
 }
 
 .bg-cover {
