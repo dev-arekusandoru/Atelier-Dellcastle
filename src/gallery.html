@@ -21,52 +21,109 @@
       src="https://kit.fontawesome.com/125fe29883.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="js/functions.js"></script>
   </head>
-  <body class="flex flex-col items-center bg-offwhite text-offblack inset-0">
-    <nav
-      class="hidden md:flex justify-between items-center px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
-    >
-      <div id="nav-left" class="w-[280px]">
-        <a href="index.html" class="text-3xl uppercase">Atelier Dellcastle</a>
+  <body
+    id="gallery-page-body"
+    onload="decideAnimationOnLoad(galleryPageBody, 'gallery.html', 'slideGalleryInFromBottom', 'gallery-page-body-animation-in')"
+    class="hidden flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite inset-0"
+  >
+    <nav class="">
+      <div
+        id="nav-bar"
+        class="flex justify-between items-center px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
+      >
+        <div id="nav-left" class="w-[280px]">
+          <a id="homeLink" class="text-2xl hover:cursor-pointer"
+            >Atelier Dellcastle</a
+          >
+          <script>
+            //get the gallery body
+            let galleryPageBody = document.getElementById("gallery-page-body");
+            //when the home button is clicked, start out animation
+            document
+              .getElementById("homeLink")
+              .addEventListener("click", (e) => {
+                localStorage.setItem("pageTarget", "index.html");
+                e.preventDefault();
+                if (
+                  !galleryPageBody.classList.contains(
+                    "gallery-page-body-animation-out"
+                  )
+                ) {
+                  galleryPageBody.classList.add(
+                    "gallery-page-body-animation-out"
+                  );
+                }
+              });
+            //when animation finished, send home
+            galleryPageBody.addEventListener("animationstart", (e) => {
+              if (e.animationName == "slideGalleryOutFromBottom") {
+                setTimeout(() => {
+                  window.location.href = localStorage.getItem("pageTarget");
+                }, 1000);
+              }
+            });
+          </script>
+        </div>
+        <div id="nav-center" class="hidden md:flex">
+          <ul class="flex justify-center gap-14 text-md mt-1">
+            <a
+              class="border-b-2 mt py-[18px] border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200 selected"
+              href=""
+              >Explore</a
+            >
+            <a
+              class="border-b-2 mt py-[18px] border-opacity-0 dark:border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200"
+              href=""
+              >Cutting Boards</a
+            >
+            <a
+              class="border-b-2 mt py-[18px] border-opacity-0 dark:border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200"
+              href=""
+              >Coasters</a
+            >
+            <a
+              class="border-b-2 mt py-[18px] border-opacity-0 dark:border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200"
+              href=""
+              >Boxes</a
+            >
+            <a
+              class="border-b-2 mt py-[18px] border-opacity-0 dark:border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200"
+              href=""
+              >Inlay</a
+            >
+          </ul>
+        </div>
+        <div id="nav-right" class="flex justify-end w-[280px]">
+          <a
+            id="nav-hamburger"
+            class="flex items-center justify-center w-[30px] h-[30px] hover:cursor-pointer"
+          >
+            <i
+              class="fa-solid fa-bars fa-lg text-offblack dark:text-offwhite"
+            ></i>
+          </a>
+        </div>
       </div>
-      <div id="nav-center">
-        <ul class="flex justify-center gap-14 text-md mt-1">
-          <a
-            class="border-b-2 mt py-[18px] border-opacity-0 border-b-offblack hover:border-opacity-100 transition-colors duration-200 selected"
-            href=""
-            >Explore</a
-          >
-          <a
-            class="border-b-2 mt py-[18px] border-opacity-0 border-b-offblack hover:border-opacity-100 transition-colors duration-200"
-            href=""
-            >Cutting Boards</a
-          >
-          <a
-            class="border-b-2 mt py-[18px] border-opacity-0 border-b-offblack hover:border-opacity-100 transition-colors duration-200"
-            href=""
-            >Coasters</a
-          >
-          <a
-            class="border-b-2 mt py-[18px] border-opacity-0 border-b-offblack hover:border-opacity-100 transition-colors duration-200"
-            href=""
-            >Boxes</a
-          >
-          <a
-            class="border-b-2 mt py-[18px] border-opacity-0 border-b-offblack hover:border-opacity-100 transition-colors duration-200"
-            href=""
-            >Inlay</a
-          >
-        </ul>
-      </div>
-      <div id="nav-right" class="flex justify-end w-[280px]">
-        <a
-          class="flex items-center justify-center w-[30px] h-[30px] hover:cursor-pointer"
-        >
-          <i class="fa-solid fa-bars fa-lg text-offblack"></i>
-        </a>
+      <div id="nav-drop-down">
+        <div id="nav-expander" class="h-0"></div>
       </div>
     </nav>
-    <div id="galler-body" class="px-[20px] md:px-[40px] lg:px-[60px]">
+    <script>
+      //handle nav opening on mobile
+      let hamburger = document.getElementById("nav-hamburger");
+      let expander = document.getElementById("nav-expander");
+
+      hamburger.addEventListener("click", () => {
+        if (expander.classList.contains("expanded"))
+          expander.classList.remove("expanded");
+        else expander.classList.add("expanded");
+      });
+    </script>
+
+    <div id="gallery-body" class="px-[20px] md:px-[40px] lg:px-[60px]">
       <div
         id="header"
         class="text-3xl bold mt-7 md:mt-14 text-center md:text-left"

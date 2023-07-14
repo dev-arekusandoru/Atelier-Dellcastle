@@ -1,9 +1,58 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/*npx tailwindcss -i ./src/css/input.css -o ./dist/output.css --watch*/
 
 body {
   font-family: "Karla", sans-serif;
+}
+
+/*-------------------------------------------------------Key Frames-------------------------------------------------------*/
+@keyframes slideGalleryInFromBottom {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slideGalleryOutFromBottom {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes slideHomeOutThroughTop {
+  0% {
+    transform: translateY(0%);
+    background-position: 0px 0px;
+  }
+  100% {
+    transform: translateY(-100%);
+    background-position: 0px -115vh;
+  }
+}
+@keyframes slideHomeInThroughTop {
+  0% {
+    transform: translateY(-100%);
+    background-position: 0px -115vh;
+  }
+  100% {
+    transform: translateY(0%);
+    background-position: 0px 0px;
+  }
 }
 
 /*-------------------------------------------------------Home-------------------------------------------------------*/
@@ -35,13 +84,38 @@ body {
 #socials a:hover {
   opacity: 100%;
 }
+#home-page-body {
+  background-color: "#010400";
+}
+
+.home-page-body-animation-out {
+  animation: 1s ease-in-out 0s 1 forwards slideHomeOutThroughTop;
+}
+.home-page-body-animation-in {
+  animation: 1s ease-in-out 0s 1 forwards slideHomeInThroughTop;
+}
 
 /*-------------------------------------------------------NAV-------------------------------------------------------*/
 .selected {
   --tw-border-opacity: 1;
 }
 
+.expanded {
+  height: 300px;
+}
+#nav-expander {
+  transition: all ease-in-out 0.5s;
+}
+
 /*-------------------------------------------------------Gallery-------------------------------------------------------*/
+
+.gallery-page-body-animation-in {
+  animation: 1s ease-in-out 0s 1 forwards slideGalleryInFromBottom;
+}
+.gallery-page-body-animation-out {
+  animation: 1s ease-in-out 0s 1 forwards slideGalleryOutFromBottom;
+}
+
 .item {
   margin-bottom: 10px;
   border-radius: 10px;

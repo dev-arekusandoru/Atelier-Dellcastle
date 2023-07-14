@@ -21,9 +21,13 @@
       src="https://kit.fontawesome.com/125fe29883.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="js/functions.js"></script>
   </head>
   <body
-    class="flex flex-col justify-between items-center bg-offblack bg-[url('../src/img/homepage2.jpg')] bg-cover h-screen py-[20px] sd:py-[30px] text-offwhite inset-0"
+    id="home-page-body"
+    onload="decideAnimationOnLoad(homePageBody, 'index.html', 'slideHomeInThroughTop', 'home-page-body-animation-in')"
+    class="flex flex-col justify-between items-center bg-offwhite dark:bg-offblack bg-[url('../src/img/homepage2.jpg')] bg-no-repeat bg-cover h-screen py-[20px] sd:py-[30px] text-offwhite inset-0"
   >
     <div
       class="uppercase text-lg sl:text-3xl font-bold mb-5 sd:mb-0 select-none"
@@ -45,11 +49,38 @@
         id="menu"
         class="flex flex-col md:flex-row gap-1 sd:gap-2 md:gap-7 items-center text-xl select-none"
       >
-        <a href="about.html" class="px-2 py-1">About</a>
-        <a href="gallery.html" class="px-2 py-1">Gallery</a>
-        <a href="shows.html" class="px-2 py-1">Shows</a>
-        <a href="contact.html" class="px-2 py-1">Contact</a>
+        <a class="home-menu-button px-2 py-1">About</a>
+        <a class="home-menu-button px-2 py-1">Gallery</a>
+        <a class="home-menu-button px-2 py-1">Shows</a>
+        <a class="home-menu-button px-2 py-1">Contact</a>
       </ul>
+      <script>
+        let menuButtons = document.getElementsByClassName("home-menu-button");
+        let homePageBody = document.getElementById("home-page-body");
+        let target;
+        // set up buttons to transition page out
+        Array.from(menuButtons).forEach(function (button) {
+          button.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (
+              !homePageBody.classList.contains("home-page-body-animation-out")
+            ) {
+              homePageBody.classList.add("home-page-body-animation-out");
+              localStorage.setItem(
+                "pageTarget",
+                button.innerHTML.toLowerCase() + ".html"
+              );
+            }
+          });
+        });
+        homePageBody.addEventListener("animationstart", (e) => {
+          if (e.animationName == "slideHomeOutThroughTop") {
+            setTimeout(() => {
+              window.location.href = localStorage.getItem("pageTarget");
+            }, 1000);
+          }
+        });
+      </script>
     </div>
     <div id="socials" class="flex gap-3 mt-2 sl:mt-0">
       <a

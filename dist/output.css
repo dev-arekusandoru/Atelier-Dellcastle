@@ -542,10 +542,6 @@ video {
   margin-top: 0.25rem;
 }
 
-.mt-14 {
-  margin-top: 3.5rem;
-}
-
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -568,6 +564,10 @@ video {
 
 .hidden {
   display: none;
+}
+
+.h-0 {
+  height: 0px;
 }
 
 .h-\[100px\] {
@@ -652,16 +652,8 @@ video {
   gap: 0.75rem;
 }
 
-.gap-6 {
-  gap: 1.5rem;
-}
-
 .gap-4 {
   gap: 1rem;
-}
-
-.gap-2 {
-  gap: 0.5rem;
 }
 
 .rounded-2xl {
@@ -694,11 +686,6 @@ video {
   --tw-border-opacity: 0.3;
 }
 
-.bg-offblack {
-  --tw-bg-opacity: 1;
-  background-color: rgb(1 4 0 / var(--tw-bg-opacity));
-}
-
 .bg-offwhite {
   --tw-bg-opacity: 1;
   background-color: rgb(255 251 252 / var(--tw-bg-opacity));
@@ -710,6 +697,10 @@ video {
 
 .bg-cover {
   background-size: cover;
+}
+
+.bg-no-repeat {
+  background-repeat: no-repeat;
 }
 
 .px-2 {
@@ -744,6 +735,11 @@ video {
 
 .text-center {
   text-align: center;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .text-3xl {
@@ -784,6 +780,14 @@ video {
   color: rgb(255 251 252 / var(--tw-text-opacity));
 }
 
+.transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .transition-colors {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -794,8 +798,67 @@ video {
   transition-duration: 200ms;
 }
 
+/*npx tailwindcss -i ./src/css/input.css -o ./dist/output.css --watch*/
+
 body {
   font-family: "Karla", sans-serif;
+}
+
+/*-------------------------------------------------------Key Frames-------------------------------------------------------*/
+
+@keyframes slideGalleryInFromBottom {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideGalleryOutFromBottom {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes slideHomeOutThroughTop {
+  0% {
+    transform: translateY(0%);
+    background-position: 0px 0px;
+  }
+
+  100% {
+    transform: translateY(-100%);
+    background-position: 0px -115vh;
+  }
+}
+
+@keyframes slideHomeInThroughTop {
+  0% {
+    transform: translateY(-100%);
+    background-position: 0px -115vh;
+  }
+
+  100% {
+    transform: translateY(0%);
+    background-position: 0px 0px;
+  }
 }
 
 /*-------------------------------------------------------Home-------------------------------------------------------*/
@@ -834,13 +897,41 @@ body {
   opacity: 100%;
 }
 
+#home-page-body {
+  background-color: "#010400";
+}
+
+.home-page-body-animation-out {
+  animation: 1s ease-in-out 0s 1 forwards slideHomeOutThroughTop;
+}
+
+.home-page-body-animation-in {
+  animation: 1s ease-in-out 0s 1 forwards slideHomeInThroughTop;
+}
+
 /*-------------------------------------------------------NAV-------------------------------------------------------*/
 
 .selected {
   --tw-border-opacity: 1;
 }
 
+.expanded {
+  height: 300px;
+}
+
+#nav-expander {
+  transition: all ease-in-out 0.5s;
+}
+
 /*-------------------------------------------------------Gallery-------------------------------------------------------*/
+
+.gallery-page-body-animation-in {
+  animation: 1s ease-in-out 0s 1 forwards slideGalleryInFromBottom;
+}
+
+.gallery-page-body-animation-out {
+  animation: 1s ease-in-out 0s 1 forwards slideGalleryOutFromBottom;
+}
 
 .item {
   margin-bottom: 10px;
@@ -872,6 +963,27 @@ body {
 
 .hover\:border-opacity-100:hover {
   --tw-border-opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .dark\:border-b-offwhite {
+    --tw-border-opacity: 1;
+    border-bottom-color: rgb(255 251 252 / var(--tw-border-opacity));
+  }
+
+  .dark\:border-opacity-0 {
+    --tw-border-opacity: 0;
+  }
+
+  .dark\:bg-offblack {
+    --tw-bg-opacity: 1;
+    background-color: rgb(1 4 0 / var(--tw-bg-opacity));
+  }
+
+  .dark\:text-offwhite {
+    --tw-text-opacity: 1;
+    color: rgb(255 251 252 / var(--tw-text-opacity));
+  }
 }
 
 @media (min-width: 370px) {
@@ -947,10 +1059,6 @@ body {
     margin-top: 3.5rem;
   }
 
-  .md\:block {
-    display: block;
-  }
-
   .md\:flex {
     display: flex;
   }
@@ -959,12 +1067,12 @@ body {
     flex-direction: row;
   }
 
-  .md\:gap-7 {
-    gap: 1.75rem;
-  }
-
   .md\:gap-6 {
     gap: 1.5rem;
+  }
+
+  .md\:gap-7 {
+    gap: 1.75rem;
   }
 
   .md\:px-\[40px\] {
