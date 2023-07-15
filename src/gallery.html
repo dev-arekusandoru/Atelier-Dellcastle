@@ -6,8 +6,6 @@
     <title>Gallery</title>
     <link href="./dist/output.css" rel="stylesheet" />
     <!--fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
       rel="stylesheet"
@@ -32,9 +30,9 @@
     <nav class="">
       <div
         id="nav-bar"
-        class="flex justify-between items-center px-[20px] md:px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
+        class="flex items-center px-[20px] lg:px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
       >
-        <div id="nav-left" class="w-full md:w-[280px]">
+        <div id="nav-left" class="w-full md:w-[186px]">
           <a id="homeLink" class="text-2xl hover:cursor-pointer"
             >Atelier Dellcastle</a
           >
@@ -61,8 +59,8 @@
             });
           </script>
         </div>
-        <div id="nav-center" class="hidden md:flex">
-          <ul class="flex justify-center gap-14 text-md mt-1">
+        <div id="nav-center" class="hidden md:flex m-auto">
+          <ul class="flex justify-center gap-10 lg:gap-14 text-md mt-1">
             <a
               class="border-b-2 mt py-[18px] border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200 selected"
               href=""
@@ -90,7 +88,7 @@
             >
           </ul>
         </div>
-        <div id="nav-right" class="flex justify-end w-[60px] md:w-[280px]">
+        <div id="nav-right" class="flex justify-end shrink lg:w-[186px]">
           <a
             id="nav-hamburger"
             class="flex items-center justify-center w-[30px] h-[30px] hover:cursor-pointer"

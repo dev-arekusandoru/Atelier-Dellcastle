@@ -14,7 +14,6 @@ body {
     opacity: 0;
   }
   50% {
-    opacity: 0;
   }
   100% {
     transform: translateY(0);
@@ -139,4 +138,99 @@ body {
 }
 .item-img {
   border-radius: 10px;
+}
+
+/*-------------------------------------------------------Gallery-------------------------------------------------------*/
+.contact-div {
+  font-size: 24px;
+  position: relative;
+  width: 100%;
+  height: 50px;
+}
+
+.contact-input {
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 25px 0 5px 5px;
+  outline: none;
+  background-color: #fffbfc;
+  border-bottom: 2px solid #0104002c;
+  transition: all ease-in-out 0.4s;
+}
+.contact-input:focus {
+  outline: none;
+  border-color: #010400;
+}
+
+.contact-input:focus + .contact-label,
+.contact-input:valid + .contact-label {
+  font-size: 14px;
+  padding-top: 3px;
+  opacity: 0.5;
+}
+
+.contact-label {
+  position: absolute;
+  left: 3px;
+  width: 100%;
+  height: 100%;
+  padding-top: 13px;
+  transition: all ease-in-out 0.2s;
+  opacity: 0.8;
+}
+.contact-label:hover {
+  cursor: text;
+}
+
+#commission {
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+}
+#commission:hover {
+  cursor: pointer;
+}
+
+#commission-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#commission-display-inside-checkbox {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  background-color: #010400;
+  opacity: 0;
+  transition: all ease-in-out 0.4s;
+}
+
+.checkbox {
+  border: 2px solid #0104002c;
+  width: 20px;
+  height: 20px;
+  transition: all ease-in-out 0.4s;
+  padding: 2px;
+}
+
+.check {
+  border-color: #010400;
+  border-radius: 5px;
+}
+.check #commission-display-inside-checkbox {
+  opacity: 1;
+}
+
+#contact-content {
+  width: 100%;
+  background-color: #fffbfc;
+  border: 2px solid #0104002c;
+  transition: all ease-in-out 0.4s;
+}
+#contact-content:focus {
+  outline: none;
+  border-color: #010400;
 }
