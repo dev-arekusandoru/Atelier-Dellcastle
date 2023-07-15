@@ -74,7 +74,6 @@
         homePageBody.addEventListener("animationstart", (e) => {
           if (e.animationName == "slideHomeOutThroughTop") {
             setTimeout(() => {
-              homePageBody.classList.remove("home-page-body-animation-out");
               window.location.href = localStorage.getItem("pageTarget");
             }, 1000);
           }
