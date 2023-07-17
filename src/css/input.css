@@ -248,3 +248,24 @@ body {
   outline: none;
   border-color: #010400;
 }
+
+@media (prefers-color-scheme: dark) {
+  .contact-input {
+    background-color: #010400;
+    border-color: #fffbfc2c;
+  }
+  .contact-input:focus {
+    outline: none;
+    border-color: #fffbfc;
+  }
+
+  #commission-display-inside-checkbox {
+    background-color: #fffbfc;
+  }
+  .checkbox {
+    border-color: #fffbfc2c;
+  }
+  .check {
+    border-color: #fffbfc;
+  }
+}
