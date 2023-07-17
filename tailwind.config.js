@@ -4,7 +4,11 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        home: "url('/public/img/homepage2.jpg')",
+      },
+    },
     screens: {
       sl: "370px",
 
