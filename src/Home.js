@@ -5,7 +5,7 @@ function Home() {
   return (
     <div
       id="home-page-body"
-      style={{ backgroundImage: background }}
+      style={{ backgroundImage: `url(${background})` }}
       /* onLoad=decideAnimationOnLoad('home-page-body', 'index.html', 'slideHomeInThroughTop', 'home-page-body-animation-in') */
       className="flex flex-col justify-between items-center bg-offblack dark:bg-offblack bg-home bg-no-repeat bg-cover h-screen py-[20px] sd:py-[30px] text-offwhite inset-0"
     >
