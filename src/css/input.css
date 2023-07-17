@@ -248,6 +248,9 @@ body {
   outline: none;
   border-color: #010400;
 }
+#submit {
+  transition: all ease-in-out 300ms;
+}
 
 @media (prefers-color-scheme: dark) {
   .contact-input {
@@ -266,6 +269,22 @@ body {
     border-color: #fffbfc2c;
   }
   .check {
+    border-color: #fffbfc;
+  }
+  #contact-content {
+    background-color: #010400;
+    border-color: #fffbfc2c;
+  }
+  #contact-content:focus {
+    border-color: #fffbfc;
+  }
+  #submit {
+    color: #fffbfc2c;
+    border-color: #fffbfc2c;
+  }
+  #submit:hover {
+    color: #010400;
+    background-color: #fffbfc;
     border-color: #fffbfc;
   }
 }

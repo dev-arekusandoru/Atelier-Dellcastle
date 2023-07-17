@@ -680,6 +680,10 @@ video {
   flex-shrink: 1;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .select-none {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -890,12 +894,26 @@ video {
   transition-duration: 150ms;
 }
 
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .duration-200 {
   transition-duration: 200ms;
 }
 
 .duration-300 {
   transition-duration: 300ms;
+}
+
+.duration-1000 {
+  transition-duration: 1000ms;
+}
+
+.duration-500 {
+  transition-duration: 500ms;
 }
 
 /*npx tailwindcss -i ./src/css/input.css -o ./dist/output.css --watch*/
@@ -1178,6 +1196,10 @@ body {
   border-color: #010400;
 }
 
+#submit {
+  transition: all ease-in-out 300ms;
+}
+
 @media (prefers-color-scheme: dark) {
   .contact-input {
     background-color: #010400;
@@ -1198,6 +1220,26 @@ body {
   }
 
   .check {
+    border-color: #fffbfc;
+  }
+
+  #contact-content {
+    background-color: #010400;
+    border-color: #fffbfc2c;
+  }
+
+  #contact-content:focus {
+    border-color: #fffbfc;
+  }
+
+  #submit {
+    color: #fffbfc2c;
+    border-color: #fffbfc2c;
+  }
+
+  #submit:hover {
+    color: #010400;
+    background-color: #fffbfc;
     border-color: #fffbfc;
   }
 }
@@ -1345,6 +1387,14 @@ body {
     width: 280px;
   }
 
+  .md\:w-9\/12 {
+    width: 75%;
+  }
+
+  .md\:w-5\/6 {
+    width: 83.333333%;
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
@@ -1388,6 +1438,10 @@ body {
 
   .lg\:w-\[186px\] {
     width: 186px;
+  }
+
+  .lg\:w-2\/3 {
+    width: 66.666667%;
   }
 
   .lg\:grid-cols-3 {
