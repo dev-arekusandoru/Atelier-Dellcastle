@@ -1,5 +1,5 @@
 import React from "react";
-import background from "./img/homepage2.jpg";
+import background from "../img/homepage2.jpg";
 
 function Home() {
   return (
@@ -7,7 +7,7 @@ function Home() {
       id="home-page-body"
       style={{ backgroundImage: `url(${background})` }}
       /* onLoad=decideAnimationOnLoad('home-page-body', 'index.html', 'slideHomeInThroughTop', 'home-page-body-animation-in') */
-      className="flex flex-col justify-between items-center bg-offblack dark:bg-offblack bg-home bg-no-repeat bg-cover h-screen py-[20px] sd:py-[30px] text-offwhite inset-0"
+      className="hidde flex-col justify-between items-center bg-offblack dark:bg-offblack bg-home bg-no-repeat bg-cover h-screen py-[20px] sd:py-[30px] text-offwhite inset-0"
     >
       <div className="uppercase text-lg sl:text-3xl font-bold mb-5 sd:mb-0 select-none">
         Welcome
