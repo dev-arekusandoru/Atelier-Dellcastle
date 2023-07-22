@@ -114,14 +114,18 @@ body {
   --tw-border-opacity: 1;
 }
 
-@media (max-width: 740px) {
-  .expanded {
-    height: 300px;
-    border-bottom: 1px solid rgb(35, 35, 35, 0.2);
-  }
-}
-#nav-expander {
+#nav-drop-down {
   transition: all ease-in-out 0.5s;
+  overflow: hidden;
+}
+
+.expanded {
+  height: 235px;
+  opacity: 1;
+}
+.collapsed {
+  height: 0;
+  opacity: 0;
 }
 
 /*-------------------------------------------------------Gallery-------------------------------------------------------*/
