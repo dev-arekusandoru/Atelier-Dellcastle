@@ -158,6 +158,10 @@ body {
   border-radius: 10px;
 }
 
+#featured-text {
+  transition: margin ease-in-out 1s;
+}
+
 /*-------------------------------------------------------Gallery-------------------------------------------------------*/
 .contact-div {
   font-size: 24px;
