@@ -25,7 +25,7 @@
   <body
     id="about-page-body"
     onload="decideAnimationOnLoad('about-page-body', 'about.html', 'slideInFromBottom', 'page-body-animation-in')"
-    class="hidden min-h-screen flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite overflow-hidden"
+    class="hidden h-full min-h-screen flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite"
   >
     <nav class="select-none">
       <div
@@ -71,7 +71,7 @@
           </a>
           <div
             id="nav-drop-down"
-            class="collapsed text-center w-[175px] h-[235px] bg-offwhite absolute top-14 right-8 border-2 border-offblack"
+            class="collapsed text-center z-10 w-[175px] h-[235px] bg-offwhite dark:bg-offblack absolute top-14 right-8 border-2 border-offblack dark:border-offwhite"
           >
             <div class="flex flex-col items-center w-full h-[235px] absolute">
               <a
@@ -79,25 +79,33 @@
                 href="index.html"
                 >Home</a
               >
-              <hr class="nav-item w-3/4 border-t border-[#01040066]" />
+              <hr
+                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+              />
               <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] font-bold hover:font-bold transition-all duration-200"
+                class="nav-item w-3/4 h-[45px] font-bold leading-[45px] hover:font-bold transition-all duration-200"
                 href="about.html"
                 >About</a
               >
-              <hr class="nav-item w-3/4 border-t border-[#01040066]" />
+              <hr
+                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+              />
               <a
                 class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
                 href="gallery.html"
                 >Gallery</a
               >
-              <hr class="nav-item w-3/4 border-t border-[#01040066]" />
+              <hr
+                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+              />
               <a
                 class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
                 href="contact.html"
                 >Contact</a
               >
-              <hr class="nav-item w-3/4 border-t border-[#01040066]" />
+              <hr
+                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+              />
               <a
                 class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-300"
                 href="shows.html"
@@ -136,10 +144,12 @@
     <!--main content-->
     <div
       id="about-body"
-      class="flex flex-col items-center w-screen px-[20px] md:px-[40px] lg:px-[60px]"
+      class="flex flex-col items-center w-screen px-[20px] transition-all duration-300"
     >
-      <h2 class="uppercase my-8 text-5xl font-bold">About</h2>
-      <p class="w-2/3 text-xl text-center leading-7">
+      <h2 class="uppercase my-10 text-5xl font-bold">About</h2>
+      <p
+        class="w-11/12 lg:w-2/3 text-xl text-center leading-7 transition-all duration-500"
+      >
         Growing up in Romania I had little opportunity for artistic expression
         until my later teens. Since then I have discovered multiple avenues for
         creativity including cooking, baking and music. My love of woodworking
@@ -169,5 +179,6 @@
         where I will be displaying and selling some of my work.
       </p>
     </div>
+    <footer class="h-[50px]"></footer>
   </body>
 </html>
