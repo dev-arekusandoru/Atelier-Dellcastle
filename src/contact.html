@@ -66,7 +66,12 @@
             class="flex items-center justify-center w-[30px] h-[30px] hover:cursor-pointer"
           >
             <i
-              class="fa-solid fa-bars fa-lg text-offblack dark:text-offwhite"
+              id="nav-hamburger-icon-bars"
+              class="fa-solid fa-bars fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
+            ></i>
+            <i
+              id="nav-hamburger-icon-x"
+              class="absolute opacity-0 fa-solid fa-xmark fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
             ></i>
           </a>
           <div
@@ -119,6 +124,10 @@
     <script>
       //handle nav opening on mobile
       let hamburger = document.getElementById("nav-hamburger");
+      let hamburgerIconBars = document.getElementById(
+        "nav-hamburger-icon-bars"
+      );
+      let hamburgerIconX = document.getElementById("nav-hamburger-icon-x");
       let expander = document.getElementById("nav-drop-down");
       let navItems = document.getElementsByClassName("nav-item");
 
@@ -126,9 +135,13 @@
         if (expander.classList.contains("expanded")) {
           expander.classList.remove("expanded");
           expander.classList.add("collapsed");
+          hamburgerIconBars.classList.remove("opacity-0");
+          hamburgerIconX.classList.add("opacity-0");
         } else {
           expander.classList.add("expanded");
           expander.classList.remove("collapsed");
+          hamburgerIconBars.classList.add("opacity-0");
+          hamburgerIconX.classList.remove("opacity-0");
         }
       });
       expander.addEventListener("animationend", (e) => {

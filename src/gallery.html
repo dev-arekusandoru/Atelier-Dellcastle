@@ -105,12 +105,17 @@
             class="flex items-center justify-center w-[30px] h-[30px] hover:cursor-pointer"
           >
             <i
-              class="fa-solid fa-bars fa-lg text-offblack dark:text-offwhite"
+              id="nav-hamburger-icon-bars"
+              class="fa-solid fa-bars fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
+            ></i>
+            <i
+              id="nav-hamburger-icon-x"
+              class="absolute opacity-0 fa-solid fa-xmark fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
             ></i>
           </a>
           <div
             id="nav-drop-down"
-            class="collapsed text-center flex items-center justify-center w-[280px] sd:w-[350px] md:w-[175px] h-[235px] bg-offwhite absolute top-14 mx-auto border-2 border-offblack duration-1000"
+            class="collapsed text-center flex items-center justify-center w-[280px] sd:w-[350px] md:w-[175px] h-[235px] bg-offwhite dark:bg-offblack absolute top-14 mx-auto border-2 border-offblack dark:border-offwhite duration-1000"
           >
             <div
               class="absolute right-[140px] sd:right-[175px] flex flex-col items-center w-1/2 md:w-0 md:opacity-0 h-[235px] transition-all duration-500"
@@ -120,26 +125,34 @@
                 href="index.html"
                 >Explore</a
               >
-              <hr class="nav-item w-3/4 border-t border-[#01040066]" />
+              <hr
+                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+              />
               <a
                 class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
                 href="about.html"
               >
                 <span class="hidden sd:inline">Cutting</span> Boards</a
               >
-              <hr class="nav-item w-3/4 border-t border-[#01040066]" />
+              <hr
+                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+              />
               <a
                 class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
                 href="gallery.html"
                 >Kumiko</a
               >
-              <hr class="nav-item w-3/4 border-t border-[#01040066]" />
+              <hr
+                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+              />
               <a
                 class="nav-item w-3/4 h-[45px] font-bold leading-[45px] hover:font-bold transition-all duration-200"
                 href="contact.html"
                 >Boxes</a
               >
-              <hr class="nav-item w-3/4 border-t border-[#01040066]" />
+              <hr
+                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+              />
               <a
                 class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-300"
                 href="shows.html"
@@ -147,35 +160,43 @@
               >
             </div>
             <hr
-              class="absolute right-[140px] sd:right-[175px] md:border-offwhite h-3/4 md:h-0 border-r border-offblack transition-all duration-1000"
+              class="absolute right-[140px] sd:right-[175px] md:border-offwhite dark:border-[#FFFBFC66] h-3/4 md:h-0 border-r border-offblack transition-all duration-1000"
             />
             <div
-              class="absolute right-0 flex flex-col items-center w-1/2 md:w-full h-[235px] transition-all duration-1000"
+              class="absolute top-0 right-0 flex flex-col items-center w-1/2 md:w-full h-[235px] transition-all duration-1000"
             >
               <a
                 class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold"
                 href="index.html"
                 >Home</a
               >
-              <hr class="nav-item w-3/4 border-t border-[#01040066]" />
+              <hr
+                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+              />
               <a
                 class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
                 href="about.html"
                 >About</a
               >
-              <hr class="nav-item w-3/4 border-t border-[#01040066]" />
+              <hr
+                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+              />
               <a
                 class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
                 href="gallery.html"
                 >Gallery</a
               >
-              <hr class="nav-item w-3/4 border-t border-[#01040066]" />
+              <hr
+                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+              />
               <a
                 class="nav-item w-3/4 h-[45px] font-bold leading-[45px] hover:font-bold transition-all duration-200"
                 href="contact.html"
                 >Contact</a
               >
-              <hr class="nav-item w-3/4 border-t border-[#01040066]" />
+              <hr
+                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+              />
               <a
                 class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-300"
                 href="shows.html"
@@ -188,18 +209,25 @@
     </nav>
     <script>
       //handle nav opening on mobile
-      let hamburger = document.getElementById("nav-right");
+      let hamburger = document.getElementById("nav-hamburger");
+      let hamburgerIconBars = document.getElementById(
+        "nav-hamburger-icon-bars"
+      );
+      let hamburgerIconX = document.getElementById("nav-hamburger-icon-x");
       let expander = document.getElementById("nav-drop-down");
       let navItems = document.getElementsByClassName("nav-item");
 
       hamburger.addEventListener("click", () => {
-        console.log("click");
         if (expander.classList.contains("expanded")) {
           expander.classList.remove("expanded");
           expander.classList.add("collapsed");
+          hamburgerIconBars.classList.remove("opacity-0");
+          hamburgerIconX.classList.add("opacity-0");
         } else {
           expander.classList.add("expanded");
           expander.classList.remove("collapsed");
+          hamburgerIconBars.classList.add("opacity-0");
+          hamburgerIconX.classList.remove("opacity-0");
         }
       });
       expander.addEventListener("animationend", (e) => {
