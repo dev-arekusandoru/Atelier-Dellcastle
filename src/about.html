@@ -24,8 +24,8 @@
   </head>
   <body
     id="about-page-body"
-    onload="decideAnimationOnLoad('about-page-body', 'about.html', 'slideInFromBottom', 'page-body-animation-in')"
-    class="hidden h-full min-h-screen flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite"
+    onload="fadePageIn('about-page-body')"
+    class="out-view flex h-full min-h-screen flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite"
   >
     <nav class="select-none">
       <div
@@ -33,10 +33,13 @@
         class="flex justify-between items-center px-[20px] md:px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
       >
         <div id="nav-left" class="w-full md:w-[280px]">
-          <a id="homeLink" class="text-2xl hover:cursor-pointer"
+          <a
+            id="homeLink"
+            onclick="fadePageOut('about-page-body', 'index.html')"
+            class="text-2xl hover:cursor-pointer"
             >Atelier Dellcastle</a
           >
-          <script>
+          <!-- <script>
             let pageBody = document.getElementById("about-page-body");
             //when the home button is clicked, start out animation
             document
@@ -57,7 +60,7 @@
                 }, 1000);
               }
             });
-          </script>
+          </script> -->
         </div>
         <div id="nav-center" class="hidden md:flex"></div>
         <div id="nav-right" class="flex justify-end w-[60px] md:w-[280px]">
@@ -80,40 +83,40 @@
           >
             <div class="flex flex-col items-center w-full h-[235px] absolute">
               <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold"
-                href="index.html"
+                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+                onclick="fadePageOut('about-page-body', 'index.html')"
                 >Home</a
               >
               <hr
                 class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
               />
               <a
-                class="nav-item w-3/4 h-[45px] font-bold leading-[45px] hover:font-bold transition-all duration-200"
-                href="about.html"
+                class="nav-item w-3/4 h-[45px] leading-[45px] font-bold hover:font-bold hover:cursor-pointer transition-all duration-200"
+                onclick="fadePageOut('about-page-body', 'about.html')"
                 >About</a
               >
               <hr
                 class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
               />
               <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
-                href="gallery.html"
+                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+                onclick="fadePageOut('about-page-body', 'gallery.html')"
                 >Gallery</a
               >
               <hr
                 class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
               />
               <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
-                href="contact.html"
+                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+                onclick="fadePageOut('about-page-body', 'contact.html')"
                 >Contact</a
               >
               <hr
                 class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
               />
               <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-300"
-                href="shows.html"
+                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-300"
+                onclick="fadePageOut('about-page-body', 'shows.html')"
                 >Shows</a
               >
             </div>

@@ -21,13 +21,33 @@
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="js/functions.js"></script>
+    <script>
+      function setup() {
+        console.log("here: ", localStorage.getItem("page"));
+        if (localStorage.getItem("page")?.length <= 0) {
+          localStorage.setItem("page", "featured");
+        }
+        setTimeout(() => {
+          document
+            .getElementById(localStorage.getItem("page"))
+            .classList.remove("out-view");
+          document
+            .getElementById(localStorage.getItem("page"))
+            .classList.add("in-view");
+          document
+            .getElementById(localStorage.getItem("page") + "-tab")
+            .classList.remove("border-opacity-0");
+          fadePageIn("gallery-page-body");
+        }, 50);
+      }
+    </script>
   </head>
   <body
     id="gallery-page-body"
-    onload="decideAnimationOnLoad('gallery-page-body', 'gallery.html', 'slideInFromBottom', 'page-body-animation-in')"
-    class="hidden flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite inset-0"
+    onload="setup()"
+    class="out-view flex flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite inset-0"
   >
-    <nav class="select-none">
+    <nav class="select-none z-10">
       <div
         id="nav-bar"
         class="flex items-center px-[20px] lg:px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
@@ -36,31 +56,12 @@
           id="nav-left"
           class="w-full sm:w-[186px] transition-all duration-500"
         >
-          <a id="homeLink" class="text-2xl hover:cursor-pointer"
+          <a
+            id="homeLink"
+            onclick="fadePageOut('gallery-page-body', 'index.html')"
+            class="text-2xl hover:cursor-pointer"
             >Atelier Dellcastle</a
           >
-          <script>
-            let pageBody = document.getElementById("gallery-page-body");
-            //when the home button is clicked, start out animation
-            document
-              .getElementById("homeLink")
-              .addEventListener("click", (e) => {
-                console.log("clicked");
-                localStorage.setItem("pageTarget", "index.html");
-                e.preventDefault();
-                if (!pageBody.classList.contains("page-body-animation-out")) {
-                  pageBody.classList.add("page-body-animation-out");
-                }
-              });
-            //when animation finished, send home
-            pageBody.addEventListener("animationstart", (e) => {
-              if (e.animationName == "slideOutFromBottom") {
-                setTimeout(() => {
-                  window.location.href = localStorage.getItem("pageTarget");
-                }, 1000);
-              }
-            });
-          </script>
         </div>
         <div
           id="nav-center"
@@ -70,28 +71,33 @@
             class="hidden sm:flex justify-center gap-0 sm:gap-5 md:gap-10 lg:gap-14 text-md mt-1 opacity-0 md:opacity-100 transition-all duration-500"
           >
             <a
-              class="border-b-2 mt py-[18px] border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200 selected"
-              href="#explore"
+              id="featured-tab"
+              class="border-b-2 hover:cursor-pointer py-[18px] border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200"
+              onclick="changeGalleryPage('featured')"
               >Explore</a
             >
             <a
-              class="border-b-2 mt py-[18px] border-opacity-0 dark:border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200"
-              href="#boards"
+              id="boards-tab"
+              class="border-b-2 hover:cursor-pointer py-[18px] border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-400"
+              onclick="changeGalleryPage('boards')"
               >Cutting Boards</a
             >
             <a
-              class="border-b-2 mt py-[18px] border-opacity-0 dark:border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200"
-              href="#kumiko"
+              id="kumiko-tab"
+              class="border-b-2 hover:cursor-pointer py-[18px] border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-400"
+              onclick="changeGalleryPage('kumiko')"
               >Kumiko</a
             >
             <a
-              class="border-b-2 mt py-[18px] border-opacity-0 dark:border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200"
-              href="#boxes"
+              id="boxes-tab"
+              class="border-b-2 hover:cursor-pointer py-[18px] border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-400"
+              onclick="changeGalleryPage('boxes')"
               >Boxes</a
             >
             <a
-              class="border-b-2 mt py-[18px] border-opacity-0 dark:border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200"
-              href="#inlay"
+              id="inlay-tab"
+              class="border-b-2 hover:cursor-pointer py-[18px] border-opacity-0 border-b-offblack dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-400"
+              onclick="changeGalleryPage('inlay')"
               >Inlay</a
             >
           </ul>
@@ -166,40 +172,40 @@
               class="absolute top-0 right-0 flex flex-col items-center w-1/2 md:w-full h-[235px] transition-all duration-1000"
             >
               <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold"
-                href="index.html"
+                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+                onclick="changeGalleryPage(page, 'index.html')"
                 >Home</a
               >
               <hr
                 class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
               />
               <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
-                href="about.html"
+                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+                onclick="fadePageOut('gallery-page-body', 'about.html')"
                 >About</a
               >
               <hr
                 class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
               />
               <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
-                href="gallery.html"
+                class="nav-item w-3/4 h-[45px] font-bold leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+                onclick="fadePageOut('gallery-page-body', 'gallery.html')"
                 >Gallery</a
               >
               <hr
                 class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
               />
               <a
-                class="nav-item w-3/4 h-[45px] font-bold leading-[45px] hover:font-bold transition-all duration-200"
-                href="contact.html"
+                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+                onclick="fadePageOut('gallery-page-body', 'contact.html')"
                 >Contact</a
               >
               <hr
                 class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
               />
               <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-300"
-                href="shows.html"
+                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-300"
+                onclick="fadePageOut('gallery-page-body', 'shows.html')"
                 >Shows</a
               >
             </div>
@@ -241,89 +247,412 @@
     </script>
 
     <!--main content-->
-    <div
-      id="gallery-body"
-      class="px-[20px] md:px-[40px] lg:px-[60px] transition-all duration-1000"
-    >
+    <div id="content" class="mt-[65px] flex flex-row w-screen overflow-hidden">
       <div
-        id="header"
-        class="flex text-3xl mt-7 md:mt-14 transition-all duration-1000 w-full"
+        id="featured"
+        class="out-view absolute w-screen flex flex-col items-center px-[20px] md:px-[40px] lg:px-[60px] transition-opacity duration-300"
       >
-        <div class="transition-all duration-700 w-1/3 md:w-0"></div>
-        <span
-          class="bold w-1/3 md:w-[150px] text-center transition-all duration-700"
-          >Featured</span
+        <div
+          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%]"
         >
-        <div class="w-1/3 md:w-full transition-all duration-700"></div>
+          <div class="transition-all duration-700 w-1/4 md:w-0"></div>
+          <span
+            class="bold w-1/2 md:min-w-[120px] md:w-auto md:max-w-[250px] text-center transition-all duration-700"
+            >Featured</span
+          >
+          <div class="w-1/4 md:w-full transition-all duration-700"></div>
+        </div>
+
+        <div
+          class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
+        >
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+        </div>
       </div>
 
       <div
-        id="content-body"
-        class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
+        id="boards"
+        class="out-view absolute w-screen flex flex-col items-center px-[20px] md:px-[40px] lg:px-[60px] transition-opacity duration-300"
       >
-        <div class="item">
-          <img class="item-img w-full" src="img/item-holder.png" alt="" />
-          <h2 class="item-name">Item Name Here</h2>
-          <h6 class="item-type">Item Type</h6>
+        <div
+          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%]"
+        >
+          <div class="transition-all duration-700 w-1/4 md:w-0"></div>
+          <span
+            class="bold w-1/2 md:min-w-[210px] md:w-auto md:max-w-[310px] text-center transition-all duration-700"
+            >Cutting Boards</span
+          >
+          <div class="w-1/4 md:w-full transition-all duration-700"></div>
         </div>
-        <div class="item">
-          <img class="item-img w-full" src="img/item-holder.png" alt="" />
-          <h2 class="item-name">Item Name Here</h2>
-          <h6 class="item-type">Item Type</h6>
+
+        <div
+          class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
+        >
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
         </div>
-        <div class="item">
-          <img class="item-img w-full" src="img/item-holder.png" alt="" />
-          <h2 class="item-name">Item Name Here</h2>
-          <h6 class="item-type">Item Type</h6>
+      </div>
+
+      <div
+        id="kumiko"
+        class="out-view absolute w-screen flex flex-col items-center px-[20px] md:px-[40px] lg:px-[60px] transition-opacity duration-300"
+      >
+        <div
+          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%]"
+        >
+          <div class="transition-all duration-700 w-1/4 md:w-0"></div>
+          <span
+            class="bold w-1/2 md:min-w-[120px] md:w-auto md:max-w-[250px] text-center transition-all duration-700"
+            >Kumiko</span
+          >
+          <div class="w-1/4 md:w-full transition-all duration-700"></div>
         </div>
-        <div class="item">
-          <img class="item-img w-full" src="img/item-holder.png" alt="" />
-          <h2 class="item-name">Item Name Here</h2>
-          <h6 class="item-type">Item Type</h6>
+
+        <div
+          class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
+        >
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
         </div>
-        <div class="item">
-          <img class="item-img w-full" src="img/item-holder.png" alt="" />
-          <h2 class="item-name">Item Name Here</h2>
-          <h6 class="item-type">Item Type</h6>
+      </div>
+
+      <div
+        id="boxes"
+        class="out-view absolute w-screen flex flex-col items-center px-[20px] md:px-[40px] lg:px-[60px] transition-opacity duration-300"
+      >
+        <div
+          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%]"
+        >
+          <div class="transition-all duration-700 w-1/4 md:w-0"></div>
+          <span
+            class="bold w-1/2 md:min-w-[120px] md:w-auto md:max-w-[250px] text-center transition-all duration-700"
+            >Boxes</span
+          >
+          <div class="w-1/4 md:w-full transition-all duration-700"></div>
         </div>
-        <div class="item">
-          <img class="item-img w-full" src="img/item-holder.png" alt="" />
-          <h2 class="item-name">Item Name Here</h2>
-          <h6 class="item-type">Item Type</h6>
+
+        <div
+          class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
+        >
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
         </div>
-        <div class="item">
-          <img class="item-img w-full" src="img/item-holder.png" alt="" />
-          <h2 class="item-name">Item Name Here</h2>
-          <h6 class="item-type">Item Type</h6>
+      </div>
+
+      <div
+        id="inlay"
+        class="out-view absolute w-screen flex flex-col items-center px-[20px] md:px-[40px] lg:px-[60px] transition-opacity duration-300"
+      >
+        <div
+          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%]"
+        >
+          <div class="transition-all duration-700 w-1/4 md:w-0"></div>
+          <span
+            class="bold w-1/2 md:min-w-[120px] md:w-auto md:max-w-[250px] text-center transition-all duration-700"
+            >Inlay</span
+          >
+          <div class="w-1/4 md:w-full transition-all duration-700"></div>
         </div>
-        <div class="item">
-          <img class="item-img w-full" src="img/item-holder.png" alt="" />
-          <h2 class="item-name">Item Name Here</h2>
-          <h6 class="item-type">Item Type</h6>
-        </div>
-        <div class="item">
-          <img class="item-img w-full" src="img/item-holder.png" alt="" />
-          <h2 class="item-name">Item Name Here</h2>
-          <h6 class="item-type">Item Type</h6>
-        </div>
-        <div class="item">
-          <img class="item-img w-full" src="img/item-holder.png" alt="" />
-          <h2 class="item-name">Item Name Here</h2>
-          <h6 class="item-type">Item Type</h6>
-        </div>
-        <div class="item">
-          <img class="item-img w-full" src="img/item-holder.png" alt="" />
-          <h2 class="item-name">Item Name Here</h2>
-          <h6 class="item-type">Item Type</h6>
-        </div>
-        <div class="item">
-          <img class="item-img w-full" src="img/item-holder.png" alt="" />
-          <h2 class="item-name">Item Name Here</h2>
-          <h6 class="item-type">Item Type</h6>
+
+        <div
+          class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
+        >
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
+          <div class="item">
+            <img class="item-img w-full" src="img/item-holder.png" alt="" />
+            <h2 class="item-name">Item Name Here</h2>
+            <h6 class="item-type">Item Type</h6>
+          </div>
         </div>
       </div>
     </div>
-
     <!--footer-->
     <footer class="h-[100px]">
       <!--To be implemented with legal when shopify is added-->

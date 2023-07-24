@@ -23,9 +23,9 @@
     <script src="js/functions.js"></script>
   </head>
   <body
-    id="about-page-body"
-    onload="decideAnimationOnLoad('about-page-body', 'about.html', 'slideInFromBottom', 'page-body-animation-in')"
-    class="hidden h-full min-h-screen flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite"
+    id="shows-page-body"
+    onload="fadePageIn('shows-page-body')"
+    class="out-view flex h-full min-h-screen flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite"
   >
     <nav class="select-none">
       <div
@@ -33,31 +33,12 @@
         class="flex justify-between items-center px-[20px] md:px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
       >
         <div id="nav-left" class="w-full md:w-[280px]">
-          <a id="homeLink" class="text-2xl hover:cursor-pointer"
+          <a
+            id="homeLink"
+            onclick="fadePageOut('shows-page-body', 'index.html')"
+            class="text-2xl hover:cursor-pointer"
             >Atelier Dellcastle</a
           >
-          <script>
-            let pageBody = document.getElementById("about-page-body");
-            //when the home button is clicked, start out animation
-            document
-              .getElementById("homeLink")
-              .addEventListener("click", (e) => {
-                console.log("clicked");
-                localStorage.setItem("pageTarget", "index.html");
-                e.preventDefault();
-                if (!pageBody.classList.contains("page-body-animation-out")) {
-                  pageBody.classList.add("page-body-animation-out");
-                }
-              });
-            //when animation finished, send home
-            pageBody.addEventListener("animationstart", (e) => {
-              if (e.animationName == "slideOutFromBottom") {
-                setTimeout(() => {
-                  window.location.href = localStorage.getItem("pageTarget");
-                }, 1000);
-              }
-            });
-          </script>
         </div>
         <div id="nav-center" class="hidden md:flex"></div>
         <div id="nav-right" class="flex justify-end w-[60px] md:w-[280px]">
@@ -80,40 +61,40 @@
           >
             <div class="flex flex-col items-center w-full h-[235px] absolute">
               <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold"
-                href="index.html"
+                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+                onclick="fadePageOut('shows-page-body', 'index.html')"
                 >Home</a
               >
               <hr
                 class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
               />
               <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
-                href="about.html"
+                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+                onclick="fadePageOut('shows-page-body', 'about.html')"
                 >About</a
               >
               <hr
                 class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
               />
               <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
-                href="gallery.html"
+                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+                onclick="fadePageOut('shows-page-body', 'gallery.html')"
                 >Gallery</a
               >
               <hr
                 class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
               />
               <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
-                href="contact.html"
+                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+                onclick="fadePageOut('shows-page-body', 'contact.html')"
                 >Contact</a
               >
               <hr
                 class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
               />
               <a
-                class="nav-item w-3/4 h-[45px] font-bold leading-[45px] hover:font-bold transition-all duration-300"
-                href="shows.html"
+                class="nav-item w-3/4 h-[45px] font-bold leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-300"
+                onclick="fadePageOut('shows-page-body', 'shows.html')"
                 >Shows</a
               >
             </div>
@@ -157,40 +138,72 @@
     <!--main content-->
     <div
       id="about-body"
-      class="flex flex-col items-center w-screen px-[20px] transition-all duration-300"
+      class="flex flex-col items-center w-screen px-[20px] transition-all duration-100"
     >
-      <h2 class="uppercase my-10 text-5xl font-bold">About</h2>
-      <p
-        class="w-11/12 lg:w-2/3 text-xl text-center leading-7 transition-all duration-500"
+      <h2 class="uppercase my-10 text-5xl font-bold">Shows</h2>
+      <div
+        class="w-11/12 lg:w-4/5 flex flex-row gap-10 justify-around flex-wrap"
       >
-        Growing up in Romania I had little opportunity for artistic expression
-        until my later teens. Since then I have discovered multiple avenues for
-        creativity including cooking, baking and music. My love of woodworking
-        developed after moving into a "fixer-upper" house. My skills and
-        selection of tools grew as I worked and I discovered the beauty of hand
-        tools. I went from reading about home repair to “Fine Woodworking.”
-        Various small tables, benches and stools allowed me to practice joinery
-        techniques. In 2018 I crafted a tea box with internal dividers and a
-        book-matched lid as a gift for my wife. That project was the spark that
-        ignited my love of box making and fine woodworking. <br /><br />
-        Each piece is one of a kind. I use miter joints, splines, finger joints,
-        or jig cut dovetails. Beginning with rough sawn lumber, I joint, plane
-        and resaw based on the design needs of each project. I use hand
-        scrapers, planes, Japanese hand saws, and chisels in my projects.
-        Handles are designed and hand cut using scroll saw, drill press, band
-        saw, or chisel. Dividers for jewelry and tea boxes are compression fit.
-        My favorite part of crafting dividers is bird’s mouth joinery using a
-        combination of router and shooting plane. I also really enjoy scroll saw
-        work and developed a technique for creating .25” inlays. You will find
-        my inlay work in serving boards, lazy susans and coasters.
-        <br /><br />To explore some of the designs I have made, check out the
-        <a class="font-bold underline" href="gallery.html">Gallery</a>. To
-        commission a piece, please reach out through the
-        <a class="font-bold underline" href="contact.html">Contact</a> page.
-        Visit the
-        <a class="font-bold underline" href="shows.html">Shows</a> page to see
-        where I will be displaying and selling some of my work.
-      </p>
+        <div
+          class="w-full md:w-4/5 lg:w-[47%] p-[12px] border-4 border-offblack"
+        >
+          <div
+            class="flex flex-col-reverse md:flex-row w-full justify-between items-center md:items-start"
+          >
+            <h2 class="text-3xl font-bold mb-1">The Family Room</h2>
+            <p class="text-xl font-bold">September 23</p>
+          </div>
+          <p class="text-center md:text-left text-lg">10am - 3pm</p>
+          <p class="text-center md:text-left">
+            <a
+              class="text-lg underline"
+              href="https://goo.gl/maps/qtqoZquYmZLeQcRL6"
+              target="_blank"
+              >6820 Olney Laytonsville Road<br />Laytonsville, MD 20882
+            </a>
+          </p>
+        </div>
+        <div
+          class="w-full md:w-4/5 lg:w-[47%] p-[12px] border-4 border-offblack"
+        >
+          <div
+            class="flex flex-col-reverse md:flex-row w-full justify-between items-center md:items-start"
+          >
+            <h2 class="text-3xl font-bold mb-1">Art @ the Park</h2>
+            <p class="text-xl font-bold">October 14-15</p>
+          </div>
+          <p class="text-center md:text-left text-lg">10am - 4pm</p>
+          <p class="text-center md:text-left">
+            <a
+              class="text-lg underline"
+              href="https://goo.gl/maps/rFipsqSjdGb9JiyB6"
+              target="_blank"
+              >Quiet Waters Park<br />Annapolis, MD
+            </a>
+          </p>
+        </div>
+        <div
+          class="w-full md:w-4/5 lg:w-[47%] p-[12px] border-4 border-offblack"
+        >
+          <div
+            class="flex flex-col-reverse md:flex-row w-full justify-between items-center md:items-start"
+          >
+            <h2 class="text-3xl font-bold mb-1 md:max-w-[275px]">
+              Fairfax Holiday Craft Show
+            </h2>
+            <p class="text-xl font-bold">November 18-19</p>
+          </div>
+          <p class="text-lg text-center md:text-left">10am - 4pm</p>
+          <p class="text-center md:text-left">
+            <a
+              class="mx-auto text-lg underline text-center"
+              href="https://goo.gl/maps/rFipsqSjdGb9JiyB6"
+              target="_blank"
+              >Quiet Waters Park<br />Annapolis, MD
+            </a>
+          </p>
+        </div>
+      </div>
     </div>
     <footer class="h-[50px]"></footer>
   </body>

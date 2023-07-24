@@ -1,10 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/*npx tailwindcss -i ./src/css/input.css -o ./dist/output.css --watch*/
+/*npx tailwindcss -i ./src/css/input.css -o ./src/dist/output.css --watch*/
 
 body {
   font-family: "Karla", sans-serif;
+  transition: all ease-in-out 0.6s;
 }
 
 /*-------------------------------------------------------Key Frames-------------------------------------------------------*/
@@ -22,51 +23,6 @@ body {
 }
 .animateFrame {
   animation: 1s ease-in-out 0s 1 forwards slideFrameInFromBottom;
-}
-
-@keyframes slideInFromBottom {
-  0% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-@keyframes slideOutFromBottom {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-}
-
-@keyframes slideHomeOutThroughTop {
-  0% {
-    transform: translateY(0%);
-    background-position: 0px 0px;
-  }
-  100% {
-    transform: translateY(-100%);
-    background-position: 0px -120vh;
-  }
-}
-@keyframes slideHomeInThroughTop {
-  0% {
-    transform: translateY(-100%);
-    background-position: 0px -110vw;
-  }
-  100% {
-    transform: translateY(0%);
-    background-position: 0px 0px;
-  }
 }
 
 /*-------------------------------------------------------Home-------------------------------------------------------*/
@@ -128,6 +84,13 @@ body {
   opacity: 0;
 }
 
+.in-view {
+  opacity: 1;
+}
+.out-view {
+  opacity: 0;
+}
+
 /*-------------------------------------------------------Gallery-------------------------------------------------------*/
 
 .page-body-animation-in {
@@ -160,6 +123,10 @@ body {
 
 #featured-text {
   transition: margin ease-in-out 1s;
+}
+
+.content {
+  transition: all ease-in-out 1s;
 }
 
 /*-------------------------------------------------------Gallery-------------------------------------------------------*/
