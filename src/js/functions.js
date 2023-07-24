@@ -75,17 +75,37 @@ function getCurrentURL() {
   return "nada";
 }
 
-function changeGalleryPage(pageTo) {
+function changeGalleryPage(pageTo, collapseDropdown) {
+  // get page info
   let pageFrom = localStorage.getItem("page"); // get current page id
   let from = document.getElementById(pageFrom); // get the page
   let to = document.getElementById(pageTo); // get the target page
   localStorage.setItem("page", pageTo); // store the target page as current
 
+  //update tab display
   let currentTab = document.getElementById(pageFrom + "-tab");
   currentTab.classList.add("border-opacity-0");
   let newTab = document.getElementById(pageTo + "-tab");
-  console.log(newTab);
   newTab.classList.remove("border-opacity-0");
+
+  // update drop-down display
+  let currentDrop = document.getElementById(pageFrom + "-drop");
+  currentDrop.classList.remove("font-bold");
+  let newDrop = document.getElementById(pageTo + "-drop");
+  newDrop.classList.add("font-bold");
+
+  if (collapseDropdown) {
+    setTimeout(() => {
+      document.getElementById("nav-drop-down").classList.remove("expanded");
+      document.getElementById("nav-drop-down").classList.add("collapsed");
+      document
+        .getElementById("nav-hamburger-icon-bars")
+        .classList.remove("opacity-0");
+      document
+        .getElementById("nav-hamburger-icon-x")
+        .classList.add("opacity-0");
+    }, 400);
+  }
 
   from.classList.remove("in-view");
   from.classList.add("out-view");
