@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shows</title>
+    <title>Upload</title>
     <link href="dist/output.css" rel="stylesheet" />
     <!--fonts-->
     <link
@@ -21,10 +21,11 @@
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="js/functions.js"></script>
+    <script src="js/db.js" type="module"></script>
   </head>
   <body
-    id="shows-page-body"
-    onload="fadePageIn('shows-page-body')"
+    id="upload-page-body"
+    onload="fadePageIn('upload-page-body')"
     class="out-view flex h-full min-h-screen flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite"
   >
     <nav class="select-none">
@@ -35,7 +36,7 @@
         <div id="nav-left" class="w-full md:w-[280px]">
           <a
             id="homeLink"
-            onclick="fadePageOut('shows-page-body', 'index.html')"
+            onclick="fadePageOut('upload-page-body', 'index.html')"
             class="text-2xl hover:cursor-pointer"
             >Atelier Dellcastle</a
           >
@@ -62,7 +63,7 @@
             <div class="flex flex-col items-center w-full h-[235px] absolute">
               <a
                 class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                onclick="fadePageOut('shows-page-body', 'index.html')"
+                onclick="fadePageOut('upload-page-body', 'index.html')"
                 >Home</a
               >
               <hr
@@ -70,7 +71,7 @@
               />
               <a
                 class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                onclick="fadePageOut('shows-page-body', 'about.html')"
+                onclick="fadePageOut('upload-page-body', 'about.html')"
                 >About</a
               >
               <hr
@@ -78,7 +79,7 @@
               />
               <a
                 class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                onclick="fadePageOut('shows-page-body', 'gallery.html')"
+                onclick="fadePageOut('upload-page-body', 'gallery.html')"
                 >Gallery</a
               >
               <hr
@@ -86,15 +87,15 @@
               />
               <a
                 class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                onclick="fadePageOut('shows-page-body', 'contact.html')"
+                onclick="fadePageOut('upload-page-body', 'contact.html')"
                 >Contact</a
               >
               <hr
                 class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
               />
               <a
-                class="nav-item w-3/4 h-[45px] font-bold leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-300"
-                onclick="fadePageOut('shows-page-body', 'shows.html')"
+                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-300"
+                onclick="fadePageOut('upload-page-body', 'shows.html')"
                 >Shows</a
               >
             </div>
@@ -136,75 +137,78 @@
     </script>
 
     <!--main content-->
-    <div
-      id="about-body"
-      class="flex flex-col items-center w-screen px-[20px] transition-all duration-100"
-    >
-      <h2 class="uppercase my-10 text-5xl font-bold">Shows</h2>
-      <div
-        class="w-11/12 lg:w-4/5 flex flex-row gap-10 justify-around flex-wrap"
-      >
-        <div
-          class="w-full md:w-4/5 lg:w-[47%] p-[12px] border-4 border-offblack dark:border-offwhite"
-        >
-          <div
-            class="flex flex-col-reverse md:flex-row w-full justify-between items-center md:items-start"
-          >
-            <h2 class="text-center text-3xl font-bold mb-1">The Family Room</h2>
-            <p class="text-xl font-bold">September 23</p>
-          </div>
-          <p class="text-center md:text-left text-lg">10am - 3pm</p>
-          <p class="text-center md:text-left">
-            <a
-              class="text-lg underline"
-              href="https://goo.gl/maps/qtqoZquYmZLeQcRL6"
-              target="_blank"
-              >6820 Olney Laytonsville Road<br />Laytonsville, MD 20882
-            </a>
-          </p>
+    <div id="upload-body" class="flex flex-col items-center w-screen px-[20px]">
+      <h2 class="uppercase my-10 text-5xl font-bold">Upload</h2>
+      <div class="w-11/12 sm:w-[80%] lg:w-1/2 max-w-[1400px]">
+        <select name="category" id="category" class="w-full text-offblack">
+          <option value="boards" selected>boards</option>
+          <option value="kumiko">kumiko</option>
+          <option value="boxes">boxes</option>
+          <option value="inlay">inlay</option>
+        </select>
+        <div class="contact-div">
+          <input
+            class="contact-input"
+            name="name"
+            id="name"
+            type="text"
+            required
+          />
+          <label class="contact-label" for="name">
+            <span class="contact-label-content">Name</span>
+          </label>
         </div>
-        <div
-          class="w-full md:w-4/5 lg:w-[47%] p-[12px] border-4 border-offblack dark:border-offwhite"
-        >
-          <div
-            class="flex flex-col-reverse md:flex-row w-full justify-between items-center md:items-start"
-          >
-            <h2 class="text-center text-3xl font-bold mb-1">Art @ the Park</h2>
-            <p class="text-xl font-bold">October 14-15</p>
-          </div>
-          <p class="text-center md:text-left text-lg">10am - 4pm</p>
-          <p class="text-center md:text-left">
-            <a
-              class="text-lg underline"
-              href="https://goo.gl/maps/rFipsqSjdGb9JiyB6"
-              target="_blank"
-              >Quiet Waters Park<br />Annapolis, MD
-            </a>
-          </p>
+        <div class="contact-div mt-3">
+          <input
+            class="contact-input"
+            name="description"
+            id="description"
+            type="text"
+            required
+          />
+          <label class="contact-label" for="description">
+            <span class="contact-label-content">Description</span>
+          </label>
         </div>
-        <div
-          class="w-full md:w-4/5 lg:w-[47%] p-[12px] border-4 border-offblack dark:border-offwhite"
-        >
-          <div
-            class="flex flex-col-reverse md:flex-row w-full justify-between items-center md:items-start"
-          >
-            <h2
-              class="text-center md:text-left text-3xl font-bold mb-1 md:max-w-[275px] xl:max-w-[500px]"
-            >
-              Fairfax Holiday Craft Show
-            </h2>
-            <p class="text-xl font-bold">November 18-19</p>
-          </div>
-          <p class="text-lg text-center md:text-left">10am - 4pm</p>
-          <p class="text-center md:text-left">
-            <a
-              class="mx-auto text-lg underline text-center"
-              href="https://goo.gl/maps/rFipsqSjdGb9JiyB6"
-              target="_blank"
-              >Quiet Waters Park<br />Annapolis, MD
-            </a>
-          </p>
+        <div class="contact-div mt-3">
+          <input
+            class="contact-input"
+            name="img"
+            id="img"
+            type="text"
+            required
+          />
+          <label class="contact-label" for="img">
+            <span class="contact-label-content">Image URL</span>
+          </label>
         </div>
+        <div class="contact-div flex items-center gap-2 mt-3">
+          <div class="checkbox" id="commission-display">
+            <div id="commission-display-inside-checkbox"></div>
+            <input name="featured" id="commission" type="checkbox" />
+          </div>
+          <script>
+            let featuredBox = document.getElementById("commission");
+            let featuredDisplay = document.getElementById("commission-display");
+
+            featuredBox.addEventListener("change", (e) => {
+              if (featuredBox.checked) {
+                featuredDisplay.classList.add("check");
+              } else {
+                featuredDisplay.classList.remove("check");
+              }
+            });
+          </script>
+          <label for="commission" class="cursor-pointer select-none"
+            >Should this be featured?</label
+          >
+        </div>
+        <input
+          class="w-[130px] h-[50px] text-xl mt-3 border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+          type="submit"
+          name="Submit"
+          id="upload"
+        />
       </div>
     </div>
     <footer class="h-[50px]"></footer>

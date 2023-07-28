@@ -145,7 +145,3 @@ function generateItems(numOfItems) {
   }
   return result;
 }
-
-function generateBoards() {
-  console.log(readData("boards"));
-}
