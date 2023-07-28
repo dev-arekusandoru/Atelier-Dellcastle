@@ -522,6 +522,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
@@ -558,8 +562,8 @@ video {
   top: 3.5rem;
 }
 
-.top-\[65px\] {
-  top: 65px;
+.top-24 {
+  top: 6rem;
 }
 
 .z-10 {
@@ -607,6 +611,10 @@ video {
 
 .mt-2 {
   margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
 }
 
 .mt-5 {
@@ -673,12 +681,20 @@ video {
   height: 65px;
 }
 
+.h-\[75\%\] {
+  height: 75%;
+}
+
 .h-full {
   height: 100%;
 }
 
 .h-screen {
   height: 100vh;
+}
+
+.max-h-\[80\%\] {
+  max-height: 80%;
 }
 
 .min-h-screen {
@@ -721,16 +737,20 @@ video {
   width: 360px;
 }
 
+.w-\[600px\] {
+  width: 600px;
+}
+
 .w-\[60px\] {
   width: 60px;
 }
 
-.w-\[95\%\] {
-  width: 95%;
+.w-\[90\%\] {
+  width: 90%;
 }
 
-.w-auto {
-  width: auto;
+.w-\[95\%\] {
+  width: 95%;
 }
 
 .w-full {
@@ -747,6 +767,10 @@ video {
 
 .max-w-\[1250px\] {
   max-width: 1250px;
+}
+
+.max-w-\[80\%\] {
+  max-width: 80%;
 }
 
 .shrink {
@@ -785,6 +809,10 @@ video {
 
 .items-center {
   align-items: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
 }
 
 .justify-end {
@@ -831,12 +859,20 @@ video {
   gap: 2rem;
 }
 
+.justify-self-start {
+  justify-self: start;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
 
 .rounded-2xl {
   border-radius: 1rem;
+}
+
+.border {
+  border-width: 1px;
 }
 
 .border-2 {
@@ -1190,12 +1226,13 @@ body {
 
 /*-------------------------------------------------------Gallery-------------------------------------------------------*/
 
-.page-body-animation-in {
-  animation: 1s ease-in-out 0s 1 forwards slideInFromBottom;
-}
-
-.page-body-animation-out {
-  animation: 1s ease-in-out 0s 1 forwards slideOutFromBottom;
+#featured,
+#boards,
+#kumiko,
+#boxes,
+#inlay {
+  transition: padding ease-in-out 0.5s;
+  transition: opacity ease-in-out 0.3s;
 }
 
 .item {
@@ -1219,7 +1256,16 @@ body {
 }
 
 .item-img {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 2px solid #0104002c;
   border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.item-img:hover {
+  cursor: pointer;
 }
 
 #featured-text {
@@ -1230,7 +1276,7 @@ body {
   transition: all ease-in-out 1s;
 }
 
-/*-------------------------------------------------------Gallery-------------------------------------------------------*/
+/*-------------------------------------------------------Contact-------------------------------------------------------*/
 
 .contact-div {
   font-size: 24px;
@@ -1590,10 +1636,6 @@ body {
 
   .md\:w-full {
     width: 100%;
-  }
-
-  .md\:min-w-\[120px\] {
-    min-width: 120px;
   }
 
   .md\:min-w-\[210px\] {

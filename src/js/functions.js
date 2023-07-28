@@ -1,29 +1,3 @@
-function decideAnimationOnLoad(
-  pageBody,
-  target,
-  animationName,
-  animationClass
-) {
-  if (typeof pageBody == "string") pageBody = document.getElementById(pageBody);
-
-  if (pageBody.classList.contains("hidden")) {
-    pageBody.classList.add("flex");
-    pageBody.classList.remove("hidden");
-  }
-
-  if (localStorage.getItem("pageTarget") == target) {
-    pageBody.classList.add(animationClass);
-  }
-  pageBody.addEventListener("animationend", (e) => {
-    if (e.animationName == animationName) {
-      localStorage.setItem("pageTarget", "");
-      setTimeout(() => {
-        homePageBody.classList.remove(animationClass);
-      }, 100);
-    }
-  });
-}
-
 function fadePageIn(pageBodyId) {
   let pageBody = document.getElementById(pageBodyId);
   let target = pageBodyId.split("-")[0];
@@ -35,7 +9,6 @@ function fadePageIn(pageBodyId) {
     setTimeout(() => {
       classes.add("hidden");
     }, 700);
-    console.log("homePage");
   } else if (classes.contains("out-view")) {
     classes.add("in-view");
     classes.remove("out-view");
@@ -64,18 +37,8 @@ function fadePageOut(pageBodyId, target) {
   }
 }
 
-function getCurrentURL() {
-  let url = window.location.href;
-  let urlSplit = url.split("#");
-
-  if (urlSplit[1] && urlSplit[1].length != 0) {
-    return urlSplit[1];
-  }
-
-  return "nada";
-}
-
 function changeGalleryPage(pageTo, collapseDropdown) {
+  toggleModal("off");
   // get page info
   let pageFrom = localStorage.getItem("page"); // get current page id
   let from = document.getElementById(pageFrom); // get the page
@@ -84,16 +47,15 @@ function changeGalleryPage(pageTo, collapseDropdown) {
 
   //update tab display
   let currentTab = document.getElementById(pageFrom + "-tab");
-  currentTab.classList.add("border-opacity-0");
+  currentTab.classList.add("border-opacity-0", "dark:border-opacity-0");
   let newTab = document.getElementById(pageTo + "-tab");
-  newTab.classList.remove("border-opacity-0");
+  newTab.classList.remove("border-opacity-0", "dark:border-opacity-0");
 
   // update drop-down display
   let currentDrop = document.getElementById(pageFrom + "-drop");
   currentDrop.classList.remove("font-bold");
   let newDrop = document.getElementById(pageTo + "-drop");
   newDrop.classList.add("font-bold");
-
   if (collapseDropdown) {
     setTimeout(() => {
       document.getElementById("nav-drop-down").classList.remove("expanded");
@@ -107,10 +69,83 @@ function changeGalleryPage(pageTo, collapseDropdown) {
     }, 400);
   }
 
+  // change classes
   from.classList.remove("in-view");
   from.classList.add("out-view");
   setTimeout(() => {
-    to.classList.remove("out-view");
-    to.classList.add("in-view");
-  }, 200);
+    to.classList.remove("hidden");
+    setTimeout(() => {
+      to.classList.remove("out-view");
+      to.classList.add("in-view", "flex");
+      setTimeout(() => {
+        from.classList.add("hidden");
+      }, 110);
+    }, 200);
+  }, 50);
+}
+
+function toggleModal(direction, title, text, img) {
+  let modal = document.getElementById("modal");
+  let classes = modal.classList;
+  if (direction == "off") {
+    classes.remove("in-view");
+    classes.add("out-view");
+    setTimeout(() => {
+      classes.remove("flex");
+      classes.add("hidden");
+    }, 310);
+  } else if (direction == "on") {
+    classes.remove("hidden");
+    classes.add("flex");
+    setTimeout(() => {
+      classes.remove("out-view");
+      classes.add("in-view");
+    }, 310);
+  }
+
+  if (title) {
+    modal.innerHTML = `
+    <div class="flex flex-row justify-between items-center w-full h-[30px] ">
+      <i
+        class="fa-solid fa-xmark fa-xl opacity-0"
+      ></i>
+      <h6 class="bold text-3xl font-bold">${title}</h6>
+      <i
+        id="modal-x"
+        onclick="toggleModal('off')"
+        class="fa-solid fa-xmark fa-xl justify-self-start text-offblack dark:text-offwhite transition-opacity duration-300 hover:cursor-pointer"
+      ></i>
+    </div>
+    <div 
+    class="flex flex-col justify-start items-center w-full h-full mt-3">
+      <img class="w-[90%] max-h-[80%] border border-offblack" src="${img}" alt="" />
+      <p class="mt-2 text-xl">${text}</p>
+      
+    </div>
+    `;
+  }
+}
+
+function generateItem(title, text, img) {
+  return `<div class="item">
+            <img class="item-img" onmouseup="toggleModal('on', '${title}', '${text}', '${img}')" src="${img}" alt="" />
+            <h2 class="item-name">${title}</h2>
+            <h6 class="item-type">${text}</h6>
+          </div>`;
+}
+
+function generateItems(numOfItems) {
+  let result = "";
+  for (let i = 0; i < numOfItems; i++) {
+    result += generateItem(
+      "title",
+      "text",
+      "https://firebasestorage.googleapis.com/v0/b/atelierdellcastle-e2483.appspot.com/o/board-end-grain.jpg?alt=media&token=e1d18f70-a198-47a7-831c-9b6b801411ec"
+    );
+  }
+  return result;
+}
+
+function generateBoards() {
+  console.log(readData("boards"));
 }

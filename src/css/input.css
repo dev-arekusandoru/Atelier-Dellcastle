@@ -92,12 +92,13 @@ body {
 }
 
 /*-------------------------------------------------------Gallery-------------------------------------------------------*/
-
-.page-body-animation-in {
-  animation: 1s ease-in-out 0s 1 forwards slideInFromBottom;
-}
-.page-body-animation-out {
-  animation: 1s ease-in-out 0s 1 forwards slideOutFromBottom;
+#featured,
+#boards,
+#kumiko,
+#boxes,
+#inlay {
+  transition: padding ease-in-out 0.5s;
+  transition: opacity ease-in-out 0.3s;
 }
 
 .item {
@@ -118,7 +119,14 @@ body {
   line-height: 20px;
 }
 .item-img {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 2px solid #0104002c;
   border-radius: 10px;
+  object-fit: cover;
+}
+.item-img:hover {
+  cursor: pointer;
 }
 
 #featured-text {
@@ -129,7 +137,7 @@ body {
   transition: all ease-in-out 1s;
 }
 
-/*-------------------------------------------------------Gallery-------------------------------------------------------*/
+/*-------------------------------------------------------Contact-------------------------------------------------------*/
 .contact-div {
   font-size: 24px;
   position: relative;

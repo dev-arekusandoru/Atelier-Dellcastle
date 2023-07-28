@@ -21,6 +21,7 @@
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="js/functions.js"></script>
+    <script type="module" src="js/db.js"></script>
   </head>
   <body
     onload="fadePageIn('home-page-body')"
@@ -88,8 +89,8 @@
         </a>
         <a
           target="_blank"
-          href="mailto:atelier.dellcastle@gmail.com"
-          class="flex justify-center items-center w-[30px] h-[30px] sl:w-[35px] sl:h-[35px] bg-offwhite rounded-2xl"
+          onclick="fadePageOut('home-page-body', 'contact.html')"
+          class="flex justify-center items-center hover:cursor-pointer w-[30px] h-[30px] sl:w-[35px] sl:h-[35px] bg-offwhite rounded-2xl"
         >
           <i class="fa-solid fa-envelope fa-lg text-offblack"></i>
         </a>
