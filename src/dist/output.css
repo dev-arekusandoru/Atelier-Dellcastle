@@ -613,6 +613,10 @@ video {
   margin-top: 0.75rem;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .mt-5 {
   margin-top: 1.25rem;
 }
@@ -627,6 +631,10 @@ video {
 
 .mt-\[-65px\] {
   margin-top: -65px;
+}
+
+.block {
+  display: block;
 }
 
 .flex {
@@ -863,6 +871,10 @@ video {
   border-radius: 1rem;
 }
 
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
 .border {
   border-width: 1px;
 }
@@ -922,6 +934,11 @@ video {
   --tw-border-opacity: 0.3;
 }
 
+.bg-green-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(187 247 208 / var(--tw-bg-opacity));
+}
+
 .bg-offblack {
   --tw-bg-opacity: 1;
   background-color: rgb(1 4 0 / var(--tw-bg-opacity));
@@ -930,6 +947,11 @@ video {
 .bg-offwhite {
   --tw-bg-opacity: 1;
   background-color: rgb(255 251 252 / var(--tw-bg-opacity));
+}
+
+.bg-red-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
 
 .bg-\[url\(\'\/img\/homepage2\.jpg\'\)\] {
@@ -1015,6 +1037,10 @@ video {
   line-height: 1.75rem;
 }
 
+.text-\[18px\] {
+  font-size: 18px;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1029,6 +1055,14 @@ video {
 
 .leading-\[45px\] {
   line-height: 45px;
+}
+
+.leading-\[50px\] {
+  line-height: 50px;
+}
+
+.leading-\[5px\] {
+  line-height: 5px;
 }
 
 .text-\[\#0104002c\] {
@@ -1442,13 +1476,13 @@ body {
     border-color: #FFFBFC66;
   }
 
+  .dark\:border-\[\#fffbfc2c\] {
+    border-color: #fffbfc2c;
+  }
+
   .dark\:border-offwhite {
     --tw-border-opacity: 1;
     border-color: rgb(255 251 252 / var(--tw-border-opacity));
-  }
-
-  .dark\:border-\[\#fffbfc2c\] {
-    border-color: #fffbfc2c;
   }
 
   .dark\:border-b-offwhite {
@@ -1470,6 +1504,10 @@ body {
     background-color: rgb(255 251 252 / var(--tw-bg-opacity));
   }
 
+  .dark\:text-\[\#fffbfc2c\] {
+    color: #fffbfc2c;
+  }
+
   .dark\:text-offblack {
     --tw-text-opacity: 1;
     color: rgb(1 4 0 / var(--tw-text-opacity));
@@ -1478,19 +1516,6 @@ body {
   .dark\:text-offwhite {
     --tw-text-opacity: 1;
     color: rgb(255 251 252 / var(--tw-text-opacity));
-  }
-
-  .dark\:text-\[fffbfc2c\] {
-    color: fffbfc2c;
-  }
-
-  .dark\:text-\[\#fffbfc2c\] {
-    color: #fffbfc2c;
-  }
-
-  .dark\:text-red-500 {
-    --tw-text-opacity: 1;
-    color: rgb(239 68 68 / var(--tw-text-opacity));
   }
 
   .dark\:hover\:border-\[\#fffbfc\]:hover {
@@ -1606,6 +1631,11 @@ body {
   .sm\:text-7xl {
     font-size: 4.5rem;
     line-height: 1;
+  }
+
+  .sm\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 }
 
@@ -1765,6 +1795,15 @@ body {
   .lg\:text-9xl {
     font-size: 8rem;
     line-height: 1;
+  }
+
+  .lg\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .lg\:text-\[20px\] {
+    font-size: 20px;
   }
 }
 

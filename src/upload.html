@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -170,17 +170,22 @@
             <span class="contact-label-content">Description</span>
           </label>
         </div>
-        <div class="contact-div mt-3">
+        <div class="mt-4 flex items-center justify-center">
+          <label
+            for="img"
+            id="img-label"
+            class="rounded-lg text-[18px] lg:text-[20px] leading-[45px] w-3/4 h-[50px] border-2 border-offblack text-center bg-offwhite hover:bg-offblack block text-offblack hover:text-offwhite hover:cursor-pointer transition-all duration-300"
+          >
+            Upload Image
+          </label>
           <input
-            class="contact-input"
+            class="hidden"
             name="img"
             id="img"
-            type="text"
+            type="file"
+            accept=".jpg"
             required
           />
-          <label class="contact-label" for="img">
-            <span class="contact-label-content">Image URL</span>
-          </label>
         </div>
         <div class="contact-div flex items-center gap-2 mt-3">
           <div class="checkbox" id="commission-display">
@@ -212,5 +217,54 @@
       </div>
     </div>
     <footer class="h-[50px]"></footer>
+    <script type="module">
+      import { writeItem } from "./js/db.js";
+      let upload = document.getElementById("upload");
+      upload.addEventListener("mouseup", () => {
+        console.log("click");
+        let category = document.getElementById("category");
+        let name = document.getElementById("name");
+        let description = document.getElementById("description");
+        let img = document.getElementById("img");
+        let featured = document.getElementById("commission");
+
+        if (
+          confirm(
+            `Confirm your entry: \nCategory: ${category.value}\nName: ${
+              name.value
+            }\nDescription: ${description.value}\nImage: ${
+              img.files[0]?.name
+            }\nFeatured: ${featured.checked ? "yes" : "no"}`
+          )
+        ) {
+          writeItem(
+            category.value,
+            name.value,
+            description.value,
+            img.value,
+            featured.checked
+          );
+          name.value = "";
+          description.value = "";
+          img.value = null;
+          imgLabel.innerHTML = "Upload Image";
+          imgLabel.classList.add("bg-offwhite", "text-offblack");
+          imgLabel.classList.remove("bg-offblack", "text-offwhite");
+          featured.checked ? featured.click() : null;
+        } else {
+          console.log("canceled");
+        }
+      });
+
+      let imgInput = document.getElementById("img");
+      let imgLabel = document.getElementById("img-label");
+      imgInput.addEventListener("change", () => {
+        if (imgInput.checkValidity()) {
+          imgLabel.innerHTML = "File: " + imgInput.files[0]?.name;
+          imgLabel.classList.remove("bg-offwhite", "text-offblack");
+          imgLabel.classList.add("bg-offblack", "text-offwhite");
+        }
+      });
+    </script>
   </body>
 </html>

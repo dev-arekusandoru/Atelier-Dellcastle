@@ -137,11 +137,7 @@ function generateItem(title, text, img) {
 function generateItems(numOfItems) {
   let result = "";
   for (let i = 0; i < numOfItems; i++) {
-    result += generateItem(
-      "title",
-      "text",
-      "https://firebasestorage.googleapis.com/v0/b/atelierdellcastle-e2483.appspot.com/o/board-end-grain.jpg?alt=media&token=e1d18f70-a198-47a7-831c-9b6b801411ec"
-    );
+    result += generateItem("title", "text", "");
   }
   return result;
 }

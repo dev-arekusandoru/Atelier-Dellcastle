@@ -1,97 +1,80 @@
 import { database, storage } from "./firebase.js";
 import {
-  getDatabase,
   ref,
   set,
   child,
   push,
-  get,
-  onValue
+  get
 } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+import {
+  uploadBytes,
+  ref as sRef,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
 
-function readData(path) {
-  let promise = new Promise((resolve) => {
-    get(child(ref(database), path))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          resolve(snapshot.val());
-        } else {
-          console.log("No data available");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  });
-
-  return promise.then((value) => {
-    return value;
-  });
-}
-
-function generateGalleryPage(item) {
-  let body = document.getElementById(`${item}-body`);
-  let bodyData = readData(item);
-  let bodyBuild = ``;
-  bodyData.then((result) => {
-    bodyData = Object.entries(result);
-    bodyData.forEach((entry) => {
-      let data = entry[1];
-      console.log(data);
-      bodyBuild += generateItem(
-        data.name,
-        data.details,
-        data.image ? data.image : ""
-      );
+async function readData(path) {
+  return await get(child(ref(database), path))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
     });
-    body.innerHTML = bodyBuild;
-  });
 }
-generateGalleryPage("boards");
 
-function writeItem(path, name, description, url, featured) {
+export async function generateGalleryPage(item) {
+  let body = document.getElementById(`${item}-body`);
+  let bodyData = await readData(item);
+  let bodyBuild = ``;
+  bodyData = bodyData ? Object.entries(bodyData) : {};
+  bodyData.forEach((entry) => {
+    let data = entry[1];
+    console.log(data);
+    bodyBuild += generateItem(
+      data.name,
+      data.details,
+      data.image
+        ? data.image
+        : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/SMPTE_Color_Bars.svg/1920px-SMPTE_Color_Bars.svg.png"
+    );
+  });
+  body.innerHTML = bodyBuild;
+}
+
+export async function writeItem(path, name, description, img, featured) {
+  let imgURL = img ? await uploadImage(path, img) : "";
+
+  console.log(imgURL);
+
   let write = {
     name: name,
     details: description,
-    image: url,
+    image: imgURL,
     featured: featured
   };
 
   console.log(write);
-  push(ref(database, path), write);
+  //push(ref(database, path), write);
   alert("upload success");
 }
 
-// watch upload button and submit
-let upload = document.getElementById("upload");
-upload?.addEventListener("mouseup", () => {
-  let category = document.getElementById("category");
-  let name = document.getElementById("name");
-  let description = document.getElementById("description");
-  let img = document.getElementById("img");
-  let featured = document.getElementById("commission");
+async function uploadImage(path, file) {
+  let newId = generateId();
+  let fileToUpload = file;
+  let storageRef = sRef(storage, path + "/" + newId);
+  return await uploadBytes(storageRef, file).then((snapshot) => {
+    console.log("file upload");
+    return getDownloadURL(sRef(storage, path + "/" + newId)).then((url) => {
+      console.log(url);
+      return url;
+    });
+  });
+}
 
-  if (
-    confirm(
-      `Confirm your entry: \nCategory: ${category.value}\nName: ${
-        name.value
-      }\nDescription: ${description.value}\nURL: ${img.value}\nFeatured: ${
-        featured.checked ? "yes" : "no"
-      }`
-    )
-  ) {
-    writeItem(
-      category.value,
-      name.value,
-      description.value,
-      img.value,
-      featured.checked
-    );
-    name.value = "";
-    description.value = "";
-    img.value = "";
-    featured.checked ? featured.click() : null;
-  } else {
-    console.log("canceled");
-  }
-});
+export function generateId() {
+  return push(ref(database)).key;
+}

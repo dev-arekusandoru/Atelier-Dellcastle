@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -21,7 +21,6 @@
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="js/functions.js"></script>
-    <script type="module" src="js/db.js"></script>
     <script>
       if (localStorage.getItem("page") == null) {
         localStorage.setItem("page", "featured");
@@ -260,7 +259,7 @@
         class="hidden out-view absolute w-screen flex-col items-center px-[20px] md:px-[40px] lg:px-[60px]"
       >
         <div
-          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%]"
+          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%] max-w-[1250px]"
         >
           <div class="transition-all duration-700 w-1/4 md:w-0"></div>
           <span
@@ -289,7 +288,7 @@
         class="hidden out-view absolute w-screen flex-col items-center px-[20px] md:px-[40px] lg:px-[60px]"
       >
         <div
-          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%]"
+          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%] max-w-[1250px]"
         >
           <div class="transition-all duration-700 w-1/4 md:w-0"></div>
           <span
@@ -311,7 +310,7 @@
         class="hidden out-view absolute w-screen flex-col items-center px-[20px] md:px-[40px] lg:px-[60px]"
       >
         <div
-          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%]"
+          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%] max-w-[1250px]"
         >
           <div class="transition-all duration-700 w-1/4 md:w-0"></div>
           <span
@@ -339,7 +338,7 @@
         class="hidden out-view absolute w-screen flex-col items-center px-[20px] md:px-[40px] lg:px-[60px]"
       >
         <div
-          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%]"
+          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%] max-w-[1250px]"
         >
           <div class="transition-all duration-700 w-1/4 md:w-0"></div>
           <span
@@ -368,7 +367,7 @@
         class="hidden out-view absolute w-screen flex-col items-center px-[20px] md:px-[40px] lg:px-[60px]"
       >
         <div
-          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%]"
+          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%] max-w-[1250px]"
         >
           <div class="transition-all duration-700 w-1/4 md:w-0"></div>
           <span
@@ -396,5 +395,13 @@
       id="modal"
       class="out-view hidden fixed flex-col w-[600px] max-w-[80%] h-[75%] p-3 top-24 bg-offwhite dark:bg-offblack border-4 border-offblack dark:border-offwhite"
     ></div>
+    <script type="module">
+      import { generateGalleryPage } from "./js/db.js";
+      generateGalleryPage("featured");
+      generateGalleryPage("boards");
+      generateGalleryPage("kumiko");
+      generateGalleryPage("boxes");
+      generateGalleryPage("inlay");
+    </script>
   </body>
 </html>

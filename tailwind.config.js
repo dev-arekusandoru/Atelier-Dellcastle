@@ -22,15 +22,18 @@ module.exports = {
       xl: "1280px",
       // => @media (min-width: 1280px) { ... }
 
-      "2xl": "1536px",
+      "2xl": "1536px"
       // => @media (min-width: 1536px) { ... }
     },
     colors: {
       ...colors,
       offwhite: "#FFFBFC",
       offblack: "#010400",
-      primary: "#30332E",
-    },
+      primary: "#30332E"
+    }
   },
-  plugins: [require("tailwind-scrollbar-hide")],
+  plugins: [
+    require("tailwind-scrollbar-hide"),
+    require("prettier-plugin-tailwindcss")
+  ]
 };
