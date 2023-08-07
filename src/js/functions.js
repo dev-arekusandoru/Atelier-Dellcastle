@@ -30,7 +30,7 @@ function fadePageOut(pageBodyId, target) {
     classes.add("out-view");
     classes.remove("in-view");
   }
-  if (target.length > 0) {
+  if (target?.length > 0) {
     setTimeout(() => {
       window.location.href = target;
     }, 500);

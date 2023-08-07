@@ -530,6 +530,10 @@ video {
   position: absolute;
 }
 
+.relative {
+  position: relative;
+}
+
 .inset-0 {
   inset: 0px;
 }
@@ -633,6 +637,10 @@ video {
   margin-top: -65px;
 }
 
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
 .block {
   display: block;
 }
@@ -701,6 +709,10 @@ video {
   min-height: 100vh;
 }
 
+.min-h-\[500px\] {
+  min-height: 500px;
+}
+
 .w-1\/2 {
   width: 50%;
 }
@@ -761,6 +773,10 @@ video {
   width: 100vw;
 }
 
+.w-\[80\%\] {
+  width: 80%;
+}
+
 .max-w-\[1000px\] {
   max-width: 1000px;
 }
@@ -775,6 +791,14 @@ video {
 
 .max-w-\[80\%\] {
   max-width: 80%;
+}
+
+.max-w-\[500px\] {
+  max-width: 500px;
+}
+
+.max-w-\[400px\] {
+  max-width: 400px;
 }
 
 .cursor-pointer {
@@ -859,8 +883,24 @@ video {
   gap: 2rem;
 }
 
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.gap-12 {
+  gap: 3rem;
+}
+
+.self-start {
+  align-self: flex-start;
+}
+
 .justify-self-start {
   justify-self: start;
+}
+
+.justify-self-end {
+  justify-self: end;
 }
 
 .overflow-hidden {
@@ -944,6 +984,21 @@ video {
   background-color: rgb(255 251 252 / var(--tw-bg-opacity));
 }
 
+.bg-red-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+}
+
+.bg-green-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(187 247 208 / var(--tw-bg-opacity));
+}
+
+.bg-red-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 165 165 / var(--tw-bg-opacity));
+}
+
 .bg-\[url\(\'\/img\/homepage2\.jpg\'\)\] {
   background-image: url('/img/homepage2.jpg');
 }
@@ -991,6 +1046,16 @@ video {
 .py-\[20px\] {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .text-center {
@@ -1594,6 +1659,14 @@ body {
     display: flex;
   }
 
+  .sm\:w-3\/4 {
+    width: 75%;
+  }
+
+  .sm\:w-\[130px\] {
+    width: 130px;
+  }
+
   .sm\:w-\[186px\] {
     width: 186px;
   }
@@ -1604,6 +1677,10 @@ body {
 
   .sm\:w-auto {
     width: auto;
+  }
+
+  .sm\:flex-row {
+    flex-direction: row;
   }
 
   .sm\:gap-5 {

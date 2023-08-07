@@ -58,13 +58,17 @@ export async function writeItem(path, name, description, img, featured) {
   };
 
   console.log(write);
-  //push(ref(database, path), write);
-  alert("upload success");
+  push(ref(database, path), write)
+    .then(() => {
+      alert("upload success");
+    })
+    .catch(() => {
+      alert("insufficient permission");
+    });
 }
 
 async function uploadImage(path, file) {
   let newId = generateId();
-  let fileToUpload = file;
   let storageRef = sRef(storage, path + "/" + newId);
   return await uploadBytes(storageRef, file).then((snapshot) => {
     console.log("file upload");
