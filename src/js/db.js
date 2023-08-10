@@ -34,6 +34,7 @@ export async function generateGalleryPage(item) {
   bodyData.forEach((entry) => {
     let data = entry[1];
     console.log(data);
+    if (data.hidden && data.hidden == true) return;
     bodyBuild += generateItem(
       data.name,
       data.details,
@@ -45,19 +46,15 @@ export async function generateGalleryPage(item) {
   body.innerHTML = bodyBuild;
 }
 
-export async function writeItem(path, name, description, img, featured) {
-  let imgURL = img ? await uploadImage(path, img) : "";
-
-  console.log(imgURL);
-
+export async function writeItem(path, name, description, imgURL, featured) {
+  console.log(name);
   let write = {
     name: name,
     details: description,
     image: imgURL,
     featured: featured
   };
-
-  console.log(write);
+  console.log("writeData", write);
   push(ref(database, path), write)
     .then(() => {
       alert("upload success");
@@ -67,7 +64,7 @@ export async function writeItem(path, name, description, img, featured) {
     });
 }
 
-async function uploadImage(path, file) {
+export async function uploadImage(path, file) {
   let newId = generateId();
   let storageRef = sRef(storage, path + "/" + newId);
   return await uploadBytes(storageRef, file).then((snapshot) => {

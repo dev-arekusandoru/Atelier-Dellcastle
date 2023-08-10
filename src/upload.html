@@ -278,7 +278,7 @@
       </div>
     </div>
     <script type="module">
-      import { writeItem } from "./js/db.js";
+      import { writeItem, uploadImage } from "./js/db.js";
       import { auth } from "./js/firebase.js";
       import {
         signInWithEmailAndPassword,
@@ -287,6 +287,12 @@
         onAuthStateChanged,
         signOut
       } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+
+      async function uploadItem(category, name, description, img, featured) {
+        let imgURL = img ? await uploadImage(category.value, img) : "";
+        console.log("in the func", name);
+        await writeItem(category, name, description, imgURL, featured);
+      }
 
       let upload = document.getElementById("upload");
       upload.addEventListener("mouseup", () => {
@@ -306,11 +312,12 @@
             }\nFeatured: ${featured.checked ? "yes" : "no"}`
           )
         ) {
-          writeItem(
+          console.log("out the func", name);
+          uploadItem(
             category.value,
             name.value,
             description.value,
-            img.value,
+            img.files[0],
             featured.checked
           );
           name.value = "";
