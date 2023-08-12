@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Upload</title>
+    <title>Edit</title>
     <link href="dist/output.css" rel="stylesheet" />
     <!--fonts-->
     <link
@@ -24,11 +24,11 @@
     <script src="js/db.js" type="module"></script>
   </head>
   <body
-    onload="fadePageIn('upload-page-body')"
+    onload="fadePageIn('edit-page-body')"
     class="bg-offwhite dark:bg-offblack"
   >
     <div
-      id="upload-page-body"
+      id="edit-page-body"
       class="out-view flex h-full min-h-screen flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite"
     >
       <nav class="select-none">
@@ -39,7 +39,7 @@
           <div id="nav-left" class="w-full md:w-[280px]">
             <a
               id="homeLink"
-              onclick="fadePageOut('upload-page-body', 'index.html')"
+              onclick="fadePageOut('edit-page-body', 'index.html')"
               class="text-2xl hover:cursor-pointer"
               >Atelier Dellcastle</a
             >
@@ -66,7 +66,7 @@
               <div class="flex flex-col items-center w-full h-[235px] absolute">
                 <a
                   class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                  onclick="fadePageOut('upload-page-body', 'index.html')"
+                  onclick="fadePageOut('edit-page-body', 'index.html')"
                   >Home</a
                 >
                 <hr
@@ -74,7 +74,7 @@
                 />
                 <a
                   class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                  onclick="fadePageOut('upload-page-body', 'about.html')"
+                  onclick="fadePageOut('edit-page-body', 'about.html')"
                   >About</a
                 >
                 <hr
@@ -82,7 +82,7 @@
                 />
                 <a
                   class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                  onclick="fadePageOut('upload-page-body', 'gallery.html')"
+                  onclick="fadePageOut('edit-page-body', 'gallery.html')"
                   >Gallery</a
                 >
                 <hr
@@ -90,7 +90,7 @@
                 />
                 <a
                   class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                  onclick="fadePageOut('upload-page-body', 'contact.html')"
+                  onclick="fadePageOut('edit-page-body', 'contact.html')"
                   >Contact</a
                 >
                 <hr
@@ -98,7 +98,7 @@
                 />
                 <a
                   class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-300"
-                  onclick="fadePageOut('upload-page-body', 'shows.html')"
+                  onclick="fadePageOut('edit-page-body', 'shows.html')"
                   >Shows</a
                 >
               </div>
@@ -140,95 +140,119 @@
       </script>
 
       <!--main content-->
-      <div
-        id="upload-body"
-        class="flex flex-col items-center w-screen px-[20px]"
-      >
-        <h2 class="uppercase my-10 text-5xl font-bold">Upload</h2>
-        <div class="w-11/12 sm:w-[80%] lg:w-1/2 max-w-[1400px]">
-          <select name="category" id="category" class="w-full text-offblack">
-            <option value="boards" selected>boards</option>
-            <option value="kumiko">kumiko</option>
-            <option value="boxes">boxes</option>
-            <option value="inlay">inlay</option>
-          </select>
-          <div class="contact-div">
-            <input
-              class="contact-input"
-              name="name"
-              id="name"
-              type="text"
-              required
-            />
-            <label class="contact-label" for="name">
-              <span class="contact-label-content">Name</span>
+      <div id="edit-body" class="flex flex-col items-center w-screen px-[20px]">
+        <h2 class="uppercase my-10 text-5xl font-bold">Edit</h2>
+        <div class="w-5/6 max-w-[1400px] grid grid-cols-4 gap-5">
+          <div class="flex flex-col gap-3 border-2 border-offblack w-full p-2">
+            <label class="flex flex-col leading-3" for="name"
+              >Name:
+              <input
+                type="name"
+                class="outline-none bg-offwhite border-b border-offblack"
+              />
             </label>
-          </div>
-          <div class="contact-div mt-3">
-            <input
-              class="contact-input"
-              name="description"
-              id="description"
-              type="text"
-              required
-            />
-            <label class="contact-label" for="description">
-              <span class="contact-label-content">Description</span>
+            <label class="flex flex-col leading-3" for="description"
+              >Description:
+              <input
+                type="description"
+                class="outline-none bg-offwhite border-b border-offblack"
+              />
             </label>
-          </div>
-          <div class="mt-4 flex items-center justify-center">
-            <label
-              for="img"
-              id="img-label"
-              class="rounded-lg text-[18px] lg:text-[20px] leading-[45px] w-full sm:w-3/4 h-[50px] border-2 border-offblack dark:border-offwhite text-center bg-offwhite hover:bg-offblack block text-offblack hover:text-offwhite hover:cursor-pointer transition-all duration-300"
-            >
-              Upload Image
-            </label>
-            <input
-              class="hidden"
-              name="img"
-              id="img"
-              type="file"
-              accept=".jpg"
-              required
-            />
-          </div>
-          <div class="contact-div flex items-center gap-2 mt-3">
-            <div class="checkbox" id="commission-display">
-              <div id="commission-display-inside-checkbox"></div>
-              <input name="featured" id="commission" type="checkbox" />
+            <div
+              id="img-container"
+              class="hidden flex items-center justify-center w-full aspect-square border border-offblack"
+            ></div>
+            <div class="flex flex-row gap-2 justify-center">
+              <input
+                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+                type="submit"
+                value="Show Image"
+                name="toggleimg"
+                id="toggleimg"
+              />
+              <script>
+                let toggleImg = document.getElementById("toggleimg");
+                let imgContainer = document.getElementById("img-container");
+                toggleImg.addEventListener("click", () => {
+                  if (imgContainer.classList.contains("hidden")) {
+                    imgContainer.innerHTML = `<img src="https://picsum.photos/seed/${Math.random()}/500" alt="random image" class="object-cover w-full h-full" />`;
+                    imgContainer.classList.remove("hidden");
+                    toggleImg.value = "Hide Image";
+                  } else {
+                    imgContainer.classList.add("hidden");
+                    imgContainer.innerHTML = "";
+                    toggleImg.value = "Show Image";
+                  }
+                });
+              </script>
+              <input
+                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+                type="submit"
+                value="Delete Image"
+                name="deleteimg"
+                id="deleteimg"
+              />
             </div>
-            <script>
-              let featuredBox = document.getElementById("commission");
-              let featuredDisplay =
-                document.getElementById("commission-display");
 
-              featuredBox.addEventListener("change", (e) => {
-                if (featuredBox.checked) {
-                  featuredDisplay.classList.add("check");
-                } else {
-                  featuredDisplay.classList.remove("check");
-                }
-              });
-            </script>
-            <label for="commission" class="cursor-pointer select-none"
-              >Should this be featured?</label
-            >
-          </div>
-          <div class="flex flex-col sm:flex-row justify-between">
-            <input
-              class="w-full sm:w-[130px] h-[50px] text-xl mt-3 border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
-              type="submit"
-              name="Submit"
-              id="upload"
-            />
-            <input
-              class="w-full sm:w-[130px] h-[50px] text-xl mt-3 border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
-              type="submit"
-              value="Log Out"
-              name="logout"
-              id="logout"
-            />
+            <div class="flex flex-row gap-2 items-center">
+              <div class="checkbox" id="commission-display">
+                <div id="commission-display-inside-checkbox"></div>
+                <input name="featured" id="commission" type="checkbox" />
+              </div>
+              <script>
+                let featuredBox = document.getElementById("commission");
+                let featuredDisplay =
+                  document.getElementById("commission-display");
+
+                featuredBox.addEventListener("change", (e) => {
+                  if (featuredBox.checked) {
+                    featuredDisplay.classList.add("check");
+                  } else {
+                    featuredDisplay.classList.remove("check");
+                  }
+                });
+              </script>
+              <label for="commission" class="cursor-pointer select-none"
+                >Featured</label
+              >
+            </div>
+            <div class="flex flex-row gap-2 items-center">
+              <div class="checkbox" id="hidden-display">
+                <div id="hidden-display-inside-checkbox"></div>
+                <input name="hidden" id="hidden" type="checkbox" />
+              </div>
+              <script>
+                let hiddenBox = document.getElementById("hidden");
+                let hiddenDisplay = document.getElementById("hidden-display");
+
+                hiddenBox.addEventListener("change", (e) => {
+                  if (hiddenBox.checked) {
+                    hiddenDisplay.classList.add("check");
+                  } else {
+                    hiddenDisplay.classList.remove("check");
+                  }
+                });
+              </script>
+              <label for="hidden" class="cursor-pointer select-none"
+                >Hidden</label
+              >
+            </div>
+            <div class="flex flex-row gap-2 justify-center">
+              <input
+                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+                type="submit"
+                value="Reset"
+                name="reset"
+                id="reset"
+              />
+              <input
+                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+                type="submit"
+                value="Update"
+                name="login"
+                id="login"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -288,62 +312,8 @@
         signOut
       } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
-      async function uploadItem(category, name, description, img, featured) {
-        let imgURL = img ? await uploadImage(category.value, img) : "";
-        console.log("in the func", name);
-        await writeItem(category, name, description, imgURL, featured);
-      }
-
-      let upload = document.getElementById("upload");
-      upload.addEventListener("mouseup", () => {
-        console.log("click");
-        let category = document.getElementById("category");
-        let name = document.getElementById("name");
-        let description = document.getElementById("description");
-        let img = document.getElementById("img");
-        let featured = document.getElementById("commission");
-
-        if (
-          confirm(
-            `Confirm your entry: \nCategory: ${category.value}\nName: ${
-              name.value
-            }\nDescription: ${description.value}\nImage: ${
-              img.files[0]?.name
-            }\nFeatured: ${featured.checked ? "yes" : "no"}`
-          )
-        ) {
-          console.log("out the func", name);
-          uploadItem(
-            category.value,
-            name.value,
-            description.value,
-            img.files[0],
-            featured.checked
-          );
-          name.value = "";
-          description.value = "";
-          img.value = null;
-          imgLabel.innerHTML = "Upload Image";
-          imgLabel.classList.add("bg-offwhite", "text-offblack");
-          imgLabel.classList.remove("bg-offblack", "text-offwhite");
-          featured.checked ? featured.click() : null;
-        } else {
-          console.log("canceled");
-        }
-      });
-
-      let imgInput = document.getElementById("img");
-      let imgLabel = document.getElementById("img-label");
-      imgInput.addEventListener("change", () => {
-        if (imgInput.checkValidity()) {
-          imgLabel.innerHTML = "File: " + imgInput.files[0]?.name;
-          imgLabel.classList.remove("bg-offwhite", "text-offblack");
-          imgLabel.classList.add("bg-offblack", "text-offwhite");
-        }
-      });
-
       let login = document.getElementById("login");
-      let logout = document.getElementById("logout");
+      /* let logout = document.getElementById("logout"); */
       let user = null;
       login.addEventListener("click", () => {
         let email = document.getElementById("username");
@@ -361,13 +331,13 @@
         email.value = "";
         password.value = "";
       });
-      logout.addEventListener("click", () => {
+      /* logout.addEventListener("click", () => {
         signOut(auth)
           .then(() => {
             localStorage.removeItem("uid");
           })
           .catch((error) => {});
-      });
+      }); */
 
       let loginPage = document.getElementById("login-page-body");
 

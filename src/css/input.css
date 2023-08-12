@@ -181,21 +181,25 @@ body {
   cursor: text;
 }
 
-#commission {
+#commission,
+#hidden {
   width: 20px;
   height: 20px;
   opacity: 0;
 }
-#commission:hover {
+#commission:hover,
+#hidden:hover {
   cursor: pointer;
 }
 
-#commission-display {
+#commission-display,
+#hidden-display {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#commission-display-inside-checkbox {
+#commission-display-inside-checkbox,
+#hidden-display-inside-checkbox {
   position: absolute;
   width: 14px;
   height: 14px;
@@ -217,7 +221,8 @@ body {
   border-color: #010400;
   border-radius: 5px;
 }
-.check #commission-display-inside-checkbox {
+.check #commission-display-inside-checkbox,
+.check #hidden-display-inside-checkbox {
   opacity: 1;
 }
 
@@ -271,3 +276,5 @@ body {
     border-color: #fffbfc;
   }
 }
+
+/*-------------------------------------------------------Edit-------------------------------------------------------*/

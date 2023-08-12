@@ -126,10 +126,12 @@ function toggleModal(direction, title, text, img) {
   }
 }
 
-function generateItem(title, text, img) {
+function generateItem(title, text, img, editable) {
   return `<div class="item">
             <img class="item-img" onmouseup="toggleModal('on', '${title}', '${text}', '${img}')" src="${img}" alt="" />
-            <h2 class="item-name">${title}</h2>
+            <${editable ? "h2" : "input"} class="item-name">${title}</%${
+              editable ? "h2" : "input"
+            }>
             <h6 class="item-type">${text}</h6>
           </div>`;
 }
