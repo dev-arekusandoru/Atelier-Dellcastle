@@ -142,119 +142,18 @@
       <!--main content-->
       <div id="edit-body" class="flex flex-col items-center w-screen px-[20px]">
         <h2 class="uppercase my-10 text-5xl font-bold">Edit</h2>
-        <div class="w-5/6 max-w-[1400px] grid grid-cols-4 gap-5">
-          <div class="flex flex-col gap-3 border-2 border-offblack w-full p-2">
-            <label class="flex flex-col leading-3" for="name"
-              >Name:
-              <input
-                type="name"
-                class="outline-none bg-offwhite border-b border-offblack"
-              />
-            </label>
-            <label class="flex flex-col leading-3" for="description"
-              >Description:
-              <input
-                type="description"
-                class="outline-none bg-offwhite border-b border-offblack"
-              />
-            </label>
-            <div
-              id="img-container"
-              class="hidden flex items-center justify-center w-full aspect-square border border-offblack"
-            ></div>
-            <div class="flex flex-row gap-2 justify-center">
-              <input
-                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
-                type="submit"
-                value="Show Image"
-                name="toggleimg"
-                id="toggleimg"
-              />
-              <script>
-                let toggleImg = document.getElementById("toggleimg");
-                let imgContainer = document.getElementById("img-container");
-                toggleImg.addEventListener("click", () => {
-                  if (imgContainer.classList.contains("hidden")) {
-                    imgContainer.innerHTML = `<img src="https://picsum.photos/seed/${Math.random()}/500" alt="random image" class="object-cover w-full h-full" />`;
-                    imgContainer.classList.remove("hidden");
-                    toggleImg.value = "Hide Image";
-                  } else {
-                    imgContainer.classList.add("hidden");
-                    imgContainer.innerHTML = "";
-                    toggleImg.value = "Show Image";
-                  }
-                });
-              </script>
-              <input
-                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
-                type="submit"
-                value="Delete Image"
-                name="deleteimg"
-                id="deleteimg"
-              />
-            </div>
-
-            <div class="flex flex-row gap-2 items-center">
-              <div class="checkbox" id="commission-display">
-                <div id="commission-display-inside-checkbox"></div>
-                <input name="featured" id="commission" type="checkbox" />
-              </div>
-              <script>
-                let featuredBox = document.getElementById("commission");
-                let featuredDisplay =
-                  document.getElementById("commission-display");
-
-                featuredBox.addEventListener("change", (e) => {
-                  if (featuredBox.checked) {
-                    featuredDisplay.classList.add("check");
-                  } else {
-                    featuredDisplay.classList.remove("check");
-                  }
-                });
-              </script>
-              <label for="commission" class="cursor-pointer select-none"
-                >Featured</label
-              >
-            </div>
-            <div class="flex flex-row gap-2 items-center">
-              <div class="checkbox" id="hidden-display">
-                <div id="hidden-display-inside-checkbox"></div>
-                <input name="hidden" id="hidden" type="checkbox" />
-              </div>
-              <script>
-                let hiddenBox = document.getElementById("hidden");
-                let hiddenDisplay = document.getElementById("hidden-display");
-
-                hiddenBox.addEventListener("change", (e) => {
-                  if (hiddenBox.checked) {
-                    hiddenDisplay.classList.add("check");
-                  } else {
-                    hiddenDisplay.classList.remove("check");
-                  }
-                });
-              </script>
-              <label for="hidden" class="cursor-pointer select-none"
-                >Hidden</label
-              >
-            </div>
-            <div class="flex flex-row gap-2 justify-center">
-              <input
-                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
-                type="submit"
-                value="Reset"
-                name="reset"
-                id="reset"
-              />
-              <input
-                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
-                type="submit"
-                value="Update"
-                name="login"
-                id="login"
-              />
-            </div>
-          </div>
+        <div class="w-5/6 max-w-[1400px] mb-6">
+          <select name="category" id="category" class="w-full text-offblack">
+            <option value="boards" selected>boards</option>
+            <option value="kumiko">kumiko</option>
+            <option value="boxes">boxes</option>
+            <option value="inlay">inlay</option>
+          </select>
         </div>
+        <div
+          id="edit-items"
+          class="w-5/6 max-w-[1400px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"
+        ></div>
       </div>
       <footer class="h-[50px]"></footer>
     </div>
@@ -302,7 +201,7 @@
       </div>
     </div>
     <script type="module">
-      import { writeItem, uploadImage } from "./js/db.js";
+      import { generateEditPage } from "./js/db.js";
       import { auth } from "./js/firebase.js";
       import {
         signInWithEmailAndPassword,
@@ -353,6 +252,12 @@
           console.log("Signed Out");
           loginPage.classList.remove("hidden");
         }
+      });
+
+      generateEditPage("boards");
+      let select = document.getElementById("category");
+      select.addEventListener("change", () => {
+        generateEditPage(select.value);
       });
 
       /* history.navigationMode = "compatible";

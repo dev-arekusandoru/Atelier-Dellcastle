@@ -278,3 +278,10 @@ body {
 }
 
 /*-------------------------------------------------------Edit-------------------------------------------------------*/
+.checked-outside {
+  border-color: #010400;
+  border-radius: 5px;
+}
+.checked-inside {
+  background-color: #010400;
+}

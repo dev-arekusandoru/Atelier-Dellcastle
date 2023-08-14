@@ -126,12 +126,10 @@ function toggleModal(direction, title, text, img) {
   }
 }
 
-function generateItem(title, text, img, editable) {
+function generateItem(title, text, img) {
   return `<div class="item">
             <img class="item-img" onmouseup="toggleModal('on', '${title}', '${text}', '${img}')" src="${img}" alt="" />
-            <${editable ? "h2" : "input"} class="item-name">${title}</%${
-              editable ? "h2" : "input"
-            }>
+            <h2 class="item-name">${title}</h2>
             <h6 class="item-type">${text}</h6>
           </div>`;
 }
@@ -142,4 +140,112 @@ function generateItems(numOfItems) {
     result += generateItem("title", "text", "");
   }
   return result;
+}
+
+function checkbox(id, text, checked) {
+  return `<div class="flex flex-row gap-2 items-center">
+              <div class="${
+                checked ? "checked-outside" : ""
+              } flex items-center justify-center w-[20px] h-[20px] border-[#0104002c] border-2 transition-all duration-300" id="${id}-outside-checkbox">
+                <div class="${
+                  checked ? "checked-inside" : ""
+                } w-[14px] h-[14px] bg-offwhite rounded-[2px] transition-all duration-300" id="${id}-inside-checkbox"></div>
+                <input name="${id}-checkbox" id="${id}-checkbox" class="absolute w-[20px] h-[20px] opacity-0" type="checkbox" ${
+                  checked ? "checked" : ""
+                } onclick="toggleCheckbox('${id}')" />
+              </div>
+              <label for="${id}-checkbox" class="cursor-pointer select-none"
+                >${text}</label
+              >
+            </div>`;
+}
+
+function generateEditItem(id, name, description, img, featured, hidden) {
+  return `<div class="flex flex-col gap-3 border-2 border-offblack w-full p-2">
+            <label class="flex flex-col" for="${id}-name"
+              >Name:
+              <input
+                id="${id}-name"
+                type="${id}-name"
+                value="${name}"
+                class="outline-none bg-offwhite border-b border-offblack"
+              />
+            </label>
+            <label class="flex flex-col" for="${id}-description"
+              >Description:
+              <input
+                id="${id}-desc"
+                type="${id}-description"
+                value="${description}"
+                class="outline-none bg-offwhite border-b border-offblack"
+              />
+            </label>
+            <div
+              id="${id}-img-container"
+              class="hidden flex items-center justify-center w-full aspect-square border border-offblack"
+            ></div>
+            <div class="flex flex-row gap-2 justify-center">
+              <input
+                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+                type="submit"
+                value="Show Image"
+                name="${id}-toggleimg"
+                id="${id}-toggleimg"
+                onclick="toggleImg('${id}', '${img}')"
+              />
+              <input
+                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+                type="submit"
+                value="Delete Image"
+                name="${id}-deleteimg"
+                id="${id}-deleteimg"
+                onclick="deleteImg('${id}')"
+              />
+            </div>
+            ${checkbox(id, "Featured", featured)}
+            ${checkbox(id + "-hide", "Hidden", hidden)}
+            <div class="flex flex-row gap-2 justify-center">
+              <input
+                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+                type="submit"
+                value="Reset"
+                name="${id}-reset"
+                id="${id}-reset"
+              />
+              <input
+                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+                type="submit"
+                value="Update"
+                name="${id}-update"
+                id="${id}-update"
+              />
+            </div>
+          </div>`;
+}
+
+function toggleCheckbox(id) {
+  let checkbox = document.getElementById(`${id}-checkbox`);
+  let outside = document.getElementById(`${id}-outside-checkbox`);
+  let inside = document.getElementById(`${id}-inside-checkbox`);
+  if (checkbox.checked) {
+    outside.classList.add("checked-outside");
+    inside.classList.add("checked-inside");
+  } else {
+    outside.classList.remove("checked-outside");
+    inside.classList.remove("checked-inside");
+  }
+}
+
+function toggleImg(id, img) {
+  let toggleImg = document.getElementById(`${id}-toggleimg`);
+  let imgContainer = document.getElementById(`${id}-img-container`);
+  if (imgContainer.classList.contains("hidden")) {
+    imgContainer.innerHTML = `<img src="${img}" alt="random image" class="object-cover w-full h-full" />`;
+    imgContainer.classList.remove("hidden");
+    toggleImg.value = "Hide Image";
+  } else {
+    imgContainer.classList.add("hidden");
+    imgContainer.innerHTML = "";
+    toggleImg.value = "Show Image";
+  }
 }

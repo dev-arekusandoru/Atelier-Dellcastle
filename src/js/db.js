@@ -12,7 +12,7 @@ import {
   getDownloadURL
 } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
 
-async function readData(path) {
+export async function readData(path) {
   return await get(child(ref(database), path))
     .then((snapshot) => {
       if (snapshot.exists()) {
@@ -74,6 +74,24 @@ export async function uploadImage(path, file) {
       return url;
     });
   });
+}
+
+export async function generateEditPage(path) {
+  let data = await readData(path);
+  let items = "";
+  Object.entries(data).forEach((item) => {
+    items += generateEditItem(
+      item[0],
+      item[1].name,
+      item[1].details,
+      item[1].image
+        ? item[1].image
+        : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/SMPTE_Color_Bars.svg/1920px-SMPTE_Color_Bars.svg.png",
+      item[1].featured,
+      item[1].hidden
+    );
+  });
+  document.getElementById("edit-items").innerHTML = items;
 }
 
 export function generateId() {
