@@ -160,77 +160,14 @@ function checkbox(id, text, checked) {
             </div>`;
 }
 
-function generateEditItem(id, name, description, img, featured, hidden) {
-  return `<div class="flex flex-col gap-3 border-2 border-offblack w-full p-2">
-            <label class="flex flex-col" for="${id}-name"
-              >Name:
-              <input
-                id="${id}-name"
-                type="${id}-name"
-                value="${name}"
-                class="outline-none bg-offwhite border-b border-offblack"
-              />
-            </label>
-            <label class="flex flex-col" for="${id}-description"
-              >Description:
-              <input
-                id="${id}-desc"
-                type="${id}-description"
-                value="${description}"
-                class="outline-none bg-offwhite border-b border-offblack"
-              />
-            </label>
-            <div
-              id="${id}-img-container"
-              class="hidden flex items-center justify-center w-full aspect-square border border-offblack"
-            ></div>
-            <div class="flex flex-row gap-2 justify-center">
-              <input
-                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
-                type="submit"
-                value="Show Image"
-                name="${id}-toggleimg"
-                id="${id}-toggleimg"
-                onclick="toggleImg('${id}', '${img}')"
-              />
-              <input
-                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
-                type="submit"
-                value="Delete Image"
-                name="${id}-deleteimg"
-                id="${id}-deleteimg"
-                onclick="deleteImg('${id}')"
-              />
-            </div>
-            ${checkbox(id, "Featured", featured)}
-            ${checkbox(id + "-hide", "Hidden", hidden)}
-            <div class="flex flex-row gap-2 justify-center">
-              <input
-                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
-                type="submit"
-                value="Reset"
-                name="${id}-reset"
-                id="${id}-reset"
-              />
-              <input
-                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
-                type="submit"
-                value="Update"
-                name="${id}-update"
-                id="${id}-update"
-              />
-            </div>
-          </div>`;
-}
-
-function toggleCheckbox(id) {
+function toggleCheckbox(id, val) {
   let checkbox = document.getElementById(`${id}-checkbox`);
   let outside = document.getElementById(`${id}-outside-checkbox`);
   let inside = document.getElementById(`${id}-inside-checkbox`);
-  if (checkbox.checked) {
+  if (val == "on" || checkbox.checked) {
     outside.classList.add("checked-outside");
     inside.classList.add("checked-inside");
-  } else {
+  } else if (val == "off" || !checkbox.checked) {
     outside.classList.remove("checked-outside");
     inside.classList.remove("checked-inside");
   }
@@ -240,7 +177,11 @@ function toggleImg(id, img) {
   let toggleImg = document.getElementById(`${id}-toggleimg`);
   let imgContainer = document.getElementById(`${id}-img-container`);
   if (imgContainer.classList.contains("hidden")) {
-    imgContainer.innerHTML = `<img src="${img}" alt="random image" class="object-cover w-full h-full" />`;
+    imgContainer.innerHTML = `<img src="${
+      img
+        ? img
+        : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/SMPTE_Color_Bars.svg/1920px-SMPTE_Color_Bars.svg.png"
+    }" alt="random image" class="object-cover w-full h-full" />`;
     imgContainer.classList.remove("hidden");
     toggleImg.value = "Hide Image";
   } else {
