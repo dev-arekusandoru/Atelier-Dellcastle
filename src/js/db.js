@@ -106,37 +106,46 @@ function generateEditItem(path, id, name, description, img, featured, hidden) {
             </div>
             <div class="flex flex-row gap-2 justify-center">
               <input
-                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+                class="w-full h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
                 type="submit"
                 value="Show Image"
                 name="${id}-toggleimg"
                 id="${id}-toggleimg"
                 onclick="toggleImg('${id}', '${img}')"
               />
-              <input
+              <!--<input
                 class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
                 type="submit"
                 value="Delete Image"
                 name="${id}-deleteimg"
                 id="${id}-deleteimg"
-              />
+              />-->
             </div>
             ${checkbox(id, "Featured", featured)}
             ${checkbox(id + "-hide", "Hidden", hidden)}
-            <div class="flex flex-row gap-2 justify-center">
+            <div class="flex flex-col gap-2 justify-center">
+              <div class="flex flex-row gap-2 justify-center">
+                <input
+                  class="item-reset w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+                  type="submit"
+                  value="Reset"
+                  name="${id}-reset"
+                  id="${id}/reset"
+                />
+                <input
+                  class="item-update w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+                  type="submit"
+                  value="Update"
+                  name="${id}-update"
+                  id="${id}/update"
+                />
+              </div>
               <input
-                class="item-reset w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+                class="item-update w-full h-[30px] text-md border-2 border-red-600 text-red-600 hover:text-offwhite hover:bg-red-600 hover:border-red-600 hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
                 type="submit"
-                value="Reset"
-                name="${id}-reset"
-                id="${id}/reset"
-              />
-              <input
-                class="item-update w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
-                type="submit"
-                value="Update"
-                name="${id}-update"
-                id="${id}/update"
+                value="Delete"
+                name="${id}-delete"
+                id="${id}/delete"
               />
             </div>
           </div>`;
@@ -188,35 +197,51 @@ async function addUpdateListener(path) {
   );
 }
 
-async function addResetListener(path) {
+async function resetData(path, element) {
   let allData = await readData(path);
+  let id = element.id.split("/")[0];
+  let data = allData[id];
+  console.log(data);
+  let resetName = document.getElementById(`${id}-name`);
+  let resetDesc = document.getElementById(`${id}-desc`);
+  let resetFeatured = document.getElementById(`${id}-checkbox`);
+  let resetHidden = document.getElementById(`${id}-hide-checkbox`);
+
+  resetName.value = data.name;
+  resetDesc.value = data.details;
+  if (data.featured == true) {
+    resetFeatured.checked = true;
+    toggleCheckbox(id);
+  } else {
+    resetFeatured.checked = false;
+    toggleCheckbox(id);
+  }
+  if (data.hidden == true) {
+    resetHidden.checked = true;
+    toggleCheckbox(id + "-hide");
+  } else {
+    resetHidden.checked = false;
+    toggleCheckbox(id + "-hide");
+  }
+}
+
+async function addResetListener(path) {
   Array.from(document.getElementsByClassName("item-reset")).forEach(
     (element) => {
       element.addEventListener("mouseup", (e) => {
-        let id = element.id.split("/")[0];
-        let data = allData[id];
-        console.log(data);
-        let resetName = document.getElementById(`${id}-name`);
-        let resetDesc = document.getElementById(`${id}-desc`);
-        let resetFeatured = document.getElementById(`${id}-checkbox`);
-        let resetHidden = document.getElementById(`${id}-hide-checkbox`);
+        resetData(path, element);
+      });
+    }
+  );
+}
 
-        resetName.value = data.name;
-        resetDesc.value = data.details;
-        if (data.featured == true) {
-          resetFeatured.checked = true;
-          toggleCheckbox(id);
-        } else {
-          resetFeatured.checked = false;
-          toggleCheckbox(id);
-        }
-        if (data.hidden == true) {
-          resetHidden.checked = true;
-          toggleCheckbox(id + "-hide");
-        } else {
-          resetHidden.checked = false;
-          toggleCheckbox(id + "-hide");
-        }
+function deleteItem(path, id) {}
+
+function addDeleteListener(path) {
+  Array.from(document.getElementsByClassName("item-delete")).forEach(
+    (element) => {
+      element.addEventListener("mouseup", (e) => {
+        resetData(path, element);
       });
     }
   );
