@@ -4,7 +4,8 @@ import {
   set,
   child,
   push,
-  get
+  get,
+  remove
 } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
 import {
   uploadBytes,
@@ -30,10 +31,9 @@ export async function generateGalleryPage(item) {
   let body = document.getElementById(`${item}-body`);
   let bodyData = await readData(item);
   let bodyBuild = ``;
-  bodyData = bodyData ? Object.entries(bodyData) : {};
+  bodyData = bodyData ? Object.entries(bodyData) : [];
   bodyData.forEach((entry) => {
     let data = entry[1];
-    console.log(data);
     if (data.hidden && data.hidden == true) return;
     bodyBuild += generateItem(
       data.name,
@@ -46,16 +46,21 @@ export async function generateGalleryPage(item) {
   body.innerHTML = bodyBuild;
 }
 
-export async function writeItem(path, name, description, imgURL, featured) {
-  console.log(name);
+export async function writeItem(
+  path,
+  name,
+  description,
+  imgId,
+  imgURL,
+  featured
+) {
   let write = {
     name: name,
     details: description,
-    image: imgURL,
+    img: { id: imgId, url: imgURL },
     featured: featured,
     hidden: false
   };
-  console.log("writeData", write);
   push(ref(database, path), write)
     .then(() => {
       alert("upload success");
@@ -69,16 +74,23 @@ export async function uploadImage(path, file) {
   let newId = generateId();
   let storageRef = sRef(storage, path + "/" + newId);
   return await uploadBytes(storageRef, file).then((snapshot) => {
-    console.log("file upload");
     return getDownloadURL(sRef(storage, path + "/" + newId)).then((url) => {
-      console.log(url);
-      return url;
+      let r = { id: newId, url: url };
+      return r;
     });
   });
 }
 
-function generateEditItem(path, id, name, description, img, featured, hidden) {
-  console.log(img);
+function generateEditItem(
+  path,
+  id,
+  name,
+  description,
+  imgId,
+  imgUrl,
+  featured,
+  hidden
+) {
   return `<div class="flex flex-col gap-3 border-2 border-offblack w-full p-2" id="${id}}">
             <label class="flex flex-col" for="${id}-name"
               >Name:
@@ -102,8 +114,9 @@ function generateEditItem(path, id, name, description, img, featured, hidden) {
               id="${id}-img-container"
               class="hidden flex items-center justify-center w-full aspect-square border border-offblack"
             >
-            <span id="${id}-img-src" class="hidden">${img}</span>
             </div>
+            <span id="${id}-img-id" class="hidden">${imgId}</span>
+            <span id="${id}-img-url" class="hidden">${imgUrl}</span>
             <div class="flex flex-row gap-2 justify-center">
               <input
                 class="w-full h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
@@ -111,7 +124,7 @@ function generateEditItem(path, id, name, description, img, featured, hidden) {
                 value="Show Image"
                 name="${id}-toggleimg"
                 id="${id}-toggleimg"
-                onclick="toggleImg('${id}', '${img}')"
+                onclick="toggleImg('${id}', '${imgUrl}')"
               />
               <!--<input
                 class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
@@ -141,7 +154,7 @@ function generateEditItem(path, id, name, description, img, featured, hidden) {
                 />
               </div>
               <input
-                class="item-update w-full h-[30px] text-md border-2 border-red-600 text-red-600 hover:text-offwhite hover:bg-red-600 hover:border-red-600 hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+                class="item-delete w-full h-[30px] text-md border-2 border-red-600 text-red-600 hover:text-offwhite hover:bg-red-600 hover:border-red-600 hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
                 type="submit"
                 value="Delete"
                 name="${id}-delete"
@@ -154,20 +167,25 @@ function generateEditItem(path, id, name, description, img, featured, hidden) {
 export async function generateEditPage(path) {
   let data = await readData(path);
   let items = "";
-  Object.entries(data).forEach((item) => {
-    items += generateEditItem(
-      path,
-      item[0],
-      item[1].name,
-      item[1].details,
-      item[1].img,
-      item[1].featured,
-      item[1].hidden
-    );
-  });
+  if (data != undefined && data != null) {
+    Object.entries(data).forEach((item) => {
+      items += generateEditItem(
+        path,
+        item[0],
+        item[1].name,
+        item[1].details,
+        item[1].img["id"],
+        item[1].img["url"],
+        item[1].featured,
+        item[1].hidden
+      );
+      console.log(item[1].img["url"]);
+    });
+  }
   document.getElementById("edit-items").innerHTML = items;
   await addUpdateListener(path);
   addResetListener(path);
+  addDeleteListener(path);
 }
 
 async function addUpdateListener(path) {
@@ -180,17 +198,19 @@ async function addUpdateListener(path) {
         let description = document.getElementById(`${id}-desc`).value;
         let featured = document.getElementById(`${id}-checkbox`).checked;
         let hidden = document.getElementById(`${id}-hide-checkbox`).checked;
-        let img = document.getElementById(`${id}-img-src`).innerHTML;
+        let imgId = document.getElementById(`${id}-img-id`).innerHTML;
+        let imgUrl = document.getElementById(`${id}-img-url`).innerHTML;
         let data = {
           name: name,
           details: description,
           featured: featured,
           hidden: hidden,
-          img: img
+          img: {
+            id: imgId,
+            url: imgUrl
+          }
         };
         let itemRef = path + "/" + id;
-        console.log("path: " + path + "/" + id);
-        console.log(data);
         set(ref(database, itemRef), data);
       });
     }
@@ -201,7 +221,6 @@ async function resetData(path, element) {
   let allData = await readData(path);
   let id = element.id.split("/")[0];
   let data = allData[id];
-  console.log(data);
   let resetName = document.getElementById(`${id}-name`);
   let resetDesc = document.getElementById(`${id}-desc`);
   let resetFeatured = document.getElementById(`${id}-checkbox`);
@@ -235,13 +254,21 @@ async function addResetListener(path) {
   );
 }
 
-function deleteItem(path, id) {}
+function deleteItem(path, id) {
+  let rPath = path + "/" + id;
+  console.log("remove", rPath);
+
+  remove(ref(database, rPath)).then(() => {
+    console.log("removed");
+    generateEditPage(path);
+  });
+}
 
 function addDeleteListener(path) {
   Array.from(document.getElementsByClassName("item-delete")).forEach(
     (element) => {
       element.addEventListener("mouseup", (e) => {
-        resetData(path, element);
+        deleteItem(path, element.id.split("/")[0]);
       });
     }
   );

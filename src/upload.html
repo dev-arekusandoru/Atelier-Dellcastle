@@ -289,9 +289,15 @@
       } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
       async function uploadItem(category, name, description, img, featured) {
-        let imgURL = img ? await uploadImage(category.value, img) : "";
-        console.log("in the func", name);
-        await writeItem(category, name, description, imgURL, featured);
+        let imgData = img ? await uploadImage(category.value, img) : "";
+        await writeItem(
+          category,
+          name,
+          description,
+          imgData.id,
+          imgData.url,
+          featured
+        );
       }
 
       let upload = document.getElementById("upload");
