@@ -10,7 +10,8 @@ import {
 import {
   uploadBytes,
   ref as sRef,
-  getDownloadURL
+  getDownloadURL,
+  deleteObject
 } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
 
 export async function readData(path) {
@@ -119,20 +120,39 @@ function generateEditItem(
             <span id="${id}-img-url" class="hidden">${imgUrl}</span>
             <div class="flex flex-row gap-2 justify-center">
               <input
-                class="w-full h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+                class="${
+                  imgUrl != "" ? "" : "hidden"
+                } w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
                 type="submit"
                 value="Show Image"
                 name="${id}-toggleimg"
                 id="${id}-toggleimg"
                 onclick="toggleImg('${id}', '${imgUrl}')"
               />
-              <!--<input
-                class="w-[49%] h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+              <input
+                class="${
+                  imgUrl != "" ? "" : "hidden"
+                } image-delete w-[49%] h-[30px] text-md border-2 border-red-600 text-red-600 hover:text-offwhite hover:bg-red-600 hover:border-red-600 hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
                 type="submit"
                 value="Delete Image"
                 name="${id}-deleteimg"
-                id="${id}-deleteimg"
-              />-->
+                id="${id}/deleteimg"
+              />
+              <label class="${
+                imgUrl == "" ? "flex items-center justify-center" : "hidden"
+              } w-full h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+                for="${id}/uploadimg"
+                id="${id}/uploadimg-lbl"    
+              >
+              Upload Image
+                <input
+                  class="img-upload hidden"
+                  type="file"
+                  accept=".jpg"
+                  name="${id}-uploadimg"
+                  id="${id}/uploadimg"
+                />
+              </label>
             </div>
             ${checkbox(id, "Featured", featured)}
             ${checkbox(id + "-hide", "Hidden", hidden)}
@@ -179,13 +199,14 @@ export async function generateEditPage(path) {
         item[1].featured,
         item[1].hidden
       );
-      console.log(item[1].img["url"]);
     });
   }
   document.getElementById("edit-items").innerHTML = items;
   await addUpdateListener(path);
   addResetListener(path);
   addDeleteListener(path);
+  addDeleteImageListener(path);
+  addUploadImageListeners(path);
 }
 
 async function addUpdateListener(path) {
@@ -254,12 +275,11 @@ async function addResetListener(path) {
   );
 }
 
-function deleteItem(path, id) {
+function deleteItem(path, id, imgId) {
   let rPath = path + "/" + id;
-  console.log("remove", rPath);
 
   remove(ref(database, rPath)).then(() => {
-    console.log("removed");
+    if (imgId && imgId.length > 0) deleteImage(path, imgId);
     generateEditPage(path);
   });
 }
@@ -268,10 +288,63 @@ function addDeleteListener(path) {
   Array.from(document.getElementsByClassName("item-delete")).forEach(
     (element) => {
       element.addEventListener("mouseup", (e) => {
-        deleteItem(path, element.id.split("/")[0]);
+        let id = element.id.split("/")[0];
+        let imgId = document.getElementById(id + "-img-id").innerHTML;
+        deleteItem(path, element.id.split("/")[0], imgId);
       });
     }
   );
+}
+
+function deleteImage(path, id, imgId) {
+  let imgRef = sRef(storage, path + "/" + imgId);
+  deleteObject(imgRef).then(() => {
+    set(ref(database, `${path}/${id}/img`), { id: "", url: "" });
+    document.getElementById(id + "/deleteimg").classList.add("hidden");
+    document.getElementById(id + "-toggleimg").classList.add("hidden");
+    document.getElementById(id + "/uploadimg-lbl").classList.remove("hidden");
+  });
+}
+
+function addDeleteImageListener(path) {
+  Array.from(document.getElementsByClassName("image-delete")).forEach(
+    (element) => {
+      let id = element.id.split("/")[0];
+      let imgId = document.getElementById(id + "-img-id").innerHTML;
+      element.addEventListener("mouseup", (e) => {
+        deleteImage(path, id, imgId);
+      });
+    }
+  );
+}
+
+function addUploadImageListeners(path) {
+  let imgUploads = document.getElementsByClassName("img-upload");
+  Array.from(imgUploads).forEach((imgUpload) => {
+    let id = imgUpload.id.split("/")[0];
+    imgUpload.addEventListener("change", () => {
+      if (imgUpload.checkValidity()) {
+        let newImg = imgUpload.files[0];
+        uploadImage(path, newImg).then((data) => {
+          let newData = {
+            id: data.id,
+            url: data.url
+          };
+          set(ref(database, `${path}/${id}/img`), newData).then(() => {
+            document
+              .getElementById(id + "/deleteimg")
+              .classList.remove("hidden");
+            document
+              .getElementById(id + "-toggleimg")
+              .classList.remove("hidden");
+            document
+              .getElementById(id + "/uploadimg-lbl")
+              .classList.add("hidden");
+          });
+        });
+      }
+    });
+  });
 }
 
 export function generateId() {
