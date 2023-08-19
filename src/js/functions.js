@@ -87,23 +87,6 @@ function changeGalleryPage(pageTo, collapseDropdown) {
 
 function toggleModal(direction, title, text, img) {
   let modal = document.getElementById("modal");
-  let classes = modal.classList;
-  if (direction == "off") {
-    classes.remove("in-view");
-    classes.add("out-view");
-    setTimeout(() => {
-      classes.remove("flex");
-      classes.add("hidden");
-    }, 310);
-  } else if (direction == "on") {
-    classes.remove("hidden");
-    classes.add("flex");
-    setTimeout(() => {
-      classes.remove("out-view");
-      classes.add("in-view");
-    }, 310);
-  }
-
   if (title) {
     modal.innerHTML = `
     <div class="flex flex-row justify-between items-center w-full h-[30px] ">
@@ -114,7 +97,7 @@ function toggleModal(direction, title, text, img) {
       <i
         id="modal-x"
         onclick="toggleModal('off')"
-        class="fa-solid fa-xmark fa-xl justify-self-start text-offblack dark:text-offwhite transition-opacity duration-300 hover:cursor-pointer"
+        class="fa-solid fa-xmark fa-xl justify-self-start text-offblack dark:text-offwhite hover:cursor-pointer"
       ></i>
     </div>
     <div 
@@ -124,6 +107,19 @@ function toggleModal(direction, title, text, img) {
       
     </div>
     `;
+  }
+  if (direction == "off") {
+    modal.classList.add("out-view");
+    modal.classList.remove("in-view");
+    setTimeout(() => {
+      modal.classList.add("hidden");
+    }, 310);
+  } else if (direction == "on") {
+    modal.classList.remove("hidden");
+    setTimeout(() => {
+      modal.classList.add("in-view");
+      modal.classList.remove("out-view");
+    }, 310);
   }
 }
 
