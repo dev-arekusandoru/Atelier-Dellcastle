@@ -43,6 +43,7 @@ function changeGalleryPage(pageTo, collapseDropdown) {
   let pageFrom = localStorage.getItem("page"); // get current page id
   let from = document.getElementById(pageFrom); // get the page
   let to = document.getElementById(pageTo); // get the target page
+  if (from == to) return; // if the target page is the current page, do nothing
   localStorage.setItem("page", pageTo); // store the target page as current
 
   //update tab display

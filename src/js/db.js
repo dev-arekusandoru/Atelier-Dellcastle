@@ -39,12 +39,38 @@ export async function generateGalleryPage(item) {
     bodyBuild += generateItem(
       data.name,
       data.details,
-      data.image
-        ? data.image
+      data.img["url"]
+        ? data.img["url"]
         : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/SMPTE_Color_Bars.svg/1920px-SMPTE_Color_Bars.svg.png"
     );
   });
   body.innerHTML = bodyBuild;
+}
+
+export async function generateFeaturedPage() {
+  let categories = ["boards", "kumiko", "boxes", "inlay"];
+  let body = document.getElementById(`featured-body`);
+  let bodyBuild = ``;
+  categories.forEach((category) => {
+    readData(category).then((data) => {
+      data = data ? Object.entries(data) : [];
+      data.forEach((entry) => {
+        let item = entry[1];
+        if (item.hidden && item.hidden == true) {
+          return;
+        } else if (item.featured && item.featured == true) {
+          bodyBuild += generateItem(
+            item.name,
+            item.details,
+            item.img["url"]
+              ? item.img["url"]
+              : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/SMPTE_Color_Bars.svg/1920px-SMPTE_Color_Bars.svg.png"
+          );
+        }
+      });
+      body.innerHTML = bodyBuild;
+    });
+  });
 }
 
 export async function writeItem(
@@ -140,7 +166,7 @@ function generateEditItem(
               />
               <label class="${
                 imgUrl == "" ? "flex items-center justify-center" : "hidden"
-              } w-full h-[30px] text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+              } w-full h-[30px] text-center text-md border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
                 for="${id}/uploadimg"
                 id="${id}/uploadimg-lbl"    
               >

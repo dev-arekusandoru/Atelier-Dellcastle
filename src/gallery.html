@@ -272,14 +272,7 @@
         <div
           id="featured-body"
           class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
-        >
-          <script>
-            let featuredItems = generateItems(12);
-            let featuredBody = document.getElementById("featured-body");
-
-            featuredBody.innerHTML = featuredItems;
-          </script>
-        </div>
+        ></div>
         <div class="w-full h-[100px]"></div>
       </div>
 
@@ -324,12 +317,6 @@
           id="kumiko-body"
           class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
         ></div>
-        <script>
-          let kumikoItems = generateItems(12);
-          let kumikoBody = document.getElementById("kumiko-body");
-
-          kumikoBody.innerHTML = kumikoItems;
-        </script>
         <div class="w-full h-[100px]"></div>
       </div>
 
@@ -351,14 +338,7 @@
         <div
           id="boxes-body"
           class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
-        >
-          <script>
-            let boxesItems = generateItems(12);
-            let boxesBody = document.getElementById("boxes-body");
-
-            boxesBody.innerHTML = boxesItems;
-          </script>
-        </div>
+        ></div>
         <div class="w-full h-[100px]"></div>
       </div>
 
@@ -380,14 +360,7 @@
         <div
           id="inlay-body"
           class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
-        >
-          <script>
-            let inlayItems = generateItems(12);
-            let inlayBody = document.getElementById("inlay-body");
-
-            inlayBody.innerHTML = inlayItems;
-          </script>
-        </div>
+        ></div>
         <div class="w-full h-[100px]"></div>
       </div>
     </div>
@@ -396,8 +369,8 @@
       class="out-view hidden fixed flex-col w-[600px] max-w-[80%] h-[75%] p-3 top-24 bg-offwhite dark:bg-offblack border-4 border-offblack dark:border-offwhite"
     ></div>
     <script type="module">
-      import { generateGalleryPage } from "./js/db.js";
-      generateGalleryPage("featured");
+      import { generateGalleryPage, generateFeaturedPage } from "./js/db.js";
+      generateFeaturedPage();
       generateGalleryPage("boards");
       generateGalleryPage("kumiko");
       generateGalleryPage("boxes");

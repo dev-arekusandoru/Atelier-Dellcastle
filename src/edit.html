@@ -257,6 +257,7 @@
       generateEditPage("boards");
       let select = document.getElementById("category");
       select.addEventListener("change", () => {
+        console.log(select.value);
         generateEditPage(select.value);
       });
 
