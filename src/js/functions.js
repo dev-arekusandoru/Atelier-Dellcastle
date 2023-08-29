@@ -89,11 +89,11 @@ function toggleModal(direction, title, text, img) {
   let modal = document.getElementById("modal");
   if (title) {
     modal.innerHTML = `
-    <div class="flex flex-row justify-between items-center w-full h-[30px] ">
+    <div class="flex flex-row justify-between gap-1 items-center w-full ">
       <i
         class="fa-solid fa-xmark fa-xl opacity-0"
       ></i>
-      <h6 class="bold text-3xl font-bold">${title}</h6>
+      <h6 class="bold text-3xl font-bold max-w-[500px] text-center">${title}</h6>
       <i
         id="modal-x"
         onclick="toggleModal('off')"
