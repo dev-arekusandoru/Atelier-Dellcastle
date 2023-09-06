@@ -1,212 +1,224 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shows</title>
-    <link href="dist/output.css" rel="stylesheet" />
-    <!--fonts-->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <!--icons-->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/125fe29883.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="js/functions.js"></script>
-  </head>
-  <body
-    id="shows-page-body"
-    onload="fadePageIn('shows-page-body')"
-    class="out-view flex h-full min-h-screen flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite"
-  >
-    <nav class="select-none">
-      <div
-        id="nav-bar"
-        class="flex justify-between items-center px-[20px] md:px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
-      >
-        <div id="nav-left" class="w-full md:w-[280px]">
-          <a
-            id="homeLink"
-            onclick="fadePageOut('shows-page-body', 'index.html')"
-            class="text-2xl hover:cursor-pointer"
-            >Atelier Dellcastle</a
-          >
-        </div>
-        <div id="nav-center" class="hidden md:flex"></div>
-        <div id="nav-right" class="flex justify-end w-[60px] md:w-[280px]">
-          <a
-            id="nav-hamburger"
-            class="flex items-center justify-center w-[30px] h-[30px] hover:cursor-pointer"
-          >
-            <i
-              id="nav-hamburger-icon-bars"
-              class="fa-solid fa-bars fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
-            ></i>
-            <i
-              id="nav-hamburger-icon-x"
-              class="absolute opacity-0 fa-solid fa-xmark fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
-            ></i>
-          </a>
-          <div
-            id="nav-drop-down"
-            class="collapsed text-center z-10 w-[175px] h-[235px] bg-offwhite dark:bg-offblack absolute top-14 right-8 border-2 border-offblack dark:border-offwhite"
-          >
-            <div class="flex flex-col items-center w-full h-[235px] absolute">
-              <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                onclick="fadePageOut('shows-page-body', 'index.html')"
-                >Home</a
-              >
-              <hr
-                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-              />
-              <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                onclick="fadePageOut('shows-page-body', 'about.html')"
-                >About</a
-              >
-              <hr
-                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-              />
-              <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                onclick="fadePageOut('shows-page-body', 'gallery.html')"
-                >Gallery</a
-              >
-              <hr
-                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-              />
-              <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                onclick="fadePageOut('shows-page-body', 'contact.html')"
-                >Contact</a
-              >
-              <hr
-                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-              />
-              <a
-                class="nav-item w-3/4 h-[45px] font-bold leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-300"
-                onclick="fadePageOut('shows-page-body', 'shows.html')"
-                >Shows</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <script>
-      //handle nav opening on mobile
-      let hamburger = document.getElementById("nav-hamburger");
-      let hamburgerIconBars = document.getElementById(
-        "nav-hamburger-icon-bars"
-      );
-      let hamburgerIconX = document.getElementById("nav-hamburger-icon-x");
-      let expander = document.getElementById("nav-drop-down");
-      let navItems = document.getElementsByClassName("nav-item");
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Shows</title>
+		<link href="dist/output.css" rel="stylesheet" />
+		<!--fonts-->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<!--icons-->
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+		<script
+			src="https://kit.fontawesome.com/125fe29883.js"
+			crossorigin="anonymous"
+		></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		<script src="js/functions.js"></script>
+	</head>
+	<body
+		id="shows-page-body"
+		onload="fadePageIn('shows-page-body')"
+		class="out-view flex h-full min-h-screen flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite"
+	>
+		<nav class="select-none">
+			<div
+				id="nav-bar"
+				class="flex justify-between items-center px-[20px] md:px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
+			>
+				<div id="nav-left" class="w-full md:w-[280px]">
+					<a
+						id="homeLink"
+						onclick="fadePageOut('shows-page-body', 'index.html')"
+						class="text-2xl hover:cursor-pointer"
+						>Atelier DellCastle</a
+					>
+				</div>
+				<div id="nav-center" class="hidden md:flex"></div>
+				<div
+					id="nav-right"
+					class="flex justify-end w-[60px] md:w-[280px]"
+				>
+					<a
+						id="nav-hamburger"
+						class="flex items-center justify-center w-[30px] h-[30px] hover:cursor-pointer"
+					>
+						<i
+							id="nav-hamburger-icon-bars"
+							class="fa-solid fa-bars fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
+						></i>
+						<i
+							id="nav-hamburger-icon-x"
+							class="absolute opacity-0 fa-solid fa-xmark fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
+						></i>
+					</a>
+					<div
+						id="nav-drop-down"
+						class="collapsed text-center z-10 w-[175px] h-[235px] bg-offwhite dark:bg-offblack absolute top-14 right-8 border-2 border-offblack dark:border-offwhite"
+					>
+						<div
+							class="flex flex-col items-center w-full h-[235px] absolute"
+						>
+							<a
+								class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+								onclick="fadePageOut('shows-page-body', 'index.html')"
+								>Home</a
+							>
+							<hr
+								class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+							/>
+							<a
+								class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+								onclick="fadePageOut('shows-page-body', 'about.html')"
+								>About</a
+							>
+							<hr
+								class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+							/>
+							<a
+								class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+								onclick="fadePageOut('shows-page-body', 'gallery.html')"
+								>Gallery</a
+							>
+							<hr
+								class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+							/>
+							<a
+								class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+								onclick="fadePageOut('shows-page-body', 'contact.html')"
+								>Contact</a
+							>
+							<hr
+								class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+							/>
+							<a
+								class="nav-item w-3/4 h-[45px] font-bold leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-300"
+								onclick="fadePageOut('shows-page-body', 'shows.html')"
+								>Shows</a
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<script>
+			//handle nav opening on mobile
+			let hamburger = document.getElementById("nav-hamburger");
+			let hamburgerIconBars = document.getElementById(
+				"nav-hamburger-icon-bars"
+			);
+			let hamburgerIconX = document.getElementById(
+				"nav-hamburger-icon-x"
+			);
+			let expander = document.getElementById("nav-drop-down");
+			let navItems = document.getElementsByClassName("nav-item");
 
-      hamburger.addEventListener("click", () => {
-        if (expander.classList.contains("expanded")) {
-          expander.classList.remove("expanded");
-          expander.classList.add("collapsed");
-          hamburgerIconBars.classList.remove("opacity-0");
-          hamburgerIconX.classList.add("opacity-0");
-        } else {
-          expander.classList.add("expanded");
-          expander.classList.remove("collapsed");
-          hamburgerIconBars.classList.add("opacity-0");
-          hamburgerIconX.classList.remove("opacity-0");
-        }
-      });
-      expander.addEventListener("animationend", (e) => {
-        if (e.animationName == "expandNav") {
-          Array.from(navItems).forEach((item) => {
-            item.classList.add("navItemsExpanded");
-            item.classList.remove("navItemsCollapsed");
-          });
-        }
-      });
-    </script>
+			hamburger.addEventListener("click", () => {
+				if (expander.classList.contains("expanded")) {
+					expander.classList.remove("expanded");
+					expander.classList.add("collapsed");
+					hamburgerIconBars.classList.remove("opacity-0");
+					hamburgerIconX.classList.add("opacity-0");
+				} else {
+					expander.classList.add("expanded");
+					expander.classList.remove("collapsed");
+					hamburgerIconBars.classList.add("opacity-0");
+					hamburgerIconX.classList.remove("opacity-0");
+				}
+			});
+			expander.addEventListener("animationend", (e) => {
+				if (e.animationName == "expandNav") {
+					Array.from(navItems).forEach((item) => {
+						item.classList.add("navItemsExpanded");
+						item.classList.remove("navItemsCollapsed");
+					});
+				}
+			});
+		</script>
 
-    <!--main content-->
-    <div
-      id="about-body"
-      class="flex flex-col items-center w-screen px-[20px] transition-all duration-100"
-    >
-      <h2 class="uppercase my-10 text-5xl font-bold">Shows</h2>
-      <div
-        class="w-11/12 lg:w-4/5 flex flex-row gap-10 justify-around flex-wrap"
-      >
-        <div
-          class="w-full md:w-4/5 lg:w-[47%] p-[12px] border-4 border-offblack dark:border-offwhite"
-        >
-          <div
-            class="flex flex-col-reverse md:flex-row w-full justify-between items-center md:items-start"
-          >
-            <h2 class="text-center text-3xl font-bold mb-1">The Family Room</h2>
-            <p class="text-xl font-bold">September 23</p>
-          </div>
-          <p class="text-center md:text-left text-lg">10am - 3pm</p>
-          <p class="text-center md:text-left">
-            <a
-              class="text-lg underline"
-              href="https://goo.gl/maps/qtqoZquYmZLeQcRL6"
-              target="_blank"
-              >6820 Olney Laytonsville Road<br />Laytonsville, MD 20882
-            </a>
-          </p>
-        </div>
-        <div
-          class="w-full md:w-4/5 lg:w-[47%] p-[12px] border-4 border-offblack dark:border-offwhite"
-        >
-          <div
-            class="flex flex-col-reverse md:flex-row w-full justify-between items-center md:items-start"
-          >
-            <h2 class="text-center text-3xl font-bold mb-1">Art @ the Park</h2>
-            <p class="text-xl font-bold">October 14-15</p>
-          </div>
-          <p class="text-center md:text-left text-lg">10am - 4pm</p>
-          <p class="text-center md:text-left">
-            <a
-              class="text-lg underline"
-              href="https://goo.gl/maps/rFipsqSjdGb9JiyB6"
-              target="_blank"
-              >Quiet Waters Park<br />Annapolis, MD
-            </a>
-          </p>
-        </div>
-        <div
-          class="w-full md:w-4/5 lg:w-[47%] p-[12px] border-4 border-offblack dark:border-offwhite"
-        >
-          <div
-            class="flex flex-col-reverse md:flex-row w-full justify-between items-center md:items-start"
-          >
-            <h2
-              class="text-center md:text-left text-3xl font-bold mb-1 md:max-w-[275px] xl:max-w-[500px]"
-            >
-              Fairfax Holiday Craft Show
-            </h2>
-            <p class="text-xl font-bold">November 18-19</p>
-          </div>
-          <p class="text-lg text-center md:text-left">10am - 4pm</p>
-          <p class="text-center md:text-left">
-            <a
-              class="mx-auto text-lg underline text-center"
-              href="https://goo.gl/maps/PNTseDAG19nSu8zu9"
-              target="_blank"
-              >Fairfax High School<br />Fairfax, VA
-            </a>
-          </p>
-        </div>
-      </div>
-    </div>
-    <footer class="h-[50px]"></footer>
-  </body>
+		<!--main content-->
+		<div
+			id="about-body"
+			class="flex flex-col items-center w-screen px-[20px] transition-all duration-100"
+		>
+			<h2 class="uppercase my-10 text-5xl font-bold">Shows</h2>
+			<div
+				class="w-11/12 lg:w-4/5 flex flex-row gap-10 justify-around flex-wrap"
+			>
+				<div
+					class="w-full md:w-4/5 lg:w-[47%] p-[12px] border-4 border-offblack dark:border-offwhite"
+				>
+					<div
+						class="flex flex-col-reverse md:flex-row w-full justify-between items-center md:items-start"
+					>
+						<h2 class="text-center text-3xl font-bold mb-1">
+							The Family Room
+						</h2>
+						<p class="text-xl font-bold">September 23</p>
+					</div>
+					<p class="text-center md:text-left text-lg">10am - 3pm</p>
+					<p class="text-center md:text-left">
+						<a
+							class="text-lg underline"
+							href="https://goo.gl/maps/qtqoZquYmZLeQcRL6"
+							target="_blank"
+							>6820 Olney Laytonsville Road<br />Laytonsville, MD
+							20882
+						</a>
+					</p>
+				</div>
+				<div
+					class="w-full md:w-4/5 lg:w-[47%] p-[12px] border-4 border-offblack dark:border-offwhite"
+				>
+					<div
+						class="flex flex-col-reverse md:flex-row w-full justify-between items-center md:items-start"
+					>
+						<h2 class="text-center text-3xl font-bold mb-1">
+							Art @ the Park
+						</h2>
+						<p class="text-xl font-bold">October 14-15</p>
+					</div>
+					<p class="text-center md:text-left text-lg">10am - 4pm</p>
+					<p class="text-center md:text-left">
+						<a
+							class="text-lg underline"
+							href="https://goo.gl/maps/rFipsqSjdGb9JiyB6"
+							target="_blank"
+							>Quiet Waters Park<br />Annapolis, MD
+						</a>
+					</p>
+				</div>
+				<div
+					class="w-full md:w-4/5 lg:w-[47%] p-[12px] border-4 border-offblack dark:border-offwhite"
+				>
+					<div
+						class="flex flex-col-reverse md:flex-row w-full justify-between items-center md:items-start"
+					>
+						<h2
+							class="text-center md:text-left text-3xl font-bold mb-1 md:max-w-[275px] xl:max-w-[500px]"
+						>
+							Fairfax Holiday Craft Show
+						</h2>
+						<p class="text-xl font-bold">November 18-19</p>
+					</div>
+					<p class="text-lg text-center md:text-left">10am - 4pm</p>
+					<p class="text-center md:text-left">
+						<a
+							class="mx-auto text-lg underline text-center"
+							href="https://goo.gl/maps/PNTseDAG19nSu8zu9"
+							target="_blank"
+							>Fairfax High School<br />Fairfax, VA
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<footer class="h-[50px]"></footer>
+	</body>
 </html>

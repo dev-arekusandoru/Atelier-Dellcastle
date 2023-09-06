@@ -1,380 +1,401 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gallery</title>
-    <link href="dist/output.css" rel="stylesheet" />
-    <!--fonts-->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <!--icons-->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/125fe29883.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="js/functions.js"></script>
-    <script>
-      if (localStorage.getItem("page") == null) {
-        localStorage.setItem("page", "featured");
-      }
-      function setup() {
-        let page = document.getElementById(localStorage.getItem("page"));
-        page.classList.remove("hidden");
-        page.classList.add("flex");
-        setTimeout(() => {
-          page.classList.remove("out-view");
-          page.classList.add("in-view");
-          document
-            .getElementById(localStorage.getItem("page") + "-tab")
-            .classList.remove("border-opacity-0", "dark:border-opacity-0");
-          document
-            .getElementById(localStorage.getItem("page") + "-drop")
-            .classList.add("font-bold");
-          fadePageIn("gallery-page-body");
-        }, 50);
-      }
-    </script>
-  </head>
-  <body
-    id="gallery-page-body"
-    onload="setup()"
-    class="out-view flex flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite inset-0"
-  >
-    <nav class="select-none z-10">
-      <div
-        id="nav-bar"
-        class="flex items-center px-[20px] lg:px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
-      >
-        <div
-          id="nav-left"
-          class="w-full sm:w-[186px] transition-all duration-500"
-        >
-          <a
-            id="homeLink"
-            onclick="fadePageOut('gallery-page-body', 'index.html')"
-            class="text-2xl hover:cursor-pointer"
-            >Atelier Dellcastle</a
-          >
-        </div>
-        <div
-          id="nav-center"
-          class="sm:w-auto opacity-50 md:opacity-100 md:flex m-auto transition-all duration-300"
-        >
-          <ul
-            class="hidden sm:flex justify-center gap-0 sm:gap-5 md:gap-10 lg:gap-14 text-md mt-1 opacity-0 md:opacity-100 transition-all duration-500"
-          >
-            <a
-              id="featured-tab"
-              class="border-b-2 hover:cursor-pointer py-[18px] border-opacity-0 border-b-offblack dark:border-opacity-0 dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200"
-              onclick="changeGalleryPage('featured')"
-              >Explore</a
-            >
-            <a
-              id="boards-tab"
-              class="border-b-2 hover:cursor-pointer py-[18px] border-opacity-0 border-b-offblack dark:border-opacity-0 dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-400"
-              onclick="changeGalleryPage('boards')"
-              >Cutting Boards</a
-            >
-            <a
-              id="kumiko-tab"
-              class="border-b-2 hover:cursor-pointer py-[18px] border-opacity-0 border-b-offblack dark:border-opacity-0 dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-400"
-              onclick="changeGalleryPage('kumiko')"
-              >Kumiko</a
-            >
-            <a
-              id="boxes-tab"
-              class="border-b-2 hover:cursor-pointer py-[18px] border-opacity-0 border-b-offblack dark:border-opacity-0 dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-400"
-              onclick="changeGalleryPage('boxes')"
-              >Boxes</a
-            >
-            <a
-              id="inlay-tab"
-              class="border-b-2 hover:cursor-pointer py-[18px] border-opacity-0 border-b-offblack dark:border-opacity-0 dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-400"
-              onclick="changeGalleryPage('inlay')"
-              >Inlay</a
-            >
-          </ul>
-        </div>
-        <div
-          id="nav-right"
-          class="flex justify-end w-[30px] lg:w-[186px] transition-all duration-500"
-        >
-          <a
-            id="nav-hamburger"
-            class="flex items-center justify-center w-[30px] h-[30px] hover:cursor-pointer"
-          >
-            <i
-              id="nav-hamburger-icon-bars"
-              class="fa-solid fa-bars fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
-            ></i>
-            <i
-              id="nav-hamburger-icon-x"
-              class="absolute opacity-0 fa-solid fa-xmark fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
-            ></i>
-          </a>
-          <div
-            id="nav-drop-down"
-            class="collapsed text-center flex items-center justify-center w-[280px] sd:w-[350px] md:w-[175px] h-[235px] bg-offwhite dark:bg-offblack absolute top-14 mx-auto border-2 border-offblack dark:border-offwhite duration-1000"
-          >
-            <div
-              class="absolute top-0 right-[140px] sd:right-[175px] flex flex-col items-center w-1/2 md:w-0 md:opacity-0 h-[235px] transition-all duration-500"
-            >
-              <a
-                id="featured-drop"
-                class="nav-item hover:cursor-pointer w-3/4 h-[45px] leading-[45px] hover:font-bold"
-                onclick="changeGalleryPage('featured', true)"
-                >Explore</a
-              >
-              <hr
-                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-              />
-              <a
-                id="boards-drop"
-                class="nav-item hover:cursor-pointer w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
-                onclick="changeGalleryPage('boards', true)"
-              >
-                <span class="hidden sd:inline">Cutting</span> Boards</a
-              >
-              <hr
-                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-              />
-              <a
-                id="kumiko-drop"
-                class="nav-item hover:cursor-pointer w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
-                onclick="changeGalleryPage('kumiko', true)"
-                >Kumiko</a
-              >
-              <hr
-                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-              />
-              <a
-                id="boxes-drop"
-                class="nav-item hover:cursor-pointer w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
-                onclick="changeGalleryPage('boxes', true)"
-                >Boxes</a
-              >
-              <hr
-                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-              />
-              <a
-                id="inlay-drop"
-                class="nav-item hover:cursor-pointer w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-300"
-                onclick="changeGalleryPage('inlay', true)"
-                >Inlay</a
-              >
-            </div>
-            <hr
-              class="absolute right-[140px] sd:right-[175px] md:border-offwhite dark:border-[#FFFBFC66] h-3/4 md:h-0 border-r border-offblack transition-all duration-1000"
-            />
-            <div
-              class="absolute top-0 right-0 flex flex-col items-center w-1/2 md:w-full h-[235px] transition-all duration-1000"
-            >
-              <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                onclick="changeGalleryPage(page, 'index.html')"
-                >Home</a
-              >
-              <hr
-                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-              />
-              <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                onclick="fadePageOut('gallery-page-body', 'about.html')"
-                >About</a
-              >
-              <hr
-                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-              />
-              <a
-                class="nav-item w-3/4 h-[45px] font-bold leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                onclick="fadePageOut('gallery-page-body', 'gallery.html')"
-                >Gallery</a
-              >
-              <hr
-                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-              />
-              <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                onclick="fadePageOut('gallery-page-body', 'contact.html')"
-                >Contact</a
-              >
-              <hr
-                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-              />
-              <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-300"
-                onclick="fadePageOut('gallery-page-body', 'shows.html')"
-                >Shows</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <script>
-      //handle nav opening on mobile
-      let hamburger = document.getElementById("nav-hamburger");
-      let hamburgerIconBars = document.getElementById(
-        "nav-hamburger-icon-bars"
-      );
-      let hamburgerIconX = document.getElementById("nav-hamburger-icon-x");
-      let expander = document.getElementById("nav-drop-down");
-      let navItems = document.getElementsByClassName("nav-item");
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Gallery</title>
+		<link href="dist/output.css" rel="stylesheet" />
+		<!--fonts-->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<!--icons-->
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+		<script
+			src="https://kit.fontawesome.com/125fe29883.js"
+			crossorigin="anonymous"
+		></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		<script src="js/functions.js"></script>
+		<script>
+			if (localStorage.getItem("page") == null) {
+				localStorage.setItem("page", "featured");
+			}
+			function setup() {
+				let page = document.getElementById(
+					localStorage.getItem("page")
+				);
+				page.classList.remove("hidden");
+				page.classList.add("flex");
+				setTimeout(() => {
+					page.classList.remove("out-view");
+					page.classList.add("in-view");
+					document
+						.getElementById(localStorage.getItem("page") + "-tab")
+						.classList.remove(
+							"border-opacity-0",
+							"dark:border-opacity-0"
+						);
+					document
+						.getElementById(localStorage.getItem("page") + "-drop")
+						.classList.add("font-bold");
+					fadePageIn("gallery-page-body");
+				}, 50);
+			}
+		</script>
+	</head>
+	<body
+		id="gallery-page-body"
+		onload="setup()"
+		class="out-view flex flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite inset-0"
+	>
+		<nav class="select-none z-10">
+			<div
+				id="nav-bar"
+				class="flex items-center px-[20px] lg:px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
+			>
+				<div
+					id="nav-left"
+					class="w-full sm:w-[186px] transition-all duration-500"
+				>
+					<a
+						id="homeLink"
+						onclick="fadePageOut('gallery-page-body', 'index.html')"
+						class="text-2xl hover:cursor-pointer"
+						>Atelier DellCastle</a
+					>
+				</div>
+				<div
+					id="nav-center"
+					class="sm:w-auto opacity-50 md:opacity-100 md:flex m-auto transition-all duration-300"
+				>
+					<ul
+						class="hidden sm:flex justify-center gap-0 sm:gap-5 md:gap-10 lg:gap-14 text-md mt-1 opacity-0 md:opacity-100 transition-all duration-500"
+					>
+						<a
+							id="featured-tab"
+							class="border-b-2 hover:cursor-pointer py-[18px] border-opacity-0 border-b-offblack dark:border-opacity-0 dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-200"
+							onclick="changeGalleryPage('featured')"
+							>Explore</a
+						>
+						<a
+							id="boards-tab"
+							class="border-b-2 hover:cursor-pointer py-[18px] border-opacity-0 border-b-offblack dark:border-opacity-0 dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-400"
+							onclick="changeGalleryPage('boards')"
+							>Cutting Boards</a
+						>
+						<a
+							id="kumiko-tab"
+							class="border-b-2 hover:cursor-pointer py-[18px] border-opacity-0 border-b-offblack dark:border-opacity-0 dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-400"
+							onclick="changeGalleryPage('kumiko')"
+							>Kumiko</a
+						>
+						<a
+							id="boxes-tab"
+							class="border-b-2 hover:cursor-pointer py-[18px] border-opacity-0 border-b-offblack dark:border-opacity-0 dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-400"
+							onclick="changeGalleryPage('boxes')"
+							>Boxes</a
+						>
+						<a
+							id="inlay-tab"
+							class="border-b-2 hover:cursor-pointer py-[18px] border-opacity-0 border-b-offblack dark:border-opacity-0 dark:border-b-offwhite hover:border-opacity-100 transition-colors duration-400"
+							onclick="changeGalleryPage('inlay')"
+							>Inlay</a
+						>
+					</ul>
+				</div>
+				<div
+					id="nav-right"
+					class="flex justify-end w-[30px] lg:w-[186px] transition-all duration-500"
+				>
+					<a
+						id="nav-hamburger"
+						class="flex items-center justify-center w-[30px] h-[30px] hover:cursor-pointer"
+					>
+						<i
+							id="nav-hamburger-icon-bars"
+							class="fa-solid fa-bars fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
+						></i>
+						<i
+							id="nav-hamburger-icon-x"
+							class="absolute opacity-0 fa-solid fa-xmark fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
+						></i>
+					</a>
+					<div
+						id="nav-drop-down"
+						class="collapsed text-center flex items-center justify-center w-[280px] sd:w-[350px] md:w-[175px] h-[235px] bg-offwhite dark:bg-offblack absolute top-14 mx-auto border-2 border-offblack dark:border-offwhite duration-1000"
+					>
+						<div
+							class="absolute top-0 right-[140px] sd:right-[175px] flex flex-col items-center w-1/2 md:w-0 md:opacity-0 h-[235px] transition-all duration-500"
+						>
+							<a
+								id="featured-drop"
+								class="nav-item hover:cursor-pointer w-3/4 h-[45px] leading-[45px] hover:font-bold"
+								onclick="changeGalleryPage('featured', true)"
+								>Explore</a
+							>
+							<hr
+								class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+							/>
+							<a
+								id="boards-drop"
+								class="nav-item hover:cursor-pointer w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
+								onclick="changeGalleryPage('boards', true)"
+							>
+								<span class="hidden sd:inline">Cutting</span>
+								Boards</a
+							>
+							<hr
+								class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+							/>
+							<a
+								id="kumiko-drop"
+								class="nav-item hover:cursor-pointer w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
+								onclick="changeGalleryPage('kumiko', true)"
+								>Kumiko</a
+							>
+							<hr
+								class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+							/>
+							<a
+								id="boxes-drop"
+								class="nav-item hover:cursor-pointer w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-200"
+								onclick="changeGalleryPage('boxes', true)"
+								>Boxes</a
+							>
+							<hr
+								class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+							/>
+							<a
+								id="inlay-drop"
+								class="nav-item hover:cursor-pointer w-3/4 h-[45px] leading-[45px] hover:font-bold transition-all duration-300"
+								onclick="changeGalleryPage('inlay', true)"
+								>Inlay</a
+							>
+						</div>
+						<hr
+							class="absolute right-[140px] sd:right-[175px] md:border-offwhite dark:border-[#FFFBFC66] h-3/4 md:h-0 border-r border-offblack transition-all duration-1000"
+						/>
+						<div
+							class="absolute top-0 right-0 flex flex-col items-center w-1/2 md:w-full h-[235px] transition-all duration-1000"
+						>
+							<a
+								class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+								onclick="changeGalleryPage(page, 'index.html')"
+								>Home</a
+							>
+							<hr
+								class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+							/>
+							<a
+								class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+								onclick="fadePageOut('gallery-page-body', 'about.html')"
+								>About</a
+							>
+							<hr
+								class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+							/>
+							<a
+								class="nav-item w-3/4 h-[45px] font-bold leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+								onclick="fadePageOut('gallery-page-body', 'gallery.html')"
+								>Gallery</a
+							>
+							<hr
+								class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+							/>
+							<a
+								class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+								onclick="fadePageOut('gallery-page-body', 'contact.html')"
+								>Contact</a
+							>
+							<hr
+								class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+							/>
+							<a
+								class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-300"
+								onclick="fadePageOut('gallery-page-body', 'shows.html')"
+								>Shows</a
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<script>
+			//handle nav opening on mobile
+			let hamburger = document.getElementById("nav-hamburger");
+			let hamburgerIconBars = document.getElementById(
+				"nav-hamburger-icon-bars"
+			);
+			let hamburgerIconX = document.getElementById(
+				"nav-hamburger-icon-x"
+			);
+			let expander = document.getElementById("nav-drop-down");
+			let navItems = document.getElementsByClassName("nav-item");
 
-      hamburger.addEventListener("click", () => {
-        if (expander.classList.contains("expanded")) {
-          expander.classList.remove("expanded");
-          expander.classList.add("collapsed");
-          hamburgerIconBars.classList.remove("opacity-0");
-          hamburgerIconX.classList.add("opacity-0");
-        } else {
-          expander.classList.add("expanded");
-          expander.classList.remove("collapsed");
-          hamburgerIconBars.classList.add("opacity-0");
-          hamburgerIconX.classList.remove("opacity-0");
-        }
-      });
-      expander.addEventListener("animationend", (e) => {
-        if (e.animationName == "expandNav") {
-          Array.from(navItems).forEach((item) => {
-            item.classList.add("navItemsExpanded");
-            item.classList.remove("navItemsCollapsed");
-          });
-        }
-      });
-    </script>
+			hamburger.addEventListener("click", () => {
+				if (expander.classList.contains("expanded")) {
+					expander.classList.remove("expanded");
+					expander.classList.add("collapsed");
+					hamburgerIconBars.classList.remove("opacity-0");
+					hamburgerIconX.classList.add("opacity-0");
+				} else {
+					expander.classList.add("expanded");
+					expander.classList.remove("collapsed");
+					hamburgerIconBars.classList.add("opacity-0");
+					hamburgerIconX.classList.remove("opacity-0");
+				}
+			});
+			expander.addEventListener("animationend", (e) => {
+				if (e.animationName == "expandNav") {
+					Array.from(navItems).forEach((item) => {
+						item.classList.add("navItemsExpanded");
+						item.classList.remove("navItemsCollapsed");
+					});
+				}
+			});
+		</script>
 
-    <!--main content-->
-    <div id="content" class="flex flex-row w-screen overflow-hidden">
-      <div
-        id="featured"
-        class="hidden out-view absolute w-screen flex-col items-center px-[20px] md:px-[40px] lg:px-[60px]"
-      >
-        <div
-          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%] max-w-[1250px]"
-        >
-          <div class="transition-all duration-700 w-1/4 md:w-0"></div>
-          <span
-            class="bold w-1/2 md:w-auto md:max-w-[250px] text-center transition-all duration-700"
-            >Featured</span
-          >
-          <div class="w-1/4 md:w-full transition-all duration-700"></div>
-        </div>
+		<!--main content-->
+		<div id="content" class="flex flex-row w-screen overflow-hidden">
+			<div
+				id="featured"
+				class="hidden out-view absolute w-screen flex-col items-center px-[20px] md:px-[40px] lg:px-[60px]"
+			>
+				<div
+					class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%] max-w-[1250px]"
+				>
+					<div class="transition-all duration-700 w-1/4 md:w-0"></div>
+					<span
+						class="bold w-1/2 md:w-auto md:max-w-[250px] text-center transition-all duration-700"
+						>Featured</span
+					>
+					<div
+						class="w-1/4 md:w-full transition-all duration-700"
+					></div>
+				</div>
 
-        <div
-          id="featured-body"
-          class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
-        ></div>
-        <div class="w-full h-[100px]"></div>
-      </div>
+				<div
+					id="featured-body"
+					class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
+				></div>
+				<div class="w-full h-[100px]"></div>
+			</div>
 
-      <div
-        id="boards"
-        class="hidden out-view absolute w-screen flex-col items-center px-[20px] md:px-[40px] lg:px-[60px]"
-      >
-        <div
-          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%] max-w-[1250px]"
-        >
-          <div class="transition-all duration-700 w-1/4 md:w-0"></div>
-          <span
-            class="bold w-1/2 md:min-w-[210px] md:w-auto md:max-w-[310px] text-center transition-all duration-700"
-            >Cutting Boards</span
-          >
-          <div class="w-1/4 md:w-full transition-all duration-700"></div>
-        </div>
+			<div
+				id="boards"
+				class="hidden out-view absolute w-screen flex-col items-center px-[20px] md:px-[40px] lg:px-[60px]"
+			>
+				<div
+					class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%] max-w-[1250px]"
+				>
+					<div class="transition-all duration-700 w-1/4 md:w-0"></div>
+					<span
+						class="bold w-1/2 md:min-w-[210px] md:w-auto md:max-w-[310px] text-center transition-all duration-700"
+						>Cutting Boards</span
+					>
+					<div
+						class="w-1/4 md:w-full transition-all duration-700"
+					></div>
+				</div>
 
-        <div
-          id="boards-body"
-          class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
-        ></div>
-        <div class="w-full h-[100px]"></div>
-      </div>
+				<div
+					id="boards-body"
+					class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
+				></div>
+				<div class="w-full h-[100px]"></div>
+			</div>
 
-      <div
-        id="kumiko"
-        class="hidden out-view absolute w-screen flex-col items-center px-[20px] md:px-[40px] lg:px-[60px]"
-      >
-        <div
-          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%] max-w-[1250px]"
-        >
-          <div class="transition-all duration-700 w-1/4 md:w-0"></div>
-          <span
-            class="bold w-1/2 md:w-auto md:max-w-[250px] text-center transition-all duration-700"
-            >Kumiko</span
-          >
-          <div class="w-1/4 md:w-full transition-all duration-700"></div>
-        </div>
+			<div
+				id="kumiko"
+				class="hidden out-view absolute w-screen flex-col items-center px-[20px] md:px-[40px] lg:px-[60px]"
+			>
+				<div
+					class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%] max-w-[1250px]"
+				>
+					<div class="transition-all duration-700 w-1/4 md:w-0"></div>
+					<span
+						class="bold w-1/2 md:w-auto md:max-w-[250px] text-center transition-all duration-700"
+						>Kumiko</span
+					>
+					<div
+						class="w-1/4 md:w-full transition-all duration-700"
+					></div>
+				</div>
 
-        <div
-          id="kumiko-body"
-          class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
-        ></div>
-        <div class="w-full h-[100px]"></div>
-      </div>
+				<div
+					id="kumiko-body"
+					class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
+				></div>
+				<div class="w-full h-[100px]"></div>
+			</div>
 
-      <div
-        id="boxes"
-        class="hidden out-view absolute w-screen flex-col items-center px-[20px] md:px-[40px] lg:px-[60px]"
-      >
-        <div
-          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%] max-w-[1250px]"
-        >
-          <div class="transition-all duration-700 w-1/4 md:w-0"></div>
-          <span
-            class="bold w-1/2 md:w-auto md:max-w-[250px] text-center transition-all duration-700"
-            >Boxes</span
-          >
-          <div class="w-1/4 md:w-full transition-all duration-700"></div>
-        </div>
+			<div
+				id="boxes"
+				class="hidden out-view absolute w-screen flex-col items-center px-[20px] md:px-[40px] lg:px-[60px]"
+			>
+				<div
+					class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%] max-w-[1250px]"
+				>
+					<div class="transition-all duration-700 w-1/4 md:w-0"></div>
+					<span
+						class="bold w-1/2 md:w-auto md:max-w-[250px] text-center transition-all duration-700"
+						>Boxes</span
+					>
+					<div
+						class="w-1/4 md:w-full transition-all duration-700"
+					></div>
+				</div>
 
-        <div
-          id="boxes-body"
-          class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
-        ></div>
-        <div class="w-full h-[100px]"></div>
-      </div>
+				<div
+					id="boxes-body"
+					class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
+				></div>
+				<div class="w-full h-[100px]"></div>
+			</div>
 
-      <div
-        id="inlay"
-        class="hidden out-view absolute w-screen flex-col items-center px-[20px] md:px-[40px] lg:px-[60px]"
-      >
-        <div
-          class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%] max-w-[1250px]"
-        >
-          <div class="transition-all duration-700 w-1/4 md:w-0"></div>
-          <span
-            class="bold w-1/2 md:w-auto md:max-w-[250px] text-center transition-all duration-700"
-            >Inlay</span
-          >
-          <div class="w-1/4 md:w-full transition-all duration-700"></div>
-        </div>
+			<div
+				id="inlay"
+				class="hidden out-view absolute w-screen flex-col items-center px-[20px] md:px-[40px] lg:px-[60px]"
+			>
+				<div
+					class="flex text-3xl mt-7 md:mt-14 transition-all duration-500 w-[95%] max-w-[1250px]"
+				>
+					<div class="transition-all duration-700 w-1/4 md:w-0"></div>
+					<span
+						class="bold w-1/2 md:w-auto md:max-w-[250px] text-center transition-all duration-700"
+						>Inlay</span
+					>
+					<div
+						class="w-1/4 md:w-full transition-all duration-700"
+					></div>
+				</div>
 
-        <div
-          id="inlay-body"
-          class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
-        ></div>
-        <div class="w-full h-[100px]"></div>
-      </div>
-    </div>
-    <div
-      id="modal"
-      class="out-view fixed flex-col -translate-y-1/2 max-w-[90%] w-[600px] max-h-[90%] top-1/2 h-auto px-3 py-4 bg-offwhite dark:bg-offblack border-4 border-offblack dark:border-offwhite transition-all duration-300"
-    ></div>
-    <script type="module">
-      import { generateGalleryPage, generateFeaturedPage } from "./js/db.js";
-      generateFeaturedPage();
-      generateGalleryPage("boards");
-      generateGalleryPage("kumiko");
-      generateGalleryPage("boxes");
-      generateGalleryPage("inlay");
-    </script>
-  </body>
+				<div
+					id="inlay-body"
+					class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-[1250px] mt-6 w-full gap-4 md:gap-6"
+				></div>
+				<div class="w-full h-[100px]"></div>
+			</div>
+		</div>
+		<div
+			id="modal"
+			class="out-view fixed flex-col -translate-y-1/2 max-w-[90%] w-[600px] max-h-[90%] top-1/2 h-auto px-3 py-4 bg-offwhite dark:bg-offblack border-4 border-offblack dark:border-offwhite transition-all duration-300"
+		></div>
+		<script type="module">
+			import {
+				generateGalleryPage,
+				generateFeaturedPage
+			} from "./js/db.js";
+			generateFeaturedPage();
+			generateGalleryPage("boards");
+			generateGalleryPage("kumiko");
+			generateGalleryPage("boxes");
+			generateGalleryPage("inlay");
+		</script>
+	</body>
 </html>

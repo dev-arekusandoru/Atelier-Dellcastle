@@ -1,257 +1,269 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact</title>
-    <link href="dist/output.css" rel="stylesheet" />
-    <!--fonts-->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <!--icons-->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/125fe29883.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="js/functions.js"></script>
-    <script type="module" src="js/db.js"></script>
-  </head>
-  <body
-    id="contact-page-body"
-    onload="fadePageIn('contact-page-body')"
-    class="out-view flex min-h-screen flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite"
-  >
-    <nav class="select-none">
-      <div
-        id="nav-bar"
-        class="flex justify-between items-center px-[20px] md:px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
-      >
-        <div id="nav-left" class="w-full md:w-[280px]">
-          <a
-            id="homeLink"
-            onclick="fadePageOut('contact-page-body', 'index.html')"
-            class="text-2xl hover:cursor-pointer"
-            >Atelier Dellcastle</a
-          >
-        </div>
-        <div id="nav-center" class="hidden md:flex"></div>
-        <div id="nav-right" class="flex justify-end w-[60px] md:w-[280px]">
-          <a
-            id="nav-hamburger"
-            class="flex items-center justify-center w-[30px] h-[30px] hover:cursor-pointer"
-          >
-            <i
-              id="nav-hamburger-icon-bars"
-              class="fa-solid fa-bars fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
-            ></i>
-            <i
-              id="nav-hamburger-icon-x"
-              class="absolute opacity-0 fa-solid fa-xmark fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
-            ></i>
-          </a>
-          <div
-            id="nav-drop-down"
-            class="collapsed text-center z-10 w-[175px] h-[235px] bg-offwhite dark:bg-offblack absolute top-14 right-8 border-2 border-offblack dark:border-offwhite"
-          >
-            <div class="flex flex-col items-center w-full h-[235px] absolute">
-              <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                onclick="fadePageOut('contact-page-body', 'index.html')"
-                >Home</a
-              >
-              <hr
-                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-              />
-              <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                onclick="fadePageOut('contact-page-body', 'about.html')"
-                >About</a
-              >
-              <hr
-                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-              />
-              <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                onclick="fadePageOut('contact-page-body', 'gallery.html')"
-                >Gallery</a
-              >
-              <hr
-                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-              />
-              <a
-                class="nav-item w-3/4 h-[45px] font-bold leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                onclick="fadePageOut('contact-page-body', 'contact.html')"
-                >Contact</a
-              >
-              <hr
-                class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-              />
-              <a
-                class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-300"
-                onclick="fadePageOut('contact-page-body', 'shows.html')"
-                >Shows</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <script>
-      //handle nav opening on mobile
-      let hamburger = document.getElementById("nav-hamburger");
-      let hamburgerIconBars = document.getElementById(
-        "nav-hamburger-icon-bars"
-      );
-      let hamburgerIconX = document.getElementById("nav-hamburger-icon-x");
-      let expander = document.getElementById("nav-drop-down");
-      let navItems = document.getElementsByClassName("nav-item");
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Contact</title>
+		<link href="dist/output.css" rel="stylesheet" />
+		<!--fonts-->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<!--icons-->
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+		<script
+			src="https://kit.fontawesome.com/125fe29883.js"
+			crossorigin="anonymous"
+		></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		<script src="js/functions.js"></script>
+		<script type="module" src="js/db.js"></script>
+	</head>
+	<body
+		id="contact-page-body"
+		onload="fadePageIn('contact-page-body')"
+		class="out-view flex min-h-screen flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite"
+	>
+		<nav class="select-none">
+			<div
+				id="nav-bar"
+				class="flex justify-between items-center px-[20px] md:px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
+			>
+				<div id="nav-left" class="w-full md:w-[280px]">
+					<a
+						id="homeLink"
+						onclick="fadePageOut('contact-page-body', 'index.html')"
+						class="text-2xl hover:cursor-pointer"
+						>Atelier DellCastle</a
+					>
+				</div>
+				<div id="nav-center" class="hidden md:flex"></div>
+				<div
+					id="nav-right"
+					class="flex justify-end w-[60px] md:w-[280px]"
+				>
+					<a
+						id="nav-hamburger"
+						class="flex items-center justify-center w-[30px] h-[30px] hover:cursor-pointer"
+					>
+						<i
+							id="nav-hamburger-icon-bars"
+							class="fa-solid fa-bars fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
+						></i>
+						<i
+							id="nav-hamburger-icon-x"
+							class="absolute opacity-0 fa-solid fa-xmark fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
+						></i>
+					</a>
+					<div
+						id="nav-drop-down"
+						class="collapsed text-center z-10 w-[175px] h-[235px] bg-offwhite dark:bg-offblack absolute top-14 right-8 border-2 border-offblack dark:border-offwhite"
+					>
+						<div
+							class="flex flex-col items-center w-full h-[235px] absolute"
+						>
+							<a
+								class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+								onclick="fadePageOut('contact-page-body', 'index.html')"
+								>Home</a
+							>
+							<hr
+								class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+							/>
+							<a
+								class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+								onclick="fadePageOut('contact-page-body', 'about.html')"
+								>About</a
+							>
+							<hr
+								class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+							/>
+							<a
+								class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+								onclick="fadePageOut('contact-page-body', 'gallery.html')"
+								>Gallery</a
+							>
+							<hr
+								class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+							/>
+							<a
+								class="nav-item w-3/4 h-[45px] font-bold leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+								onclick="fadePageOut('contact-page-body', 'contact.html')"
+								>Contact</a
+							>
+							<hr
+								class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+							/>
+							<a
+								class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-300"
+								onclick="fadePageOut('contact-page-body', 'shows.html')"
+								>Shows</a
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<script>
+			//handle nav opening on mobile
+			let hamburger = document.getElementById("nav-hamburger");
+			let hamburgerIconBars = document.getElementById(
+				"nav-hamburger-icon-bars"
+			);
+			let hamburgerIconX = document.getElementById(
+				"nav-hamburger-icon-x"
+			);
+			let expander = document.getElementById("nav-drop-down");
+			let navItems = document.getElementsByClassName("nav-item");
 
-      hamburger.addEventListener("click", () => {
-        if (expander.classList.contains("expanded")) {
-          expander.classList.remove("expanded");
-          expander.classList.add("collapsed");
-          hamburgerIconBars.classList.remove("opacity-0");
-          hamburgerIconX.classList.add("opacity-0");
-        } else {
-          expander.classList.add("expanded");
-          expander.classList.remove("collapsed");
-          hamburgerIconBars.classList.add("opacity-0");
-          hamburgerIconX.classList.remove("opacity-0");
-        }
-      });
-      expander.addEventListener("animationend", (e) => {
-        if (e.animationName == "expandNav") {
-          Array.from(navItems).forEach((item) => {
-            item.classList.add("navItemsExpanded");
-            item.classList.remove("navItemsCollapsed");
-          });
-        }
-      });
-    </script>
+			hamburger.addEventListener("click", () => {
+				if (expander.classList.contains("expanded")) {
+					expander.classList.remove("expanded");
+					expander.classList.add("collapsed");
+					hamburgerIconBars.classList.remove("opacity-0");
+					hamburgerIconX.classList.add("opacity-0");
+				} else {
+					expander.classList.add("expanded");
+					expander.classList.remove("collapsed");
+					hamburgerIconBars.classList.add("opacity-0");
+					hamburgerIconX.classList.remove("opacity-0");
+				}
+			});
+			expander.addEventListener("animationend", (e) => {
+				if (e.animationName == "expandNav") {
+					Array.from(navItems).forEach((item) => {
+						item.classList.add("navItemsExpanded");
+						item.classList.remove("navItemsCollapsed");
+					});
+				}
+			});
+		</script>
 
-    <!--main content-->
-    <div
-      id="contact-body"
-      class="flex flex-col items-center w-screen px-[20px] md:px-[40px] lg:px-[60px]"
-    >
-      <h2 class="uppercase my-10 text-5xl font-bold">Contact</h2>
-      <form
-        id="contact-form"
-        action="https://formsubmit.co/a6eb358ea5db77e291c821076e3eab48"
-        method="POST"
-        class="flex flex-col justify-center w-11/12 md:w-5/6 lg:w-2/3 max-w-[1000px] transition-all duration-500"
-      >
-        <div class="flex flex-col md:flex-row md:gap-10">
-          <div class="contact-div">
-            <input
-              class="contact-input"
-              name="name"
-              id="name"
-              type="text"
-              required
-            />
-            <label class="contact-label" for="name">
-              <span class="contact-label-content">Name</span>
-            </label>
-          </div>
-          <div class="contact-div mt-5 md:mt-0">
-            <input
-              class="contact-input"
-              name="email"
-              id="email"
-              type="email"
-              required
-            />
-            <label class="contact-label" for="email">
-              <span class="contact-label-content">Email</span>
-            </label>
-          </div>
-        </div>
-        <div class="contact-div my-5">
-          <input
-            class="contact-input"
-            name="subject"
-            id="subject"
-            type="text"
-            required
-          />
-          <label class="contact-label" for="subject">
-            <span class="contact-label-content">Subject</span>
-          </label>
-        </div>
-        <div class="contact-div flex items-center gap-2">
-          <div class="checkbox" id="commission-display">
-            <div id="commission-display-inside-checkbox"></div>
-            <input name="commission" id="commission" type="checkbox" />
-          </div>
-          <script>
-            let commissionBox = document.getElementById("commission");
-            let commissionDisplay =
-              document.getElementById("commission-display");
+		<!--main content-->
+		<div
+			id="contact-body"
+			class="flex flex-col items-center w-screen px-[20px] md:px-[40px] lg:px-[60px]"
+		>
+			<h2 class="uppercase my-10 text-5xl font-bold">Contact</h2>
+			<form
+				id="contact-form"
+				action="https://formsubmit.co/a6eb358ea5db77e291c821076e3eab48"
+				method="POST"
+				class="flex flex-col justify-center w-11/12 md:w-5/6 lg:w-2/3 max-w-[1000px] transition-all duration-500"
+			>
+				<div class="flex flex-col md:flex-row md:gap-10">
+					<div class="contact-div">
+						<input
+							class="contact-input"
+							name="name"
+							id="name"
+							type="text"
+							required
+						/>
+						<label class="contact-label" for="name">
+							<span class="contact-label-content">Name</span>
+						</label>
+					</div>
+					<div class="contact-div mt-5 md:mt-0">
+						<input
+							class="contact-input"
+							name="email"
+							id="email"
+							type="email"
+							required
+						/>
+						<label class="contact-label" for="email">
+							<span class="contact-label-content">Email</span>
+						</label>
+					</div>
+				</div>
+				<div class="contact-div my-5">
+					<input
+						class="contact-input"
+						name="subject"
+						id="subject"
+						type="text"
+						required
+					/>
+					<label class="contact-label" for="subject">
+						<span class="contact-label-content">Subject</span>
+					</label>
+				</div>
+				<div class="contact-div flex items-center gap-2">
+					<div class="checkbox" id="commission-display">
+						<div id="commission-display-inside-checkbox"></div>
+						<input
+							name="commission"
+							id="commission"
+							type="checkbox"
+						/>
+					</div>
+					<script>
+						let commissionBox =
+							document.getElementById("commission");
+						let commissionDisplay =
+							document.getElementById("commission-display");
 
-            commissionBox.addEventListener("change", (e) => {
-              if (commissionBox.checked) {
-                console.log("checked");
-                commissionDisplay.classList.add("check");
-              } else {
-                console.log("unchecked");
-                commissionDisplay.classList.remove("check");
-              }
-            });
-          </script>
-          <label for="commission" class="cursor-pointer select-none"
-            >Is this a commission?</label
-          >
-        </div>
-        <div>
-          <textarea
-            name="contact-content"
-            id="contact-content"
-            class="h-[300px] my-5 p-3"
-            placeholder="Start your message here..."
-            required
-          ></textarea>
-        </div>
-        <div class="flex justify-between items-center">
-          <input
-            class="w-[130px] h-[50px] text-xl border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer hover transition-all"
-            type="submit"
-            name="Submit"
-            id="submit"
-          />
-          <div id="socials" class="flex gap-3 mt-2 sl:mt-0">
-            <a
-              target="_blank"
-              href="https://www.facebook.com/profile.php?id=100064173396873"
-              class="flex justify-center items-center w-[30px] h-[30px] sl:w-[35px] sl:h-[35px] bg-offblack dark:bg-offwhite"
-            >
-              <i
-                class="fa-brands fa-facebook-f fa-lg text-offwhite dark:text-offblack"
-              ></i>
-            </a>
-            <a
-              target="_blank"
-              href="https://www.instagram.com/atelier_dellcastle/"
-              class="flex justify-center items-center w-[30px] h-[30px] sl:w-[35px] sl:h-[35px] bg-offblack dark:bg-offwhite"
-            >
-              <i
-                class="fa-brands fa-instagram fa-lg text-offwhite dark:text-offblack"
-              ></i>
-            </a>
-          </div>
-        </div>
-      </form>
-    </div>
-    <!--footer-->
-    <footer class="h-[100px]">
-      <!--To be implemented with legal when shopify is added-->
-    </footer>
-  </body>
+						commissionBox.addEventListener("change", (e) => {
+							if (commissionBox.checked) {
+								console.log("checked");
+								commissionDisplay.classList.add("check");
+							} else {
+								console.log("unchecked");
+								commissionDisplay.classList.remove("check");
+							}
+						});
+					</script>
+					<label for="commission" class="cursor-pointer select-none"
+						>Is this a commission?</label
+					>
+				</div>
+				<div>
+					<textarea
+						name="contact-content"
+						id="contact-content"
+						class="h-[300px] my-5 p-3"
+						placeholder="Start your message here..."
+						required
+					></textarea>
+				</div>
+				<div class="flex justify-between items-center">
+					<input
+						class="w-[130px] h-[50px] text-xl border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer hover transition-all"
+						type="submit"
+						name="Submit"
+						id="submit"
+					/>
+					<div id="socials" class="flex gap-3 mt-2 sl:mt-0">
+						<a
+							target="_blank"
+							href="https://www.facebook.com/profile.php?id=100064173396873"
+							class="flex justify-center items-center w-[30px] h-[30px] sl:w-[35px] sl:h-[35px] bg-offblack dark:bg-offwhite"
+						>
+							<i
+								class="fa-brands fa-facebook-f fa-lg text-offwhite dark:text-offblack"
+							></i>
+						</a>
+						<a
+							target="_blank"
+							href="https://www.instagram.com/atelier_dellcastle/"
+							class="flex justify-center items-center w-[30px] h-[30px] sl:w-[35px] sl:h-[35px] bg-offblack dark:bg-offwhite"
+						>
+							<i
+								class="fa-brands fa-instagram fa-lg text-offwhite dark:text-offblack"
+							></i>
+						</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!--footer-->
+		<footer class="h-[100px]">
+			<!--To be implemented with legal when shopify is added-->
+		</footer>
+	</body>
 </html>

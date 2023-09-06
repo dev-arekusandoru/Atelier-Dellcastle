@@ -1,236 +1,250 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit</title>
-    <link href="dist/output.css" rel="stylesheet" />
-    <!--fonts-->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <!--icons-->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/125fe29883.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="js/functions.js"></script>
-  </head>
-  <body
-    onload="fadePageIn('edit-page-body')"
-    class="bg-offwhite dark:bg-offblack"
-  >
-    <div
-      id="edit-page-body"
-      class="out-view flex h-full min-h-screen flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite"
-    >
-      <nav class="select-none">
-        <div
-          id="nav-bar"
-          class="flex justify-between items-center px-[20px] md:px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
-        >
-          <div id="nav-left" class="w-full md:w-[280px]">
-            <a
-              id="homeLink"
-              onclick="fadePageOut('edit-page-body', 'index.html')"
-              class="text-2xl hover:cursor-pointer"
-              >Atelier Dellcastle</a
-            >
-          </div>
-          <div id="nav-center" class="hidden md:flex"></div>
-          <div id="nav-right" class="flex justify-end w-[60px] md:w-[280px]">
-            <a
-              id="nav-hamburger"
-              class="flex items-center justify-center w-[30px] h-[30px] hover:cursor-pointer"
-            >
-              <i
-                id="nav-hamburger-icon-bars"
-                class="fa-solid fa-bars fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
-              ></i>
-              <i
-                id="nav-hamburger-icon-x"
-                class="absolute opacity-0 fa-solid fa-xmark fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
-              ></i>
-            </a>
-            <div
-              id="nav-drop-down"
-              class="collapsed text-center z-10 w-[175px] h-[235px] bg-offwhite dark:bg-offblack absolute top-14 right-8 border-2 border-offblack dark:border-offwhite"
-            >
-              <div class="flex flex-col items-center w-full h-[235px] absolute">
-                <a
-                  class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                  onclick="fadePageOut('edit-page-body', 'index.html')"
-                  >Home</a
-                >
-                <hr
-                  class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-                />
-                <a
-                  class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                  onclick="fadePageOut('edit-page-body', 'about.html')"
-                  >About</a
-                >
-                <hr
-                  class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-                />
-                <a
-                  class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                  onclick="fadePageOut('edit-page-body', 'gallery.html')"
-                  >Gallery</a
-                >
-                <hr
-                  class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-                />
-                <a
-                  class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
-                  onclick="fadePageOut('edit-page-body', 'contact.html')"
-                  >Contact</a
-                >
-                <hr
-                  class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
-                />
-                <a
-                  class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-300"
-                  onclick="fadePageOut('edit-page-body', 'shows.html')"
-                  >Shows</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <script>
-        //handle nav opening on mobile
-        let hamburger = document.getElementById("nav-hamburger");
-        let hamburgerIconBars = document.getElementById(
-          "nav-hamburger-icon-bars"
-        );
-        let hamburgerIconX = document.getElementById("nav-hamburger-icon-x");
-        let expander = document.getElementById("nav-drop-down");
-        let navItems = document.getElementsByClassName("nav-item");
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Edit</title>
+		<link href="dist/output.css" rel="stylesheet" />
+		<!--fonts-->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<!--icons-->
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+		<script
+			src="https://kit.fontawesome.com/125fe29883.js"
+			crossorigin="anonymous"
+		></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		<script src="js/functions.js"></script>
+	</head>
+	<body
+		onload="fadePageIn('edit-page-body')"
+		class="bg-offwhite dark:bg-offblack"
+	>
+		<div
+			id="edit-page-body"
+			class="out-view flex h-full min-h-screen flex-col items-center bg-offwhite text-offblack dark:bg-offblack dark:text-offwhite"
+		>
+			<nav class="select-none">
+				<div
+					id="nav-bar"
+					class="flex justify-between items-center px-[20px] md:px-[30px] border-b border-opacity-30 border-gray-600 w-screen h-[65px]"
+				>
+					<div id="nav-left" class="w-full md:w-[280px]">
+						<a
+							id="homeLink"
+							onclick="fadePageOut('edit-page-body', 'index.html')"
+							class="text-2xl hover:cursor-pointer"
+							>Atelier DellCastle</a
+						>
+					</div>
+					<div id="nav-center" class="hidden md:flex"></div>
+					<div
+						id="nav-right"
+						class="flex justify-end w-[60px] md:w-[280px]"
+					>
+						<a
+							id="nav-hamburger"
+							class="flex items-center justify-center w-[30px] h-[30px] hover:cursor-pointer"
+						>
+							<i
+								id="nav-hamburger-icon-bars"
+								class="fa-solid fa-bars fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
+							></i>
+							<i
+								id="nav-hamburger-icon-x"
+								class="absolute opacity-0 fa-solid fa-xmark fa-lg text-offblack dark:text-offwhite transition-opacity duration-300"
+							></i>
+						</a>
+						<div
+							id="nav-drop-down"
+							class="collapsed text-center z-10 w-[175px] h-[235px] bg-offwhite dark:bg-offblack absolute top-14 right-8 border-2 border-offblack dark:border-offwhite"
+						>
+							<div
+								class="flex flex-col items-center w-full h-[235px] absolute"
+							>
+								<a
+									class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+									onclick="fadePageOut('edit-page-body', 'index.html')"
+									>Home</a
+								>
+								<hr
+									class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+								/>
+								<a
+									class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+									onclick="fadePageOut('edit-page-body', 'about.html')"
+									>About</a
+								>
+								<hr
+									class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+								/>
+								<a
+									class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+									onclick="fadePageOut('edit-page-body', 'gallery.html')"
+									>Gallery</a
+								>
+								<hr
+									class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+								/>
+								<a
+									class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-200"
+									onclick="fadePageOut('edit-page-body', 'contact.html')"
+									>Contact</a
+								>
+								<hr
+									class="nav-item w-3/4 border-t border-[#01040066] dark:border-[#FFFBFC66]"
+								/>
+								<a
+									class="nav-item w-3/4 h-[45px] leading-[45px] hover:font-bold hover:cursor-pointer transition-all duration-300"
+									onclick="fadePageOut('edit-page-body', 'shows.html')"
+									>Shows</a
+								>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+			<script>
+				//handle nav opening on mobile
+				let hamburger = document.getElementById("nav-hamburger");
+				let hamburgerIconBars = document.getElementById(
+					"nav-hamburger-icon-bars"
+				);
+				let hamburgerIconX = document.getElementById(
+					"nav-hamburger-icon-x"
+				);
+				let expander = document.getElementById("nav-drop-down");
+				let navItems = document.getElementsByClassName("nav-item");
 
-        hamburger.addEventListener("click", () => {
-          if (expander.classList.contains("expanded")) {
-            expander.classList.remove("expanded");
-            expander.classList.add("collapsed");
-            hamburgerIconBars.classList.remove("opacity-0");
-            hamburgerIconX.classList.add("opacity-0");
-          } else {
-            expander.classList.add("expanded");
-            expander.classList.remove("collapsed");
-            hamburgerIconBars.classList.add("opacity-0");
-            hamburgerIconX.classList.remove("opacity-0");
-          }
-        });
-        expander.addEventListener("animationend", (e) => {
-          if (e.animationName == "expandNav") {
-            Array.from(navItems).forEach((item) => {
-              item.classList.add("navItemsExpanded");
-              item.classList.remove("navItemsCollapsed");
-            });
-          }
-        });
-      </script>
+				hamburger.addEventListener("click", () => {
+					if (expander.classList.contains("expanded")) {
+						expander.classList.remove("expanded");
+						expander.classList.add("collapsed");
+						hamburgerIconBars.classList.remove("opacity-0");
+						hamburgerIconX.classList.add("opacity-0");
+					} else {
+						expander.classList.add("expanded");
+						expander.classList.remove("collapsed");
+						hamburgerIconBars.classList.add("opacity-0");
+						hamburgerIconX.classList.remove("opacity-0");
+					}
+				});
+				expander.addEventListener("animationend", (e) => {
+					if (e.animationName == "expandNav") {
+						Array.from(navItems).forEach((item) => {
+							item.classList.add("navItemsExpanded");
+							item.classList.remove("navItemsCollapsed");
+						});
+					}
+				});
+			</script>
 
-      <!--main content-->
-      <div id="edit-body" class="flex flex-col items-center w-screen px-[20px]">
-        <h2 class="uppercase my-10 text-5xl font-bold">Edit</h2>
-        <div class="w-5/6 max-w-[1400px] mb-6">
-          <select name="category" id="category" class="w-full text-offblack">
-            <option value="boards" selected>boards</option>
-            <option value="kumiko">kumiko</option>
-            <option value="boxes">boxes</option>
-            <option value="inlay">inlay</option>
-          </select>
-        </div>
-        <div
-          id="edit-items"
-          class="w-5/6 max-w-[1400px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
-        ></div>
-      </div>
-      <footer class="h-[50px]"></footer>
-    </div>
-    <div
-      id="login-page-body"
-      class="flex flex-col items-center justify-center absolute top-0 bg-offwhite dark:bg-offblack h-screen w-screen"
-    >
-      <h2 class="uppercase text-5xl mb-10 font-bold justify-self-start">
-        Login
-      </h2>
-      <div
-        class="flex flex-col px-12 items-center gap-6 justify-center w-full max-w-[400px] bg-offwhite dark:bg-offblack"
-      >
-        <div class="contact-div">
-          <input
-            class="contact-input"
-            name="username"
-            id="username"
-            type="text"
-            required
-          />
-          <label class="contact-label" for="username">
-            <span class="contact-label-content">Username</span>
-          </label>
-        </div>
-        <div class="contact-div">
-          <input
-            class="contact-input"
-            name="password"
-            id="password"
-            type="password"
-            required
-          />
-          <label class="contact-label" for="password">
-            <span class="contact-label-content">Password</span>
-          </label>
-        </div>
-        <input
-          class="w-full h-[50px] text-xl border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
-          type="submit"
-          accept=".jpg"
-          value="Log In"
-          name="login"
-          id="login"
-        />
-      </div>
-    </div>
-    <script type="module">
-      import { generateEditPage } from "./js/db.js";
-      import { auth } from "./js/firebase.js";
-      import {
-        signInWithEmailAndPassword,
-        setPersistence,
-        browserSessionPersistence,
-        onAuthStateChanged,
-        signOut
-      } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+			<!--main content-->
+			<div
+				id="edit-body"
+				class="flex flex-col items-center w-screen px-[20px]"
+			>
+				<h2 class="uppercase my-10 text-5xl font-bold">Edit</h2>
+				<div class="w-5/6 max-w-[1400px] mb-6">
+					<select
+						name="category"
+						id="category"
+						class="w-full text-offblack"
+					>
+						<option value="boards" selected>boards</option>
+						<option value="kumiko">kumiko</option>
+						<option value="boxes">boxes</option>
+						<option value="inlay">inlay</option>
+					</select>
+				</div>
+				<div
+					id="edit-items"
+					class="w-5/6 max-w-[1400px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+				></div>
+			</div>
+			<footer class="h-[50px]"></footer>
+		</div>
+		<div
+			id="login-page-body"
+			class="flex flex-col items-center justify-center absolute top-0 bg-offwhite dark:bg-offblack h-screen w-screen"
+		>
+			<h2 class="uppercase text-5xl mb-10 font-bold justify-self-start">
+				Login
+			</h2>
+			<div
+				class="flex flex-col px-12 items-center gap-6 justify-center w-full max-w-[400px] bg-offwhite dark:bg-offblack"
+			>
+				<div class="contact-div">
+					<input
+						class="contact-input"
+						name="username"
+						id="username"
+						type="text"
+						required
+					/>
+					<label class="contact-label" for="username">
+						<span class="contact-label-content">Username</span>
+					</label>
+				</div>
+				<div class="contact-div">
+					<input
+						class="contact-input"
+						name="password"
+						id="password"
+						type="password"
+						required
+					/>
+					<label class="contact-label" for="password">
+						<span class="contact-label-content">Password</span>
+					</label>
+				</div>
+				<input
+					class="w-full h-[50px] text-xl border-2 border-[#0104002c] text-[#0104002c] hover:text-offwhite hover:bg-offblack hover:border-offblack hover:cursor-pointer transition-all duration-300 dark:text-[#fffbfc2c] dark:border-[#fffbfc2c] dark:hover:bg-[#fffbfc] dark:hover:border-[#fffbfc] dark:hover:text-[#010400]"
+					type="submit"
+					accept=".jpg"
+					value="Log In"
+					name="login"
+					id="login"
+				/>
+			</div>
+		</div>
+		<script type="module">
+			import { generateEditPage } from "./js/db.js";
+			import { auth } from "./js/firebase.js";
+			import {
+				signInWithEmailAndPassword,
+				setPersistence,
+				browserSessionPersistence,
+				onAuthStateChanged,
+				signOut
+			} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
-      let login = document.getElementById("login");
-      /* let logout = document.getElementById("logout"); */
-      let user = null;
-      login.addEventListener("click", () => {
-        let email = document.getElementById("username");
-        let password = document.getElementById("password");
-        console.log(email.value + "," + password.value);
-        signInWithEmailAndPassword(auth, email.value, password.value)
-          .then((userCredential) => {
-            user = userCredential.user;
-          })
-          .catch((error) => {
-            alert("incorrect user or password");
-            const errorCode = error.code;
-            const errorMessage = error.message;
-          });
-        email.value = "";
-        password.value = "";
-      });
-      /* logout.addEventListener("click", () => {
+			let login = document.getElementById("login");
+			/* let logout = document.getElementById("logout"); */
+			let user = null;
+			login.addEventListener("click", () => {
+				let email = document.getElementById("username");
+				let password = document.getElementById("password");
+				console.log(email.value + "," + password.value);
+				signInWithEmailAndPassword(auth, email.value, password.value)
+					.then((userCredential) => {
+						user = userCredential.user;
+					})
+					.catch((error) => {
+						alert("incorrect user or password");
+						const errorCode = error.code;
+						const errorMessage = error.message;
+					});
+				email.value = "";
+				password.value = "";
+			});
+			/* logout.addEventListener("click", () => {
         signOut(auth)
           .then(() => {
             localStorage.removeItem("uid");
@@ -238,31 +252,31 @@
           .catch((error) => {});
       }); */
 
-      let loginPage = document.getElementById("login-page-body");
+			let loginPage = document.getElementById("login-page-body");
 
-      let uid = null;
+			let uid = null;
 
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          console.log("logged");
-          uid = user.uid;
-          localStorage.setItem("uid", uid);
-          loginPage.classList.add("hidden");
-        } else {
-          console.log("Signed Out");
-          loginPage.classList.remove("hidden");
-        }
-      });
+			onAuthStateChanged(auth, (user) => {
+				if (user) {
+					console.log("logged");
+					uid = user.uid;
+					localStorage.setItem("uid", uid);
+					loginPage.classList.add("hidden");
+				} else {
+					console.log("Signed Out");
+					loginPage.classList.remove("hidden");
+				}
+			});
 
-      generateEditPage("boards");
-      let select = document.getElementById("category");
-      select.addEventListener("change", () => {
-        console.log(select.value);
-        generateEditPage(select.value);
-      });
+			generateEditPage("boards");
+			let select = document.getElementById("category");
+			select.addEventListener("change", () => {
+				console.log(select.value);
+				generateEditPage(select.value);
+			});
 
-      /* history.navigationMode = "compatible";
+			/* history.navigationMode = "compatible";
       $(document).ready(function () {}); */
-    </script>
-  </body>
+		</script>
+	</body>
 </html>
