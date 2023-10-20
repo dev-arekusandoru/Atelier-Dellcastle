@@ -109,34 +109,34 @@
 		</nav>
 		<script>
 			//handle nav opening on mobile
-			let hamburger = document.getElementById("nav-hamburger");
+			let hamburger = document.getElementById('nav-hamburger');
 			let hamburgerIconBars = document.getElementById(
-				"nav-hamburger-icon-bars"
+				'nav-hamburger-icon-bars'
 			);
 			let hamburgerIconX = document.getElementById(
-				"nav-hamburger-icon-x"
+				'nav-hamburger-icon-x'
 			);
-			let expander = document.getElementById("nav-drop-down");
-			let navItems = document.getElementsByClassName("nav-item");
+			let expander = document.getElementById('nav-drop-down');
+			let navItems = document.getElementsByClassName('nav-item');
 
-			hamburger.addEventListener("click", () => {
-				if (expander.classList.contains("expanded")) {
-					expander.classList.remove("expanded");
-					expander.classList.add("collapsed");
-					hamburgerIconBars.classList.remove("opacity-0");
-					hamburgerIconX.classList.add("opacity-0");
+			hamburger.addEventListener('click', () => {
+				if (expander.classList.contains('expanded')) {
+					expander.classList.remove('expanded');
+					expander.classList.add('collapsed');
+					hamburgerIconBars.classList.remove('opacity-0');
+					hamburgerIconX.classList.add('opacity-0');
 				} else {
-					expander.classList.add("expanded");
-					expander.classList.remove("collapsed");
-					hamburgerIconBars.classList.add("opacity-0");
-					hamburgerIconX.classList.remove("opacity-0");
+					expander.classList.add('expanded');
+					expander.classList.remove('collapsed');
+					hamburgerIconBars.classList.add('opacity-0');
+					hamburgerIconX.classList.remove('opacity-0');
 				}
 			});
-			expander.addEventListener("animationend", (e) => {
-				if (e.animationName == "expandNav") {
+			expander.addEventListener('animationend', (e) => {
+				if (e.animationName == 'expandNav') {
 					Array.from(navItems).forEach((item) => {
-						item.classList.add("navItemsExpanded");
-						item.classList.remove("navItemsCollapsed");
+						item.classList.add('navItemsExpanded');
+						item.classList.remove('navItemsCollapsed');
 					});
 				}
 			});
@@ -151,26 +151,48 @@
 			<div
 				class="w-11/12 lg:w-4/5 flex flex-row gap-10 justify-around flex-wrap"
 			>
-				<div
+				<!-- <div
 					class="w-full md:w-4/5 lg:w-[47%] p-[12px] border-4 border-offblack dark:border-offwhite"
 				>
 					<div
 						class="flex flex-col-reverse md:flex-row w-full justify-between items-center md:items-start"
 					>
 						<h2 class="text-center text-3xl font-bold mb-1">
-							The Family Room
+							Title
 						</h2>
-						<p class="text-xl font-bold">September 23</p>
+						<p class="text-xl font-bold">Date</p>
 					</div>
-					<p class="text-center md:text-left text-lg">10am - 3pm</p>
+					<p class="text-center md:text-left text-lg">Time</p>
 					<p class="text-center md:text-left">
 						<a
 							class="text-lg underline"
-							href="https://goo.gl/maps/qtqoZquYmZLeQcRL6"
+							href="google_link"
 							target="_blank"
-							>6820 Olney Laytonsville Road<br />Laytonsville, MD
-							20882
-						</a>
+							>Address</a>
+					</p>
+				</div> -->
+				<div
+					class="w-full md:w-4/5 lg:w-[47%] p-[12px] border-4 border-offblack dark:border-offwhite"
+				>
+					<div
+						class="flex flex-col-reverse md:flex-row w-full justify-between items-center"
+					>
+						<h2
+							class="text-center md:text-left text-3xl font-bold mb-1"
+						>
+							MV Holiday Craft Bazaar
+						</h2>
+						<p class="text-xl font-bold">November 11</p>
+					</div>
+					<p class="text-center md:text-left text-lg">9am - 3pm</p>
+					<p class="text-center md:text-left">
+						<a
+							class="text-lg underline"
+							href="https://maps.app.goo.gl/DZmhpC98irYXRyLt8"
+							target="_blank"
+							>Lake Marion Community Center<br />Montgomery
+							Village, MD</a
+						>
 					</p>
 				</div>
 				<div
@@ -179,18 +201,20 @@
 					<div
 						class="flex flex-col-reverse md:flex-row w-full justify-between items-center md:items-start"
 					>
-						<h2 class="text-center text-3xl font-bold mb-1">
-							Art @ the Park
+						<h2
+							class="text-center md:text-left md:text-left text-3xl font-bold mb-1 md:max-w-[275px] xl:max-w-[500px]"
+						>
+							Fairfax Holiday Craft Show
 						</h2>
-						<p class="text-xl font-bold">October 14-15</p>
+						<p class="text-xl font-bold">November 18-19</p>
 					</div>
-					<p class="text-center md:text-left text-lg">10am - 4pm</p>
+					<p class="text-lg text-center md:text-left">10am - 3pm</p>
 					<p class="text-center md:text-left">
 						<a
-							class="text-lg underline"
-							href="https://goo.gl/maps/rFipsqSjdGb9JiyB6"
+							class="mx-auto text-lg underline text-center"
+							href="https://goo.gl/maps/PNTseDAG19nSu8zu9"
 							target="_blank"
-							>Quiet Waters Park<br />Annapolis, MD
+							>Fairfax High School<br />Fairfax, VA
 						</a>
 					</p>
 				</div>
@@ -201,19 +225,20 @@
 						class="flex flex-col-reverse md:flex-row w-full justify-between items-center md:items-start"
 					>
 						<h2
-							class="text-center md:text-left text-3xl font-bold mb-1 md:max-w-[275px] xl:max-w-[500px]"
+							class="text-center md:text-left text-3xl font-bold mb-1"
 						>
-							Fairfax Holiday Craft Show
+							St. Alban’s School Christmas Tour
 						</h2>
-						<p class="text-xl font-bold">November 18-19</p>
+						<p class="text-xl font-bold">December 1-2</p>
 					</div>
-					<p class="text-lg text-center md:text-left">10am - 4pm</p>
+					<p class="text-center md:text-left text-lg">10am - 5pm</p>
 					<p class="text-center md:text-left">
 						<a
-							class="mx-auto text-lg underline text-center"
-							href="https://goo.gl/maps/PNTseDAG19nSu8zu9"
+							class="text-lg underline"
+							href="https://maps.app.goo.gl/qqfCfGdBDvLceJJZA"
 							target="_blank"
-							>Fairfax High School<br />Fairfax, VA
+							>3001 Wisconsin Ave NW,<br />
+							Washington, DC 20016
 						</a>
 					</p>
 				</div>
