@@ -65,7 +65,8 @@ export async function generateFeaturedPage() {
 						item.details,
 						item.img['url']
 							? item.img['url']
-							: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/SMPTE_Color_Bars.svg/1920px-SMPTE_Color_Bars.svg.png'
+							: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/SMPTE_Color_Bars.svg/1920px-SMPTE_Color_Bars.svg.png',
+						item.price
 					);
 				}
 			});
